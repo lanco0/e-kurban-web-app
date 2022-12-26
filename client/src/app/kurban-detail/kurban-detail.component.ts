@@ -2,31 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Kurban } from '../kurban';
+import { KurbanService } from '../kurban.service';
 
 @Component({
-  selector: 'app-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: [ './hero-detail.component.css' ]
+  selector: 'app-kurban-detail',
+  templateUrl: './kurban-detail.component.html',
+  styleUrls: [ './kurban-detail.component.css' ]
 })
-export class HeroDetailComponent implements OnInit {
-  hero: Hero | undefined;
+export class KurbanDetailComponent implements OnInit {
+  kurban: Kurban | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
+    private kurbanService: KurbanService,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    this.getKurban();
   }
 
-  getHero(): void {
+  getKurban(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+    this.kurbanService.getKurban(id)
+      .subscribe(kurban => this.kurban = kurban);
   }
 
   goBack(): void {
@@ -34,8 +34,8 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    if (this.hero) {
-      this.heroService.updateHero(this.hero)
+    if (this.kurban) {
+      this.kurbanService.updateKurban(this.kurban)
         .subscribe(() => this.goBack());
     }
   }
