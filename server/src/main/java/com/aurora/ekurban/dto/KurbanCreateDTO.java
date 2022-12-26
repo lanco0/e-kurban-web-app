@@ -1,22 +1,20 @@
 package com.aurora.ekurban.dto;
 
-import com.aurora.ekurban.domain.Hisse;
 import com.aurora.ekurban.domain.enums.KurbanCins;
-import com.aurora.ekurban.domain.enums.KurbanDurum;
 import com.aurora.ekurban.domain.enums.KurbanKunye;
 
 public class KurbanCreateDTO {
 
     private KurbanCins cins;
     private KurbanKunye kunye;
-    private KurbanDurum durum;
-
     private String kupeNo;
     private Integer kilo;
     private Integer yas;
     private Integer fiyat;
     private String resimUrl;
 
+    public KurbanCreateDTO() {
+    }
 
     public KurbanCins getCins() {
         return cins;
@@ -32,14 +30,6 @@ public class KurbanCreateDTO {
 
     public void setKunye(KurbanKunye kunye) {
         this.kunye = kunye;
-    }
-
-    public KurbanDurum getDurum() {
-        return durum;
-    }
-
-    public void setDurum(KurbanDurum durum) {
-        this.durum = durum;
     }
 
     public String getKupeNo() {

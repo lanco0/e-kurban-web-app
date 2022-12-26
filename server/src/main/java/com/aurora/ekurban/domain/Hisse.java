@@ -11,21 +11,8 @@ public class Hisse {
 
     private Integer hisseNo;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Hissedar hissedar;
-
     public Hisse() {
     }
-
-    public Hissedar getHissedar() {
-        return hissedar;
-    }
-
-    public void setHissedar(Hissedar hissedar) {
-        this.hissedar = hissedar;
-    }
-
     public Long getId() {
         return id;
     }
@@ -44,6 +31,5 @@ public class Hisse {
 
     public Hisse(Integer hisseNo, Hissedar hissedar) {
         this.hisseNo = hisseNo;
-        this.hissedar = hissedar;
     }
 }

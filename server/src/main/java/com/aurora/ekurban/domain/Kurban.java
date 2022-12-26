@@ -5,8 +5,8 @@ import com.aurora.ekurban.domain.enums.KurbanDurum;
 import com.aurora.ekurban.domain.enums.KurbanKunye;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 public class Kurban {
 
@@ -15,8 +15,11 @@ public class Kurban {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private KurbanCins cins;
+    @Enumerated(EnumType.STRING)
     private KurbanKunye kunye;
+    @Enumerated(EnumType.STRING)
     private KurbanDurum durum;
 
     private String kupeNo;
@@ -26,19 +29,7 @@ public class Kurban {
     private Integer kesimSirasi;
     private String resimUrl;
 
-    @OneToMany
-    @JoinColumn(name = "id")
-    public Hisse hisseList;
-
     public Kurban() {
-    }
-
-    public Hisse getHisseList() {
-        return hisseList;
-    }
-
-    public void setHisseList(Hisse hisseList) {
-        this.hisseList = hisseList;
     }
 
     public Long getId() {
@@ -121,14 +112,11 @@ public class Kurban {
         this.resimUrl = resimUrl;
     }
 
-    public Kurban(KurbanCins cins, KurbanKunye kunye,
-                  KurbanDurum durum, String kupeNo,
-                  Integer kilo, Integer yas,
-                  Integer fiyat, Integer kesimSirasi,
-                  String resimUrl) {
+    public Kurban(KurbanCins cins, KurbanKunye kunye, String kupeNo,
+                  Integer kilo, Integer yas, Integer fiyat, Integer kesimSirasi, String resimUrl) {
         this.cins = cins;
         this.kunye = kunye;
-        this.durum = durum;
+        this.durum = KurbanDurum.SATISTA;
         this.kupeNo = kupeNo;
         this.kilo = kilo;
         this.yas = yas;
