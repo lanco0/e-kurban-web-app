@@ -1,7 +1,7 @@
 package com.aurora.ekurban.bdd.steps;
 
 import com.aurora.ekurban.bdd.runner.CucumberIntegrationTest;
-import com.aurora.ekurban.dto.KurbanCreateDTO;
+import com.aurora.ekurban.dto.KurbanDTO;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanKunye;
 import com.aurora.ekurban.service.KurbanService;
@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -34,7 +33,7 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
 
     @Autowired
     KurbanService kurbanService;
-    KurbanCreateDTO kurbanCreateDTO;
+    KurbanDTO kurbanDTO;
 
     @Autowired
     ScenarioContext scenerioContext;
@@ -44,27 +43,27 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
     public void kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
         for (Map<String, String> columns : rows) {
-            kurbanCreateDTO = new KurbanCreateDTO();
+            kurbanDTO = new KurbanDTO();
             if (columns.get("cins") != null) {
-                kurbanCreateDTO.setCins(KurbanCins.valueOf(columns.get("cins")));
+                kurbanDTO.setCins(KurbanCins.valueOf(columns.get("cins")));
             }
             if (columns.get("kunye") != null) {
-                kurbanCreateDTO.setKunye(KurbanKunye.valueOf(columns.get("kunye")));
+                kurbanDTO.setKunye(KurbanKunye.valueOf(columns.get("kunye")));
             }
             if (columns.get("kupeNo") != null) {
-                kurbanCreateDTO.setKupeNo(columns.get("kupeNo"));
+                kurbanDTO.setKupeNo(columns.get("kupeNo"));
             }
             if (columns.get("kilo") != null) {
-                kurbanCreateDTO.setKilo(Integer.valueOf(columns.get("kilo")));
+                kurbanDTO.setKilo(Integer.valueOf(columns.get("kilo")));
             }
             if (columns.get("yas") != null) {
-                kurbanCreateDTO.setYas(Integer.valueOf(columns.get("yas")));
+                kurbanDTO.setYas(Integer.valueOf(columns.get("yas")));
             }
             if (columns.get("fiyat") != null) {
-                kurbanCreateDTO.setFiyat(Integer.valueOf(columns.get("fiyat")));
+                kurbanDTO.setFiyat(Integer.valueOf(columns.get("fiyat")));
             }
             if (columns.get("resimUrl") != null) {
-                kurbanCreateDTO.setResimUrl(columns.get("resimUrl"));
+                kurbanDTO.setResimUrl(columns.get("resimUrl"));
             }
         }
     }
@@ -72,14 +71,14 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
     @Given("Kurban Listesinde sadece aşağıdaki kurban eklenmiş olsun")
     public void kurbanListesindeSadeceAsagidakiKurbanEklenmisOlsun(DataTable table) {
         kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
-        kurbanService.addKurban(kurbanCreateDTO);
+        kurbanService.addKurban(kurbanDTO);
     }
 
     /*W H E N*/
     @When("Kullanıcı kurbanı eklemek istediğinde")
     public void kullaniciKurbaniEklemekIstediginde() throws Exception {
         ObjectWriter objectMapper = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String requestBody = objectMapper.writeValueAsString(kurbanCreateDTO);
+        String requestBody = objectMapper.writeValueAsString(kurbanDTO);
 
         ResultActions result = mockMvc.perform(post("/api/v1/kurban")
                         .content(requestBody)

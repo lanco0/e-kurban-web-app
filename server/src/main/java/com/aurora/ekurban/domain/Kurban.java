@@ -5,7 +5,16 @@ import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.enumeration.KurbanKunye;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Kurban domain class.
+ * Yeni bir kurban oluşturmak için bu sınıfı kullanın.
+ * Kurban sınıfı, kurbanın türü, cinsi, durumu, fiyatı, ağırlığı gibi bilgileri içerir.
+ * Kurban sınıfı, kurbanın fotoğrafını da içerir.
+ * Kurban sınıfı, kurbanın sahibi olan hissedarların sahip olduğu hisse sınıfını da içerir.
+ */
 @Entity
 public class Kurban {
 
@@ -21,12 +30,15 @@ public class Kurban {
     @Enumerated(EnumType.STRING)
     private KurbanDurum durum;
 
+
     private String kupeNo;
     private Integer kilo;
     private Integer yas;
     private Integer fiyat;
     private Integer kesimSirasi;
     private String resimUrl;
+
+    List<Hisse> hisseList;
 
     public Kurban() {
     }
@@ -122,5 +134,6 @@ public class Kurban {
         this.fiyat = fiyat;
         this.kesimSirasi = kesimSirasi;
         this.resimUrl = resimUrl;
+        this.hisseList = new ArrayList<>();
     }
 }

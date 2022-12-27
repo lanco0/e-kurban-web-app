@@ -6,7 +6,7 @@ import com.aurora.ekurban.enumeration.KurbanKunye;
 import javax.validation.constraints.NotNull;
 
 
-public class KurbanCreateDTO {
+public class KurbanDTO {
 
     @NotNull
     private KurbanCins cins;
@@ -23,7 +23,7 @@ public class KurbanCreateDTO {
     @NotNull
     private String resimUrl;
 
-    public KurbanCreateDTO() {
+    public KurbanDTO() {
     }
 
     public KurbanCins getCins() {
