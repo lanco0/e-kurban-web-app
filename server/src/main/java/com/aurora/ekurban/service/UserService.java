@@ -40,6 +40,5 @@ public class UserService {
             return passwordInDatabase.equals(userEnteredPassword);
         }
         return false;
-
     }
 }
