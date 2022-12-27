@@ -4,14 +4,13 @@ import com.aurora.ekurban.domain.User;
 import com.aurora.ekurban.service.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
+@RequestMapping("api/v1")
 public class LoginController {
     private final LoginService loginService;
 
@@ -36,11 +35,5 @@ public class LoginController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(loginService.getAllUsers(), HttpStatus.OK);
-    }
-
 
 }

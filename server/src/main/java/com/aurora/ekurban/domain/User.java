@@ -1,6 +1,9 @@
 package com.aurora.ekurban.domain;
 
 import javax.persistence.*;
+
+
+
 @Table(name = "Users")
 @Entity
 public class User {
