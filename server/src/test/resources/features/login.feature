@@ -18,4 +18,5 @@ Feature: Login Olma İşlemleri
       | username | password |
       | user     | 123      |
       | useraa   | 1234     |
+      |          | 156      |
       |          |          |

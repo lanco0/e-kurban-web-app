@@ -1,7 +1,7 @@
 package com.aurora.ekurban.controller;
 
 import com.aurora.ekurban.domain.User;
-import com.aurora.ekurban.service.LoginService;
+import com.aurora.ekurban.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +12,16 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1")
 public class LoginController {
-    private final LoginService loginService;
+    private final UserService userService;
 
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
+    public LoginController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/auth")
     public ResponseEntity<HttpStatus> loginOperation(@RequestBody User user) {
 
-        List<User> userList = loginService.findUser(user.getEposta());
+        List<User> userList = userService.findUser(user.getEposta());
 
         if (userList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
