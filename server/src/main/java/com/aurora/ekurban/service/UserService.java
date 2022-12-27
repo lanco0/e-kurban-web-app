@@ -5,31 +5,44 @@ import com.aurora.ekurban.repository.UserReposiory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
     private final UserReposiory userReposiory;
 
+    /**
+     *
+     * @param userReposiory constructor ile repository inject ediliyor
+     */
     public UserService(UserReposiory userReposiory) {
         this.userReposiory = userReposiory;
     }
 
+    /**
+     *
+     * @param eposta Database de aranılacak olan eposta/kullanıcı adı alanı
+     * @return repositoryde girilen eposta ile kayırlı olan tüm alanları liste halinde geri döndürür
+     */
     public List<User> findUser(String eposta) {
         return userReposiory.findUserByEposta(eposta);
     }
 
-    public boolean isValidUser(User user) {
-        List<User> userList = this.findUser(user.getEposta());
+    /**
+     *
+     * @param _user Kullanıcının girdiği eposta/kullanıcı adı ve şifreyi içeren domain sınıfımız
+     * @return Kullanıcı database de kayıtlı ise true, kayıtlı değilse false değeri döner
+     */
+    public boolean isValidUser(User _user) {
+        Optional<User> user = this.findUser(_user.getEposta()).stream().findFirst();
 
-        if (userList.size() == 0) {
+        if (user.isEmpty()) {
             return false;
-        } else if (userList.size() == 1) {
-            String passInDatabase = userList.get(0).getSifre();
-            String userEnteredPass = user.getSifre();
+        } else {
+            String passwordInDatabase = user.get().getSifre();
+            String userEnteredPassword = _user.getSifre();
 
-            return passInDatabase.equals(userEnteredPass);
+            return passwordInDatabase.equals(userEnteredPassword);
         }
-
-        return false;
     }
 }

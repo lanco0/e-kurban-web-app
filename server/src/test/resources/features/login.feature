@@ -16,7 +16,7 @@ Feature: Login Olma İşlemleri
 
     Examples:
       | username | password |
+      | use      | 1234     |
       | user     | 123      |
-      | useraa   | 1234     |
       |          | 156      |
       |          |          |
