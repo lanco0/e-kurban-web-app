@@ -2,7 +2,9 @@ package com.aurora.ekurban.dto;
 
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanKunye;
-import org.jetbrains.annotations.NotNull;
+
+import javax.validation.constraints.NotNull;
+
 
 public class KurbanCreateDTO {
 

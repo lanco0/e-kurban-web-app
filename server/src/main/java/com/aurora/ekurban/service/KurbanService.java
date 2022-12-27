@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class KurbanService {
 
@@ -19,6 +21,9 @@ public class KurbanService {
         return kesimSequence++;
     }
 
+    public List<Kurban> getKurbanList(){
+        return kurbanRepository.findAll();
+    }
     public Kurban addKurban(@NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
         Kurban kurban = new Kurban(
                 kurbanCreateDTO.getCins(), kurbanCreateDTO.getKunye(),

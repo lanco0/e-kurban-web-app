@@ -69,6 +69,12 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
         }
     }
 
+    @Given("Kurban Listesinde sadece aşağıdaki kurban eklenmiş olsun")
+    public void kurbanListesindeSadeceAsagidakiKurbanEklenmisOlsun(DataTable table) {
+        kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
+        kurbanService.addKurban(kurbanCreateDTO);
+    }
+
     /*W H E N*/
     @When("Kullanıcı kurbanı eklemek istediğinde")
     public void kullaniciKurbaniEklemekIstediginde() throws Exception {
@@ -83,17 +89,34 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
         scenerioContext.setContext("result", result);
     }
 
+    @When("Yeni Kurban eklenmek istendiğinde")
+    public void yeniKurbanEklenmekIstendiginde(DataTable table) throws Exception {
+        kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
+        kullaniciKurbaniEklemekIstediginde();
+
+    }
+
     /*T H E N*/
     @Then("Ekleme işlemi başarısız olur")
     public void eklemeIslemiBasarisizOlur() {
         ResultActions result = (ResultActions) scenerioContext.getContext("result");
-        Assert.assertEquals(HttpStatus.FORBIDDEN.value(), result.andReturn().getResponse().getStatus());
-
+        Assert.assertEquals(HttpStatus.BAD_REQUEST.value(), result.andReturn().getResponse().getStatus());
     }
 
     @Then("Ekleme işlemi başarılı olur")
     public void eklemeIslemiBasariliOlur() {
         ResultActions result = (ResultActions) scenerioContext.getContext("result");
-        Assert.assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+        Assert.assertEquals(HttpStatus.CREATED.value(), result.andReturn().getResponse().getStatus());
+    }
+
+    @Then("Yeni kurbanın kesim sayısı mevcut kurban listesinden bir fazla olmalıdır.")
+    public void yeniKurbaninKesimSayisiMevcutKurbanListesindenBirFazlaOlmalidir() {
+
+    }
+
+    @Then("Kurban listesinde mevcut kurban sayısı {int} olmalı")
+    public void kurbanListesindeMevcutKurbanSayisiOlmali(int size) {
+        scenerioContext.setContext("listSize",kurbanService.getKurbanList().size());
+        Assert.assertEquals(size,scenerioContext.getContext("listSize"));
     }
 }

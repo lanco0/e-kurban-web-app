@@ -26,4 +26,6 @@ Feature: Kurban Ekleme İşlemi
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl   |
       | 2022A137700 | BUYUKBAS | DANA  | 535  | 24  | 57000 | kurban.png |
     When Yeni Kurban eklenmek istendiğinde
-    Then Yeni kurbanın kesim sayısı "ks1" kurban listesinden 1 fazla olmalıdır.
+      | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl   |
+      | 2022A137701 | BUYUKBAS | INEK  | 535  | 25  | 58000 | kurbann.png |
+    Then Kurban listesinde mevcut kurban sayısı 2 olmalı
