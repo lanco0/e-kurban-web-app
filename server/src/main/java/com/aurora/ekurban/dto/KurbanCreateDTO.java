@@ -1,16 +1,24 @@
 package com.aurora.ekurban.dto;
 
-import com.aurora.ekurban.domain.enums.KurbanCins;
-import com.aurora.ekurban.domain.enums.KurbanKunye;
+import com.aurora.ekurban.enumeration.KurbanCins;
+import com.aurora.ekurban.enumeration.KurbanKunye;
+import org.jetbrains.annotations.NotNull;
 
 public class KurbanCreateDTO {
 
+    @NotNull
     private KurbanCins cins;
+    @NotNull
     private KurbanKunye kunye;
+    @NotNull
     private String kupeNo;
+    @NotNull
     private Integer kilo;
+    @NotNull
     private Integer yas;
+    @NotNull
     private Integer fiyat;
+    @NotNull
     private String resimUrl;
 
     public KurbanCreateDTO() {

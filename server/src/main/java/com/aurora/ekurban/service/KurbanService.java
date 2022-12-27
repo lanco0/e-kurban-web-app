@@ -19,12 +19,13 @@ public class KurbanService {
         return kesimSequence++;
     }
 
-    public Kurban addKurban(@NotNull KurbanCreateDTO kurbanCreateDTO){
+    public Kurban addKurban(@NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
         Kurban kurban = new Kurban(
                 kurbanCreateDTO.getCins(), kurbanCreateDTO.getKunye(),
                 kurbanCreateDTO.getKupeNo(), kurbanCreateDTO.getKilo(),
                 kurbanCreateDTO.getYas(), kurbanCreateDTO.getFiyat(),
                 getKesimSequence(), kurbanCreateDTO.getResimUrl());
         return kurbanRepository.save(kurban);
+
     }
 }

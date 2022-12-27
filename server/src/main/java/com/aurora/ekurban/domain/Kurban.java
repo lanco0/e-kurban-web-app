@@ -1,11 +1,10 @@
 package com.aurora.ekurban.domain;
 
-import com.aurora.ekurban.domain.enums.KurbanCins;
-import com.aurora.ekurban.domain.enums.KurbanDurum;
-import com.aurora.ekurban.domain.enums.KurbanKunye;
+import com.aurora.ekurban.enumeration.KurbanCins;
+import com.aurora.ekurban.enumeration.KurbanDurum;
+import com.aurora.ekurban.enumeration.KurbanKunye;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Kurban {

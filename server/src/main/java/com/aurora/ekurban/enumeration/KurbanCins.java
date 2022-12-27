@@ -1,4 +1,4 @@
-package com.aurora.ekurban.domain.enums;
+package com.aurora.ekurban.enumeration;
 
 public enum KurbanCins {
     BUYUKBAS,
