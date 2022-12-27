@@ -18,4 +18,18 @@ public class UserService {
         return userReposiory.findUserByEposta(eposta);
     }
 
+    public boolean isValidUser(User user) {
+        List<User> userList = this.findUser(user.getEposta());
+
+        if (userList.size() == 0) {
+            return false;
+        } else if (userList.size() == 1) {
+            String passInDatabase = userList.get(0).getSifre();
+            String userEnteredPass = user.getSifre();
+
+            return passInDatabase.equals(userEnteredPass);
+        }
+
+        return false;
+    }
 }

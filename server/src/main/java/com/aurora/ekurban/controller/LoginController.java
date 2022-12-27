@@ -4,10 +4,10 @@ import com.aurora.ekurban.domain.User;
 import com.aurora.ekurban.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1")
@@ -19,21 +19,12 @@ public class LoginController {
     }
 
     @PostMapping("/auth")
-    public ResponseEntity<HttpStatus> loginOperation(@RequestBody User user) {
+    public ResponseEntity loginOperation(@RequestBody User user) {
 
-        List<User> userList = userService.findUser(user.getEposta());
-
-        if (userList.size() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (userList.size() == 1) {
-            String sifre = userList.get(0).getSifre();
-
-            if (!sifre.equals(user.getSifre())) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+        if (userService.isValidUser(user)) {
+            return new ResponseEntity<>(HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

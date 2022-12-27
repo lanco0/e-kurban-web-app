@@ -36,7 +36,6 @@ public class LoginStepDefinitions {
 
     @When("Mail adresi ve şifre ile giriş yapılır")
     public void mailAdresiVeSifreIleGirisYapilir() throws Exception {
-        //result = mockMvc.perform(get("/auth/q?name=" + username + "&pass=" + password)).andDo(print());
         String requestBody = objectMapper.writeValueAsString(user);
 
         ResultActions result = mockMvc.perform(post("/api/v1/auth")
@@ -45,7 +44,6 @@ public class LoginStepDefinitions {
                 .content(requestBody)).andDo(print());
 
         scenarioContext.setContext("resultWhenLogin", result);
-
     }
 
     @Then("Kullanıcı sisteme girmiş olur")
@@ -54,33 +52,9 @@ public class LoginStepDefinitions {
         Assert.assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
     }
 
-
     @Then("Kullanıcı sistemde kayıtlı olmadığı için sisteme giriş yapamaz")
     public void kullaniciSistemdeKayitliOlmadigiIcinSistemGirisYapamaz() throws Exception {
         ResultActions result = (ResultActions) scenarioContext.getContext("resultWhenLogin");
         Assert.assertEquals(HttpStatus.NOT_FOUND.value(), result.andReturn().getResponse().getStatus());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
