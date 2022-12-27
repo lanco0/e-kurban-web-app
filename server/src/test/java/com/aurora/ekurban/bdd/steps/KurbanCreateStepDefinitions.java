@@ -91,6 +91,7 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
 
     @When("Yeni Kurban eklenmek istendiğinde")
     public void yeniKurbanEklenmekIstendiginde(DataTable table) throws Exception {
+        scenerioContext.setContext("oldListSize",kurbanService.getKurbanList().size());
         kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
         kullaniciKurbaniEklemekIstediginde();
 
@@ -116,7 +117,11 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
 
     @Then("Kurban listesinde mevcut kurban sayısı {int} olmalı")
     public void kurbanListesindeMevcutKurbanSayisiOlmali(int size) {
-        scenerioContext.setContext("listSize",kurbanService.getKurbanList().size());
         Assert.assertEquals(size,scenerioContext.getContext("listSize"));
+    }
+
+    @Then("Kurban listesinde mevcut kurban sayısı {int} artmalı")
+    public void kurbanListesindeMevcutKurbanSayisiArtmali(int size) {
+        Assert.assertEquals(scenerioContext.getContext("oldListSize"),kurbanService.getKurbanList().size()-1);
     }
 }

@@ -28,4 +28,4 @@ Feature: Kurban Ekleme İşlemi
     When Yeni Kurban eklenmek istendiğinde
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl   |
       | 2022A137701 | BUYUKBAS | INEK  | 535  | 25  | 58000 | kurbann.png |
-    Then Kurban listesinde mevcut kurban sayısı 2 olmalı
+    Then Kurban listesinde mevcut kurban sayısı 1 artmalı
