@@ -5,7 +5,8 @@ import com.aurora.ekurban.service.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,16 +19,17 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @GetMapping("/auth/q")
-    public ResponseEntity<HttpStatus> loginOperation(@RequestParam(name = "name") String name, @RequestParam(name = "pass") String pass) {
+    @PostMapping("/auth")
+    public ResponseEntity<HttpStatus> loginOperation(@RequestBody User user) {
 
-        List<User> userList = loginService.findUser(name);
+        List<User> userList = loginService.findUser(user.getEposta());
 
         if (userList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (userList.size() == 1) {
             String sifre = userList.get(0).getSifre();
-            if (!sifre.equals(pass)) {
+
+            if (!sifre.equals(user.getSifre())) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }

@@ -1,4 +1,4 @@
-package com.aurora.ekurban.runner;
+package com.aurora.ekurban.bdd.runner;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

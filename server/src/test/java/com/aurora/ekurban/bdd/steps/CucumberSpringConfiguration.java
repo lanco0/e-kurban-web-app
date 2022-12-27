@@ -1,4 +1,4 @@
-package com.aurora.ekurban.configurations;
+package com.aurora.ekurban.bdd.steps;
 
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
