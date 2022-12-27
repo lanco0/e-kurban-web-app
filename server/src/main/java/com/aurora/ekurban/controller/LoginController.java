@@ -22,6 +22,6 @@ public class LoginController {
 
     @PostMapping("/auth")
     public Boolean loginOperation(@RequestBody User user) {
-        return userService.isValidUser(user);
+        return userService.validate(user);
     }
 }
