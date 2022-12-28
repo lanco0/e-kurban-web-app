@@ -9,7 +9,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -36,7 +35,6 @@ public class LoginStepDefinitions {
 
     @When("Mail adresi ve şifre ile giriş yapılır")
     public void mailAdresiVeSifreIleGirisYapilir() throws Exception {
-        //result = mockMvc.perform(get("/auth/q?name=" + username + "&pass=" + password)).andDo(print());
         String requestBody = objectMapper.writeValueAsString(user);
 
         ResultActions result = mockMvc.perform(post("/api/v1/auth")
@@ -44,43 +42,18 @@ public class LoginStepDefinitions {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)).andDo(print());
 
-        scenarioContext.setContext("resultWhenLogin", result);
-
+        scenarioContext.setContext("resultWhenLogin", result.andReturn().getResponse().getContentAsString());
     }
 
     @Then("Kullanıcı sisteme girmiş olur")
     public void kullaniciSistemeGirmisOlur() throws Exception {
-        ResultActions result = (ResultActions) scenarioContext.getContext("resultWhenLogin");
-        Assert.assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
+        String result = (String) scenarioContext.getContext("resultWhenLogin");
+        Assert.assertEquals("true", result);
     }
-
 
     @Then("Kullanıcı sistemde kayıtlı olmadığı için sisteme giriş yapamaz")
     public void kullaniciSistemdeKayitliOlmadigiIcinSistemGirisYapamaz() throws Exception {
-        ResultActions result = (ResultActions) scenarioContext.getContext("resultWhenLogin");
-        Assert.assertEquals(HttpStatus.NOT_FOUND.value(), result.andReturn().getResponse().getStatus());
+        String result = (String) scenarioContext.getContext("resultWhenLogin");
+        Assert.assertEquals("false", result);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

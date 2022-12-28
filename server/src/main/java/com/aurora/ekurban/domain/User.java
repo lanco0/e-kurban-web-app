@@ -2,21 +2,26 @@ package com.aurora.ekurban.domain;
 
 import javax.persistence.*;
 
-
 /**
  * Sisteme giriş yapacak olan kullanıcı bilgisini tutan User sınıfı
- * @param @id db de tutulacak giriş bilgisinin sırası
- * @param @eposta kullanıcı girişi için kullanıacak olan mail bilgisi
- * @param @sifre kullanıcı girişi için kullanıacak olan şifre bilgisi
  */
 @Table(name = "Users")
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    /**
+     * kullanıcı girişi için kullanıacak olan mail bilgisi
+     */
     private String eposta;
+
+    /**
+     * kullanıcı girişi için kullanıacak olan şifre bilgisi
+     */
     private String sifre;
 
     public User() {
