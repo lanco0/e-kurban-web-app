@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "com.aurora.ekurban.bdd.steps",
-        plugin = {"pretty", "html:target/cucumber-reports.html"}
-)
+        plugin = {"pretty", "html:target/cucumber/test.html"}
+        )
 public class CucumberIntegrationTest {
 }
