@@ -1,14 +1,15 @@
 package com.aurora.ekurban.service;
 
 import com.aurora.ekurban.domain.Kurban;
+import com.aurora.ekurban.dto.KurbanCreateDTO;
 import com.aurora.ekurban.dto.KurbanDTO;
 import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.repository.KurbanRepository;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,44 +24,68 @@ public class KurbanService {
         return kesimSequence++;
     }
 
-    public List<Kurban> getKurbanList() {
-        return kurbanRepository.findAll();
+    public List<KurbanDTO> getKurbanList() {
+        List<Kurban> all = kurbanRepository.findAll();
+        List<KurbanDTO> kurbanDTOList = new ArrayList<>();
+        all.forEach(kurban -> {
+            KurbanDTO tempKurban = new KurbanDTO();
+            tempKurban.setId(kurban.getId());
+            tempKurban.setCins(kurban.getCins());
+            tempKurban.setDurum(kurban.getDurum());
+            tempKurban.setKilo(kurban.getKilo());
+            tempKurban.setFiyat(kurban.getFiyat());
+            tempKurban.setKupeNo(kurban.getKupeNo());
+            tempKurban.setYas(kurban.getYas());
+            tempKurban.setKunye(kurban.getKunye());
+            tempKurban.setResimUrl(kurban.getResimUrl());
+            tempKurban.setKesimSirasi(kurban.getKesimSirasi());
+            kurbanDTOList.add(tempKurban);
+        });
+        return kurbanDTOList;
     }
 
-    public Kurban getKurban(Long id) {
-        return kurbanRepository.findById(id).orElseThrow();
+    public KurbanDTO getKurbanDTO(Long id) {
+        Kurban kurban = kurbanRepository.findById(id).orElseThrow();
+        KurbanDTO tempKurban = new KurbanDTO();
+        tempKurban.setId(kurban.getId());
+        tempKurban.setCins(kurban.getCins());
+        tempKurban.setKunye(kurban.getKunye());
+        tempKurban.setDurum(kurban.getDurum());
+        tempKurban.setKupeNo(kurban.getKupeNo());
+        tempKurban.setKilo(kurban.getKilo());
+        tempKurban.setYas(kurban.getYas());
+        tempKurban.setFiyat(kurban.getFiyat());
+        tempKurban.setResimUrl(kurban.getResimUrl());
+        return tempKurban;
     }
 
-    public KurbanDTO addKurban(@NotNull KurbanDTO kurbanDTO) throws Error {
+    public KurbanDTO addKurban(@NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
         Kurban kurban = new Kurban(
-                kurbanDTO.getCins(), kurbanDTO.getKunye(),
-                kurbanDTO.getKupeNo(), kurbanDTO.getKilo(),
-                kurbanDTO.getYas(), kurbanDTO.getFiyat(),
-                getKesimSequence(), kurbanDTO.getResimUrl());
+                kurbanCreateDTO.getCins(), kurbanCreateDTO.getKunye(),
+                kurbanCreateDTO.getKupeNo(), kurbanCreateDTO.getKilo(),
+                kurbanCreateDTO.getYas(), kurbanCreateDTO.getFiyat(),
+                getKesimSequence(), kurbanCreateDTO.getResimUrl());
         kurbanRepository.save(kurban);
-        return kurbanDTO;
+        return getKurbanDTO(kurban.getId());
     }
 
-    public KurbanDTO updateKurban(Long id, @NotNull KurbanDTO kurbanDTO) {
-        Kurban kurban = getKurban(id);
-        kurban.setCins(kurbanDTO.getCins());
-        kurban.setKunye(kurbanDTO.getKunye());
-        kurban.setKupeNo(kurbanDTO.getKupeNo());
-        kurban.setKilo(kurbanDTO.getKilo());
-        kurban.setYas(kurbanDTO.getYas());
-        kurban.setFiyat(kurbanDTO.getFiyat());
-        kurban.setResimUrl(kurbanDTO.getResimUrl());
+    public KurbanDTO updateKurban(Long id, @NotNull KurbanCreateDTO kurbanCreateDTO) {
+        Kurban kurban = kurbanRepository.findById(id).orElseThrow();
+        kurban.setCins(kurbanCreateDTO.getCins());
+        kurban.setKunye(kurbanCreateDTO.getKunye());
+        kurban.setKupeNo(kurbanCreateDTO.getKupeNo());
+        kurban.setKilo(kurbanCreateDTO.getKilo());
+        kurban.setYas(kurbanCreateDTO.getYas());
+        kurban.setFiyat(kurbanCreateDTO.getFiyat());
+        kurban.setResimUrl(kurbanCreateDTO.getResimUrl());
         kurbanRepository.save(kurban);
-        return kurbanDTO;
+        return getKurbanDTO(kurban.getId());
     }
 
-    public void updateKurbanDurum(Long id, @Nullable String kesildi, @Nullable String telef) {
-        Kurban kurban = getKurban(id);
-        if (kesildi != null) {
-            kurban.setDurum(KurbanDurum.KESILDI);
-        }
-        if (telef != null) {
-            kurban.setDurum(KurbanDurum.TELEF);
-        }
+    public KurbanDTO updateKurbanDurum(Long id, KurbanDurum kurbanDurum) {
+        Kurban kurban = kurbanRepository.findById(id).orElseThrow();
+        kurban.setDurum(kurbanDurum);
+        kurbanRepository.save(kurban);
+        return getKurbanDTO(kurban.getId());
     }
 }

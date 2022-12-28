@@ -1,9 +1,9 @@
 package com.aurora.ekurban.controller;
 
-import com.aurora.ekurban.domain.Kurban;
+import com.aurora.ekurban.dto.KurbanCreateDTO;
 import com.aurora.ekurban.dto.KurbanDTO;
+import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.service.KurbanService;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,30 +19,27 @@ public class KurbanController {
     KurbanService kurbanService;
 
     @GetMapping
-    public ResponseEntity<List<Kurban>> getKurbanList() {
-        return new ResponseEntity<List<Kurban>>(kurbanService.getKurbanList(), HttpStatus.OK);
+    public ResponseEntity<List<KurbanDTO>> getKurbanList() {
+        return new ResponseEntity<List<KurbanDTO>>(kurbanService.getKurbanList(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Kurban> getKurban(@PathVariable Long id) {
-        return new ResponseEntity<Kurban>(kurbanService.getKurban(id), HttpStatus.OK);
+    public ResponseEntity<KurbanDTO> getKurban(@PathVariable Long id) {
+        return new ResponseEntity<KurbanDTO>(kurbanService.getKurbanDTO(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<KurbanDTO> addKurban(@RequestBody @Valid KurbanDTO kurbanDTO) {
-        return new ResponseEntity<KurbanDTO>(kurbanService.addKurban(kurbanDTO), HttpStatus.CREATED);
+    public ResponseEntity<KurbanDTO> addKurban(@RequestBody @Valid KurbanCreateDTO kurbanCreateDTO) {
+        return new ResponseEntity<KurbanDTO>(kurbanService.addKurban(kurbanCreateDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<KurbanDTO> updateKurban(@PathVariable Long id, @RequestBody @Valid KurbanDTO kurbanDTO) {
-        return new ResponseEntity<KurbanDTO>(kurbanService.updateKurban(id, kurbanDTO), HttpStatus.OK);
+    public ResponseEntity<KurbanDTO> updateKurban(@PathVariable Long id, @RequestBody @Valid KurbanCreateDTO kurbanCreateDTO) {
+        return new ResponseEntity<KurbanDTO>(kurbanService.updateKurban(id, kurbanCreateDTO), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public void updateKurbanDurum(@PathVariable Long id,
-                                  @RequestParam("KESILDI") @Nullable String kesildi,
-                                  @RequestParam("TELEF") @Nullable String telef) {
-        kurbanService.updateKurbanDurum(id, kesildi, telef);
+    @PutMapping("/{id}/durum")
+    public ResponseEntity<KurbanDTO> updateKurbanDurum(@PathVariable Long id, @RequestParam KurbanDurum kurbanDurum) {
+        return new ResponseEntity<KurbanDTO>(kurbanService.updateKurbanDurum(id, kurbanDurum), HttpStatus.OK);
     }
-
 }

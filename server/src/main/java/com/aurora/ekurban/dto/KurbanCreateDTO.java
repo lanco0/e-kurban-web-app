@@ -1,22 +1,16 @@
 package com.aurora.ekurban.dto;
 
 import com.aurora.ekurban.enumeration.KurbanCins;
-import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.enumeration.KurbanKunye;
 
 import javax.validation.constraints.NotNull;
 
+public class KurbanCreateDTO {
 
-public class KurbanDTO {
-
-    @NotNull
-    private Long id;
     @NotNull
     private KurbanCins cins;
     @NotNull
     private KurbanKunye kunye;
-    @NotNull
-    private KurbanDurum durum;
     @NotNull
     private String kupeNo;
     @NotNull
@@ -27,11 +21,8 @@ public class KurbanDTO {
     private Integer fiyat;
     @NotNull
     private String resimUrl;
-    @NotNull
-    private Integer kesimSirasi;
-    //private List<Hisse> hisseList;
 
-    public KurbanDTO() {
+    public KurbanCreateDTO() {
     }
 
     public KurbanCins getCins() {
@@ -90,35 +81,4 @@ public class KurbanDTO {
         this.resimUrl = resimUrl;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public KurbanDurum getDurum() {
-        return durum;
-    }
-
-    public void setDurum(KurbanDurum durum) {
-        this.durum = durum;
-    }
-
-//    public List<Hisse> getHisseList() {
-//        return hisseList;
-//    }
-
-//    public void setHisseList(List<Hisse> hisseList) {
-//        this.hisseList = hisseList;
-//    }
-
-    public Integer getKesimSirasi() {
-        return kesimSirasi;
-    }
-
-    public void setKesimSirasi(Integer kesimSirasi) {
-        this.kesimSirasi = kesimSirasi;
-    }
 }

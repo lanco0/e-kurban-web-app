@@ -1,6 +1,7 @@
 package com.aurora.ekurban.bdd.steps;
 
 import com.aurora.ekurban.bdd.runner.CucumberIntegrationTest;
+import com.aurora.ekurban.dto.KurbanCreateDTO;
 import com.aurora.ekurban.dto.KurbanDTO;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanKunye;
@@ -33,7 +34,7 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
 
     @Autowired
     KurbanService kurbanService;
-    KurbanDTO kurbanDTO;
+    KurbanCreateDTO kurbanCreateDTO;
 
     @Autowired
     ScenarioContext scenerioContext;
@@ -43,27 +44,27 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
     public void kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
         for (Map<String, String> columns : rows) {
-            kurbanDTO = new KurbanDTO();
+            kurbanCreateDTO = new KurbanCreateDTO();
             if (columns.get("cins") != null) {
-                kurbanDTO.setCins(KurbanCins.valueOf(columns.get("cins")));
+                kurbanCreateDTO.setCins(KurbanCins.valueOf(columns.get("cins")));
             }
             if (columns.get("kunye") != null) {
-                kurbanDTO.setKunye(KurbanKunye.valueOf(columns.get("kunye")));
+                kurbanCreateDTO.setKunye(KurbanKunye.valueOf(columns.get("kunye")));
             }
             if (columns.get("kupeNo") != null) {
-                kurbanDTO.setKupeNo(columns.get("kupeNo"));
+                kurbanCreateDTO.setKupeNo(columns.get("kupeNo"));
             }
             if (columns.get("kilo") != null) {
-                kurbanDTO.setKilo(Integer.valueOf(columns.get("kilo")));
+                kurbanCreateDTO.setKilo(Integer.valueOf(columns.get("kilo")));
             }
             if (columns.get("yas") != null) {
-                kurbanDTO.setYas(Integer.valueOf(columns.get("yas")));
+                kurbanCreateDTO.setYas(Integer.valueOf(columns.get("yas")));
             }
             if (columns.get("fiyat") != null) {
-                kurbanDTO.setFiyat(Integer.valueOf(columns.get("fiyat")));
+                kurbanCreateDTO.setFiyat(Integer.valueOf(columns.get("fiyat")));
             }
             if (columns.get("resimUrl") != null) {
-                kurbanDTO.setResimUrl(columns.get("resimUrl"));
+                kurbanCreateDTO.setResimUrl(columns.get("resimUrl"));
             }
         }
     }
@@ -71,16 +72,16 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
     @Given("Kurban Listesinde sadece aşağıdaki kurban eklenmiş olsun")
     public void kurbanListesindeSadeceAsagidakiKurbanEklenmisOlsun(DataTable table) {
         kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
-        kurbanService.addKurban(kurbanDTO);
+        kurbanService.addKurban(kurbanCreateDTO);
     }
 
     /*W H E N*/
     @When("Kullanıcı kurbanı eklemek istediğinde")
     public void kullaniciKurbaniEklemekIstediginde() throws Exception {
         ObjectWriter objectMapper = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String requestBody = objectMapper.writeValueAsString(kurbanDTO);
+        String requestBody = objectMapper.writeValueAsString(kurbanCreateDTO);
 
-        ResultActions result = mockMvc.perform(post("/api/v1/kurban")
+        ResultActions result = mockMvc.perform(post("/api/v1/kurbanlar")
                         .content(requestBody)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -90,7 +91,7 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
 
     @When("Yeni Kurban eklenmek istendiğinde")
     public void yeniKurbanEklenmekIstendiginde(DataTable table) throws Exception {
-        scenerioContext.setContext("oldListSize",kurbanService.getKurbanList().size());
+        scenerioContext.setContext("oldListSize", kurbanService.getKurbanList().size());
         kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
         kullaniciKurbaniEklemekIstediginde();
 
@@ -109,18 +110,8 @@ public class KurbanCreateStepDefinitions extends CucumberIntegrationTest {
         Assert.assertEquals(HttpStatus.CREATED.value(), result.andReturn().getResponse().getStatus());
     }
 
-    @Then("Yeni kurbanın kesim sayısı mevcut kurban listesinden bir fazla olmalıdır.")
-    public void yeniKurbaninKesimSayisiMevcutKurbanListesindenBirFazlaOlmalidir() {
-
-    }
-
-    @Then("Kurban listesinde mevcut kurban sayısı {int} olmalı")
-    public void kurbanListesindeMevcutKurbanSayisiOlmali(int size) {
-        Assert.assertEquals(size,scenerioContext.getContext("listSize"));
-    }
-
     @Then("Kurban listesinde mevcut kurban sayısı {int} artmalı")
     public void kurbanListesindeMevcutKurbanSayisiArtmali(int size) {
-        Assert.assertEquals(scenerioContext.getContext("oldListSize"),kurbanService.getKurbanList().size()-1);
+        Assert.assertEquals(scenerioContext.getContext("oldListSize"), kurbanService.getKurbanList().size()-size);
     }
 }

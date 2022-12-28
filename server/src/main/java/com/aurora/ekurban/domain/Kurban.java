@@ -38,7 +38,7 @@ public class Kurban {
     private Integer kesimSirasi;
     private String resimUrl;
 
-    List<Hisse> hisseList;
+    //List<Hisse> hisseList;
 
     public Kurban() {
     }
@@ -134,6 +134,6 @@ public class Kurban {
         this.fiyat = fiyat;
         this.kesimSirasi = kesimSirasi;
         this.resimUrl = resimUrl;
-        this.hisseList = new ArrayList<>();
+        //this.hisseList = new ArrayList<>();
     }
 }
