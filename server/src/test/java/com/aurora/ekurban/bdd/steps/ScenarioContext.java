@@ -2,14 +2,15 @@ package com.aurora.ekurban.bdd.steps;
 
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class ScenarioContext {
     private final Map<String, Object> scenarioContext;
 
-    public ScenarioContext(Map<String, Object> scenarioContext) {
-        this.scenarioContext = scenarioContext;
+    public ScenarioContext() {
+        scenarioContext = new HashMap<>();
     }
 
     public void setContext(String key, Object value) {
