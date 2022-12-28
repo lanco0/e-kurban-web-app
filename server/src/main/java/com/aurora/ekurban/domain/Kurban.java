@@ -30,15 +30,15 @@ public class Kurban {
     @Enumerated(EnumType.STRING)
     private KurbanDurum durum;
 
-
     private String kupeNo;
     private Integer kilo;
     private Integer yas;
     private Integer fiyat;
     private Integer kesimSirasi;
+    private Integer hisseAdedi;
     private String resimUrl;
-
-    //List<Hisse> hisseList;
+    @OneToMany
+    private List<Hissedar> hissedarList;
 
     public Kurban() {
     }
@@ -123,6 +123,22 @@ public class Kurban {
         this.resimUrl = resimUrl;
     }
 
+    public List<Hissedar> getHissedarList() {
+        return hissedarList;
+    }
+
+    public void setHissedarList(List<Hissedar> hissedarList) {
+        this.hissedarList = hissedarList;
+    }
+
+    public Integer getHisseAdedi() {
+        return hisseAdedi;
+    }
+
+    public void setHisseAdedi(Integer hisseAdedi) {
+        this.hisseAdedi = hisseAdedi;
+    }
+
     public Kurban(KurbanCins cins, KurbanKunye kunye, String kupeNo,
                   Integer kilo, Integer yas, Integer fiyat, Integer kesimSirasi, String resimUrl) {
         this.cins = cins;
@@ -134,6 +150,6 @@ public class Kurban {
         this.fiyat = fiyat;
         this.kesimSirasi = kesimSirasi;
         this.resimUrl = resimUrl;
-        //this.hisseList = new ArrayList<>();
+        this.hissedarList = new ArrayList<>();
     }
 }

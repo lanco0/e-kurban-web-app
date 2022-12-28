@@ -17,7 +17,7 @@ public class Hissedar {
 
     private String ad;
     private String soyAd;
-    private Long tel;
+    private String tel;
     public Hissedar() {
     }
 
@@ -45,15 +45,15 @@ public class Hissedar {
         this.soyAd = soyAd;
     }
 
-    public Long getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Long tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
-    public Hissedar( String ad, String soyAd, Long tel) {
+    public Hissedar( String ad, String soyAd, String tel) {
         this.ad = ad;
         this.soyAd = soyAd;
         this.tel = tel;
