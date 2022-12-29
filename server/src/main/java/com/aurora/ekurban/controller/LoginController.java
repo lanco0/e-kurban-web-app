@@ -2,6 +2,8 @@ package com.aurora.ekurban.controller;
 
 import com.aurora.ekurban.domain.User;
 import com.aurora.ekurban.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,6 @@ public class LoginController {
     private final UserService userService;
 
     /**
-     *
      * @param userService constructor ile servis inject ediliyor
      */
     public LoginController(UserService userService) {
@@ -25,5 +26,10 @@ public class LoginController {
     @PostMapping("/giris")
     public Optional<User> loginOperation(@RequestBody User user) {
         return userService.validate(user);
+    }
+
+    @PostMapping("/cikis")
+    public ResponseEntity<Boolean> logoutOperation(@RequestBody User user) {
+        return new ResponseEntity<>(userService.logout(), HttpStatus.OK);
     }
 }
