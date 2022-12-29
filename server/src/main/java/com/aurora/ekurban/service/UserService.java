@@ -33,7 +33,7 @@ public class UserService {
      */
     public Optional<User> validate(User _user) {
         Optional<User> user = Optional.ofNullable(this.findUser(_user.getEposta()).stream().findFirst()
-                .orElseThrow(() -> new UserNotFoundException(_user.getEposta())));
+                .orElseThrow(() -> new UserNotFoundException()));
 
         if (user.isPresent()) {
             String passwordInDatabase = user.get().getSifre();
@@ -43,7 +43,7 @@ public class UserService {
             }
         }
 
-        throw new UserNotFoundException(_user.getEposta());
+        throw new UserNotFoundException();
     }
 
     public Boolean logout() {
