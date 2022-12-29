@@ -15,8 +15,9 @@ public class LoadDbData {
     @Bean
     CommandLineRunner initData(UserReposiory userReposiory) {
         return args -> {
-            User user = new User("user", "1234");
+            User user = new User("user@ekurban.com", "1234");
             userReposiory.save(user);
+
         };
     }
 

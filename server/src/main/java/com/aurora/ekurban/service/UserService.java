@@ -27,18 +27,19 @@ public class UserService {
     }
 
     /**
-     *
      * @param _user Kullanıcının girdiği eposta/kullanıcı adı ve şifreyi içeren domain sınıfımız
      * @return Kullanıcı database de kayıtlı ise true, kayıtlı değilse false değeri döner
      */
-    public boolean validate(User _user) {
+    public Optional<User> validate(User _user) {
         Optional<User> user = this.findUser(_user.getEposta()).stream().findFirst();
 
         if (user.isPresent()) {
             String passwordInDatabase = user.get().getSifre();
             String userEnteredPassword = _user.getSifre();
-            return passwordInDatabase.equals(userEnteredPassword);
+            if (passwordInDatabase.equals(userEnteredPassword)) {
+                return user;
+            }
         }
-        return false;
+        throw new RuntimeException("Böyle bir kullanıcı yoktur");
     }
 }

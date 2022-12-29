@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/v1")
 public class LoginController {
@@ -20,8 +22,8 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @PostMapping("/auth")
-    public Boolean loginOperation(@RequestBody User user) {
+    @PostMapping("/giris")
+    public Optional<User> loginOperation(@RequestBody User user) {
         return userService.validate(user);
     }
 }
