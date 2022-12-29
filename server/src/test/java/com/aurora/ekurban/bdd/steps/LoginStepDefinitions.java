@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -42,18 +43,18 @@ public class LoginStepDefinitions {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)).andDo(print());
 
-        scenarioContext.setContext("resultWhenLogin", result.andReturn().getResponse().getContentAsString());
+        scenarioContext.setContext("resultWhenLogin", result);
     }
 
     @Then("Kullanıcı sisteme girmiş olur")
     public void kullaniciSistemeGirmisOlur() throws Exception {
-        String result = (String) scenarioContext.getContext("resultWhenLogin");
-        Assert.assertEquals("true", result);
+        ResultActions result = (ResultActions) scenarioContext.getContext("resultWhenLogin");
+        Assert.assertEquals(HttpStatus.OK.value(), result.andReturn().getResponse().getStatus());
     }
 
     @Then("Kullanıcı sistemde kayıtlı olmadığı için sisteme giriş yapamaz")
     public void kullaniciSistemdeKayitliOlmadigiIcinSistemGirisYapamaz() throws Exception {
-        String result = (String) scenarioContext.getContext("resultWhenLogin");
-        Assert.assertEquals("false", result);
+        ResultActions result = (ResultActions) scenarioContext.getContext("resultWhenLogin");
+        Assert.assertEquals(HttpStatus.NOT_FOUND.value(), result.andReturn().getResponse().getStatus());
     }
 }
