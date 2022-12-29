@@ -9,14 +9,16 @@ import org.springframework.context.annotation.Configuration;
 public class LoadDbData {
     /**
      * Sisteme yetkili kullanıcının bilgileri ilk çaılışta eklenir
+     * @author mehmetercan
      * @param userReposiory kullanıcı bilgilerini database'e kaydeder
      * @return eklenen kullanıcıyı geri döndürür
      */
     @Bean
     CommandLineRunner initData(UserReposiory userReposiory) {
         return args -> {
-            User user = new User("user", "1234");
+            User user = new User("user@ekurban.com", "1234");
             userReposiory.save(user);
+
         };
     }
 
