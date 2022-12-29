@@ -1,4 +1,4 @@
-Feature: Login Olma İşlemleri
+Feature: Login/Logout Olma İşlemleri
 
   Scenario Outline: Kullanıcının başarılı login olma senaryosu
     Given Kullanıcının giriş bilgileri kendisine verilmiştir "<eposta>" ve "<sifre>"
@@ -21,3 +21,12 @@ Feature: Login Olma İşlemleri
       | use@outlook.com  |       |
       |                  | 156   |
       |                  |       |
+
+  Scenario Outline: Kullanıcının başarılı logout olma senaryosu
+    Given Kullanıcı sisteme login olmuş olmalıdır "<eposta>" ve "<sifre>"
+    When Kullanıcı çıkış yapmak istediğinde
+    Then Kullanıcı sistenden çıkış yapar
+
+    Examples:
+      | eposta           | sifre |
+      | user@ekurban.com | 1234  |

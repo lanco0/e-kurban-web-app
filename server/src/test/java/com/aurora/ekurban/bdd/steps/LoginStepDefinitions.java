@@ -38,7 +38,7 @@ public class LoginStepDefinitions {
     public void mailAdresiVeSifreIleGirisYapilir() throws Exception {
         String requestBody = objectMapper.writeValueAsString(user);
 
-        ResultActions result = mockMvc.perform(post("/api/v1/auth")
+        ResultActions result = mockMvc.perform(post("/api/v1/giris")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody)).andDo(print());
@@ -56,5 +56,28 @@ public class LoginStepDefinitions {
     public void kullaniciSistemdeKayitliOlmadigiIcinSistemGirisYapamaz() throws Exception {
         ResultActions result = (ResultActions) scenarioContext.getContext("resultWhenLogin");
         Assert.assertEquals(HttpStatus.NOT_FOUND.value(), result.andReturn().getResponse().getStatus());
+    }
+
+    @Given("Kullanıcı sisteme login olmuş olmalıdır {string} ve {string}")
+    public void kullaniciSistemeLoginOlmusOlmalidirVe(String username, String password) {
+        user = new User(username, password);
+    }
+
+    @When("Kullanıcı çıkış yapmak istediğinde")
+    public void kullaniciCikisYapmakIstediginde() throws Exception {
+        String requestBody = objectMapper.writeValueAsString(user);
+
+        ResultActions result = mockMvc.perform(post("/api/v1/cikis")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody)).andDo(print());
+
+        scenarioContext.setContext("resultWhenLogout", result.andReturn().getResponse().getContentAsString());
+    }
+
+    @Then("Kullanıcı sistenden çıkış yapar")
+    public void kullaniciSistendenCikisYapar() {
+        String result = (String) scenarioContext.getContext("resultWhenLogout");
+        Assert.assertEquals("true", result);
     }
 }

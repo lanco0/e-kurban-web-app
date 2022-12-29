@@ -1,6 +1,7 @@
 package com.aurora.ekurban.service;
 
 import com.aurora.ekurban.domain.User;
+import com.aurora.ekurban.exception.UserNotFoundException;
 import com.aurora.ekurban.repository.UserReposiory;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,8 @@ public class UserService {
      * @return Kullanıcı database de kayıtlı ise true, kayıtlı değilse false değeri döner
      */
     public Optional<User> validate(User _user) {
-        Optional<User> user = this.findUser(_user.getEposta()).stream().findFirst();
+        Optional<User> user = Optional.ofNullable(this.findUser(_user.getEposta()).stream().findFirst()
+                .orElseThrow(() -> new UserNotFoundException(_user.getEposta())));
 
         if (user.isPresent()) {
             String passwordInDatabase = user.get().getSifre();
@@ -40,6 +42,11 @@ public class UserService {
                 return user;
             }
         }
-        throw new RuntimeException("Böyle bir kullanıcı yoktur");
+
+        throw new UserNotFoundException(_user.getEposta());
+    }
+
+    public Boolean logout() {
+        return true;
     }
 }
