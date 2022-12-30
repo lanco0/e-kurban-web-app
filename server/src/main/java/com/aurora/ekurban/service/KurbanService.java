@@ -50,7 +50,7 @@ public class KurbanService {
     }
 
     public List<KurbanDTO> getChosenCinsList(KurbanCins kurbanCins) {
-        List<Kurban> chosenCinsList = kurbanRepository.findAllByKurbanCinsThanEqual(kurbanCins);
+        List<Kurban> chosenCinsList = kurbanRepository.findAllByCins(kurbanCins);
         List<KurbanDTO> kurbanDTOList = new ArrayList<>();
         chosenCinsList.forEach(kurban -> kurbanDTOList.add(convertEntityToDto(kurban)));
         return kurbanDTOList;

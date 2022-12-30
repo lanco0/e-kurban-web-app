@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface KurbanRepository extends JpaRepository<Kurban, Long> {
-    List<Kurban> findAllByKurbanCinsThanEqual(KurbanCins kurbanCins);
+    List<Kurban> findAllByCins(KurbanCins kurbanCins);
 
 }
