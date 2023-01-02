@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Kurban } from '../_modeller/kurban';
+import {Cins} from "../_enumlar/cins";
+import {KunyeBuyukbas, KunyeKucukbas} from "../_enumlar/kunye";
+import {Durum} from "../_enumlar/durum";
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +11,9 @@ import { Kurban } from '../_modeller/kurban';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const kurbanlar = [
-      { id: 12, name: 'Dr. Nice' },
-      { id: 13, name: 'Bombasto' },
-      { id: 14, name: 'Celeritas' },
-      { id: 15, name: 'Magneta' },
-      { id: 16, name: 'RubberMan' },
-      { id: 17, name: 'Dynama' },
-      { id: 18, name: 'Dr. IQ' },
-      { id: 19, name: 'Magma' },
-      { id: 20, name: 'Tornado' }
+      { id: 1, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB123", kilo: 50, yas: 2, fiyat: 1500, durum: Durum.SATISTA, kesimSirasi: 1, hisse: undefined, name: "kucukbas1" },
+      { id: 2, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB124", kilo: 60, yas: 1, fiyat: 1200, durum: Durum.SATISTA, kesimSirasi: 2, hisse: undefined, name: "kucukbas2" },
+      { id: 3, cins: Cins.BUYUKBAS, kunye: KunyeBuyukbas.BOGA, kupeNo: "AB125", kilo: 400, yas: 2, fiyat: 6200, durum: Durum.SATISTA, kesimSirasi: 3, hisse: undefined, name: "buyukbas1" }
     ];
     return {kurbanlar};
   }

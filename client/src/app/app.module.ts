@@ -35,15 +35,15 @@ import { HissedarEkleComponent } from './hissedar-ekle/hissedar-ekle.component';
   ],
   declarations: [
     AppComponent,
+    GirisComponent,
     AnasayfaComponent,
     KurbanlarComponent,
-    KurbanBilgiComponent,
-    LoglarComponent,
-    KurbanAraComponent,
-    GirisComponent,
     KurbanEkleComponent,
+    KurbanBilgiComponent,
     HissedarlarComponent,
-    HissedarEkleComponent
+    HissedarEkleComponent,
+    KurbanAraComponent,
+    LoglarComponent,
   ],
   bootstrap: [ AppComponent ]
 })

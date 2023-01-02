@@ -13,8 +13,8 @@ export interface Kurban {
   yas: number;
   fiyat: number;
   durum: Durum;
-  kesimSirasi: number;
-  hisse: Hisse;
+  kesimSirasi?: number;
+  hisse?: Hisse;
   name: string;
 }
 
