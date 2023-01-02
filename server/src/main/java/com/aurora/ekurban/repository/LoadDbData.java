@@ -13,7 +13,7 @@ public class LoadDbData {
      * @return eklenen kullanıcıyı geri döndürür
      */
     @Bean
-    CommandLineRunner initData(UserReposiory userReposiory) {
+    CommandLineRunner initData(UserRepository userReposiory) {
         return args -> {
             User user = new User("user@ekurban.com", "1234");
             userReposiory.save(user);

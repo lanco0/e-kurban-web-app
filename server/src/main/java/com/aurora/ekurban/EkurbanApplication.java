@@ -9,5 +9,4 @@ public class EkurbanApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EkurbanApplication.class, args);
 	}
-
 }
