@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Kurban } from '../kurban';
-import { KurbanService } from '../kurban.service';
+import { Kurban } from '../_models/kurban';
+import { KurbanService } from '../_services/kurban.service';
 
 @Component({
   selector: 'app-kurban-detail',
