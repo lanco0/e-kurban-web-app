@@ -20,6 +20,7 @@ import {KurbanEkleComponent} from './komponentler/kurban-ekle/kurban-ekle.compon
 import {HissedarlarComponent} from './komponentler/hissedarlar/hissedarlar.component';
 import {HissedarEkleComponent} from './komponentler/hissedar-ekle/hissedar-ekle.component';
 import {MatInputModule} from "@angular/material/input";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import {MatInputModule} from "@angular/material/input";
         MatIconModule,
         MatButtonModule,
         MatInputModule,
+        MatSidenavModule,
     ],
     declarations: [
         AppComponent,
