@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './servisler/in-memory-data.service';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { InMemoryDataService } from './servisler/in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { AnasayfaComponent } from './komponentler/anasayfa/anasayfa.component';
@@ -18,14 +19,15 @@ import { GirisComponent } from './komponentler/giris/giris.component';
 import { KurbanEkleComponent } from './komponentler/kurban-ekle/kurban-ekle.component';
 import { HissedarlarComponent } from './komponentler/hissedarlar/hissedarlar.component';
 import { HissedarEkleComponent } from './komponentler/hissedar-ekle/hissedar-ekle.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatFormFieldModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
