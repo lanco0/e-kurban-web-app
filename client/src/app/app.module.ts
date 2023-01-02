@@ -23,6 +23,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import {MatRadioModule} from "@angular/material/radio";
         MatSidenavModule,
         MatTableModule,
         MatRadioModule,
+        MatSelectModule,
     ],
     declarations: [
         AppComponent,

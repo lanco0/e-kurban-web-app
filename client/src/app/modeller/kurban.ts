@@ -15,7 +15,6 @@ export interface Kurban {
   durum: Durum;
   kesimSirasi?: number;
   hisse?: Hisse;
-  name: string;
 }
 
 

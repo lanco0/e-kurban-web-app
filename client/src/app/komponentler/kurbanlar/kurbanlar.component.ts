@@ -12,7 +12,7 @@ import {KURBANLAR} from "../../mock-data";
 export class KurbanlarComponent implements OnInit {
     kurbanlar: Kurban[] = KURBANLAR;
     dataSource = this.kurbanlar;
-    displayedColumns: string[] = ['kesimSira', 'kupeNo', 'cins', 'kunye', 'kilo', 'yas', 'fiyat', 'durum'];
+    displayedColumns: string[] = ['kesimSira', 'kupeNo', 'cins', 'kunye', 'kilo', 'yas', 'fiyat', 'durum', 'islem'];
 
     constructor(private kurbanService: KurbanService) {
     }
@@ -25,8 +25,6 @@ export class KurbanlarComponent implements OnInit {
         this.kurbanService.getKurbanlar()
             .subscribe(kurbanlar => this.kurbanlar = kurbanlar);
     }
-
-
 
     delete(kurban: Kurban): void {
         this.kurbanlar = this.kurbanlar.filter(h => h !== kurban);

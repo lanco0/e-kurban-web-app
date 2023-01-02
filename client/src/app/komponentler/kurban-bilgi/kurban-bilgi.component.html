@@ -1,11 +1,26 @@
 <h2>Kurban Bilgi</h2>
 
 <div *ngIf="kurban">
-  <h2>{{kurban.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{kurban.id}}</div>
+  <h3>{{kurban.kupeNo | uppercase}} Küpe Nolu Hayvanın Bilgileri</h3>
   <div>
-    <label for="kurban-name">Kurban name: </label>
-    <input id="kurban-name" [(ngModel)]="kurban.name" placeholder="Kurban name"/>
+    <label for="cins">Cinsi: </label>
+    <input id="cins" [(ngModel)]="kurban.cins" placeholder="Cins"/>
+
+    <label for="kunye">Künyesi: </label>
+    <input id="kunye" [(ngModel)]="kurban.kunye" placeholder="Künye"/>
+
+    <label for="kupeNo">Küpe Nosu: </label>
+    <input id="kupeNo" [(ngModel)]="kurban.kupeNo" placeholder="Küpe No"/>
+
+    <label for="yas">Yaşı: </label>
+    <input id="yas" [(ngModel)]="kurban.yas" placeholder="Yaş"/>
+
+    <label for="fiyat">Fiyatı: </label>
+    <input id="fiyat" [(ngModel)]="kurban.fiyat" placeholder="Fiyat"/>
+
+    <label for="kilo">Kilosu: </label>
+    <input id="kilo" [(ngModel)]="kurban.kilo" placeholder="Kilo"/>
+
   </div>
   <button type="button" (click)="goBack()">go back</button>
   <button type="button" (click)="save()">save</button>

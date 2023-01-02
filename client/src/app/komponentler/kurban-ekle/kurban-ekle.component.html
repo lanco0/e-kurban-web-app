@@ -1,11 +1,46 @@
 <h2>Kurban Ekle</h2>
 
 <div>
-    <label for="new-kurban">Kurban name: </label>
-    <input id="new-kurban" #kurbanName />
+    <mat-form-field appearance="fill">
+        <mat-label>Cinsi</mat-label>
+        <mat-select #cins (selectionChange)="onCinsChange($event)">
+            <mat-option *ngFor="let cins of cinsler" [value]="cins">
+                {{cins}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Künyesi</mat-label>
+        <mat-select #kunye>
+            <mat-option *ngFor="let kunye of kunyeler" [value]="kunye" >
+                {{kunye}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Küpe No</mat-label>
+        <input #kupeNo matInput placeholder="">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Kilo</mat-label>
+        <input #kilo matInput placeholder="">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Yaş</mat-label>
+        <input #yas matInput placeholder="">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Fiyat</mat-label>
+        <input #fiyat matInput placeholder="">
+    </mat-form-field><br>
 
     <!-- (click) passes input value to add() and then clears the input -->
-    <button type="button" class="add-button" (click)="add(kurbanName.value); kurbanName.value=''">
+    <button mat-raised-button color="primary" (click)="add(cins, kunye, kupeNo, kilo, yas, fiyat)">
         Ekle
     </button>
 </div>

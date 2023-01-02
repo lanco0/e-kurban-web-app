@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import {Kurban} from '../../modeller/kurban';
 import {KurbanService} from '../../servisler/kurban.service';
 import {KURBANLAR} from "../../mock-data";
+import {Cins} from "../../enumlar/cins";
+import {KunyeBuyukbas, KunyeKucukbas} from "../../enumlar/kunye";
+import {MatLegacySelect} from "@angular/material/legacy-select";
+import {MatSelect} from "@angular/material/select";
 
 @Component({
   selector: 'app-kurban-ekle',
@@ -14,13 +18,19 @@ export class KurbanEkleComponent {
   }
 
   kurbanlar: Kurban[] = KURBANLAR;
+  cinsler = Object.values(Cins);
+  kunyeler: string [] = [];
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
+  onCinsChange(secilenCins: { value: any; }) {
+    if (secilenCins.value === Cins.KUCUKBAS){
+      this.kunyeler = Object.values(KunyeKucukbas);
+    }else if (secilenCins.value === Cins.BUYUKBAS){
+      this.kunyeler = Object.values(KunyeBuyukbas);
     }
-    this.kurbanService.addKurban({name} as Kurban)
+  }
+
+  add(cins: MatSelect, kunye: MatSelect, kupeNo: HTMLInputElement, kilo: HTMLInputElement, yas: HTMLInputElement, fiyat: HTMLInputElement): void {
+    this.kurbanService.addKurban({cins, kunye, kupeNo, kilo, yas, fiyat} as unknown as Kurban)
         .subscribe(kurban => {
           this.kurbanlar.push(kurban);
         });

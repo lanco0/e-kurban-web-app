@@ -4,14 +4,14 @@ import { Location } from '@angular/common';
 
 import { Kurban } from '../../modeller/kurban';
 import { KurbanService } from '../../servisler/kurban.service';
-
+import {KURBAN} from "../../mock-data";
 @Component({
   selector: 'app-kurban-bilgi',
   templateUrl: './kurban-bilgi.component.html',
   styleUrls: [ './kurban-bilgi.component.css' ]
 })
 export class KurbanBilgiComponent implements OnInit {
-  kurban: Kurban | undefined;
+  kurban: Kurban = KURBAN;
 
   constructor(
     private route: ActivatedRoute,
