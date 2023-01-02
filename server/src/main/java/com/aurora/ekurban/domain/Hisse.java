@@ -1,30 +1,37 @@
 package com.aurora.ekurban.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
-/**
- * Hisse domain class.
- * Yapilan kurbanin hisse bilgilerini tutar.
- * Yeni kurban eklendiginde kurbanin hisse bilgileri bu tabloya eklenir.
- * Hisselerin durumu, kurbanin durumuna gore degisir.
- */
 @Entity
 public class Hisse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    //TODO: ilgili hisseye ait kurban bilgisi
-    //private Kurban kurban;
-
-    //TODO: ilgili hissenin sahibi bilgisi
-    //private Hissedar hissedar;
-
-    private Integer hisseNo;
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            targetEntity = Kurban.class,
+            optional = false)
+    @JoinColumn(name = "kurban_id")
+    @JsonIgnoreProperties("hisseList")
+    private Kurban kurban;
+    @ManyToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            targetEntity = Hissedar.class,
+            optional = false)
+    @JoinColumn(name = "hissedar_id", referencedColumnName = "id")
+    private Hissedar hissedar;
 
     public Hisse() {
     }
+
+    public Hisse( Kurban kurban, Hissedar hissedar) {
+        this.kurban = kurban;
+        this.hissedar = hissedar;
+    }
+
     public Long getId() {
         return id;
     }
@@ -33,15 +40,19 @@ public class Hisse {
         this.id = id;
     }
 
-    public Integer getHisseNo() {
-        return hisseNo;
+    public Kurban getKurban() {
+        return kurban;
     }
 
-    public void setHisseNo(Integer hisseNo) {
-        this.hisseNo = hisseNo;
+    public void setKurban(Kurban kurban) {
+        this.kurban = kurban;
     }
 
-    public Hisse(Integer hisseNo, Hissedar hissedar) {
-        this.hisseNo = hisseNo;
+    public Hissedar getHissedar() {
+        return hissedar;
+    }
+
+    public void setHissedar(Hissedar hissedar) {
+        this.hissedar = hissedar;
     }
 }

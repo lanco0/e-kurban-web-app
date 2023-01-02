@@ -4,32 +4,24 @@ import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.enumeration.KurbanKunye;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 public class KurbanDTO {
 
-    @NotNull
     private Long id;
-    @NotNull
     private KurbanCins cins;
-    @NotNull
     private KurbanKunye kunye;
-    @NotNull
     private KurbanDurum durum;
-    @NotNull
     private String kupeNo;
-    @NotNull
     private Integer kilo;
-    @NotNull
     private Integer yas;
-    @NotNull
     private Integer fiyat;
-    @NotNull
     private String resimUrl;
-    @NotNull
     private Integer kesimSirasi;
-    //private List<Hisse> hisseList;
+    private Integer hisseAdedi;
+    private List<HisseDTO> hisseList;
+
 
     public KurbanDTO() {
     }
@@ -106,13 +98,21 @@ public class KurbanDTO {
         this.durum = durum;
     }
 
-//    public List<Hisse> getHisseList() {
-//        return hisseList;
-//    }
+    public List<HisseDTO> getHissedarList() {
+        return this.hisseList;
+    }
 
-//    public void setHisseList(List<Hisse> hisseList) {
-//        this.hisseList = hisseList;
-//    }
+    public void setHisseList(List<HisseDTO> hissedarList) {
+        this.hisseList = hissedarList;
+    }
+
+    public Integer getHisseAdedi() {
+        return hisseAdedi;
+    }
+
+    public void setHisseAdedi(Integer hisseAdedi) {
+        this.hisseAdedi = hisseAdedi;
+    }
 
     public Integer getKesimSirasi() {
         return kesimSirasi;
