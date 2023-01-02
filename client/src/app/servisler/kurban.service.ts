@@ -7,11 +7,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Kurban } from '../modeller/kurban';
 import { LogService } from './log.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class KurbanService {
 
-  private kurbanlarUrl = 'api/kurbanlar';  // URL to web api
+  private kurbanlarUrl = 'api/v1/kurbanlar';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
