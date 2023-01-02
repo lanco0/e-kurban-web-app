@@ -24,6 +24,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
+import { HissedarDuzenleComponent } from './components/hissedar-duzenle/hissedar-duzenle.component';
 
 @NgModule({
     imports: [
@@ -53,6 +54,7 @@ import {MatSelectModule} from "@angular/material/select";
         HissedarEkleComponent,
         KurbanAraComponent,
         LoglarComponent,
+        HissedarDuzenleComponent,
     ],
     bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@
     </button>
     <span>{{title}}</span>
     <span class="example-spacer"></span>
+    <span class="example-spacer">
     <nav>
       <button *ngIf="!isAuthenticated" mat-raised-button routerLink="/giris">Giris</button>
       <button *ngIf="isAuthenticated" mat-raised-button routerLink="/anasayfa">Anasayfa</button>
@@ -17,12 +18,12 @@
     <!--  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
     <!--    <mat-icon>share</mat-icon>-->
     <!--  </button>-->
-
+    </span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
 
-<app-loglar></app-loglar>
+<!--<app-loglar></app-loglar>-->
 
 <div class="footer" #footer>
     ©2022 e-Kurban

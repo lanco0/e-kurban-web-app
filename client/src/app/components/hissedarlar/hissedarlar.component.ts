@@ -11,5 +11,5 @@ import {Hissedar} from "../../models/hissedar";
 export class HissedarlarComponent {
   hissedarlar: Hissedar[] = HISSEDARLAR;
   dataSource = this.hissedarlar;
-  displayedColumns: string[] = ['adSoyad', 'tel'];
+  displayedColumns: string[] = ['adSoyad', 'tel', 'islemler'];
 }

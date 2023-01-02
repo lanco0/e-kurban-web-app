@@ -8,6 +8,7 @@ import {KurbanEkleComponent} from "./components/kurban-ekle/kurban-ekle.componen
 import {KurbanBilgiComponent} from './components/kurban-bilgi/kurban-bilgi.component';
 import {HissedarlarComponent} from "./components/hissedarlar/hissedarlar.component";
 import {HissedarEkleComponent} from "./components/hissedar-ekle/hissedar-ekle.component";
+import {HissedarDuzenleComponent} from "./components/hissedar-duzenle/hissedar-duzenle.component";
 
 const routes: Routes = [
     {path: '', redirectTo: '/giris', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path: 'kurban-ekle', component: KurbanEkleComponent},
     {path: 'kurbanlar/:id', component: KurbanBilgiComponent},
     {path: 'hissedarlar', component: HissedarlarComponent},
+    {path: 'hissedarlar/:id', component: HissedarDuzenleComponent},
     {path: 'hissedar-ekle', component: HissedarEkleComponent},
 ];
 
