@@ -10,7 +10,7 @@ import {HissedarlarComponent} from "./komponentler/hissedarlar/hissedarlar.compo
 import {HissedarEkleComponent} from "./komponentler/hissedar-ekle/hissedar-ekle.component";
 
 const routes: Routes = [
-    {path: '', redirectTo: '/anasayfa', pathMatch: 'full'},
+    {path: '', redirectTo: '/giris', pathMatch: 'full'},
     {path: 'giris', component: GirisComponent},
     {path: 'anasayfa', component: AnasayfaComponent},
     {path: 'kurbanlar', component: KurbanlarComponent},

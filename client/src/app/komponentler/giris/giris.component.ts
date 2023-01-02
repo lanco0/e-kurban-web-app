@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, Validators} from "@angular/forms";
+import {AppComponent} from "../../app.component";
 
 @Component({
     selector: 'app-giris',
@@ -10,7 +11,7 @@ import {FormControl, Validators} from "@angular/forms";
 
 export class GirisComponent {
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private appComponent: AppComponent) {
     }
 
     eposta = new FormControl('', [Validators.required, Validators.email]);
@@ -24,8 +25,9 @@ export class GirisComponent {
         return this.eposta.hasError('email') ? 'Geçerli bir eposta değil.' : '';
     }
 
-
-    // onSubmit(): void {
-    //     this.router.navigate(['/anasayfa']);
-    // }
+    public giris(): void {
+        // todo
+        this.appComponent.isAuthenticated = true;
+        this.router.navigate(['/anasayfa']);
+    }
 }
