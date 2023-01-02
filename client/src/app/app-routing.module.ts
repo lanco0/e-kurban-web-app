@@ -15,7 +15,7 @@ const routes: Routes = [
     {path: 'anasayfa', component: AnasayfaComponent},
     {path: 'kurbanlar', component: KurbanlarComponent},
     {path: 'kurban-ekle', component: KurbanEkleComponent},
-    {path: 'kurban-bilgi/:id', component: KurbanBilgiComponent},
+    {path: 'kurbanlar/:id', component: KurbanBilgiComponent},
     {path: 'hissedarlar', component: HissedarlarComponent},
     {path: 'hissedar-ekle', component: HissedarEkleComponent},
 ];
