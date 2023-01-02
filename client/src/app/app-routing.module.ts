@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { GirisComponent } from "./giris/giris.component";
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AnasayfaComponent } from './anasayfa/anasayfa.component';
 import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
-import { KurbanDetailComponent } from './kurban-detail/kurban-detail.component';
+import { KurbanBilgiComponent } from './kurban-bilgi/kurban-bilgi.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/anasayfa', pathMatch: 'full' },
   { path: 'giris', component: GirisComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'detail/:id', component: KurbanDetailComponent },
+  { path: 'anasayfa', component: AnasayfaComponent },
+  { path: 'bilgi/:id', component: KurbanBilgiComponent },
   { path: 'kurbanlar', component: KurbanlarComponent }
 ];
 

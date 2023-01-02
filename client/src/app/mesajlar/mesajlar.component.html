@@ -1,0 +1,16 @@
+<div *ngIf="mesajService.mesajlar.length">
+
+  <h2>Mesajlar</h2>
+  <button type="button"
+          class="clear"
+          (click)="mesajService.clear()">Clear mesajlar</button>
+  <div *ngFor='let mesaj of mesajService.mesajlar'> {{mesaj}} </div>
+
+</div>
+
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

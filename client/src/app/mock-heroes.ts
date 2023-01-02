@@ -1,4 +1,4 @@
-import { Kurban } from './_models/kurban';
+import { Kurban } from './_modeller/kurban';
 
 export const KURBANLAR: Kurban[] = [
   { id: 12, name: 'Dr. Nice' },

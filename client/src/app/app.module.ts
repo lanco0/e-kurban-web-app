@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './_services/in-memory-data.service';
+import { InMemoryDataService } from './_servisler/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { KurbanDetailComponent } from './kurban-detail/kurban-detail.component';
+import { AnasayfaComponent } from './anasayfa/anasayfa.component';
+import { KurbanBilgiComponent } from './kurban-bilgi/kurban-bilgi.component';
 import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
-import { KurbanSearchComponent } from './kurban-search/kurban-search.component';
-import { MessagesComponent } from './messages/messages.component';
+import { KurbanAraComponent } from './kurban-ara/kurban-ara.component';
+import { MesajlarComponent } from './mesajlar/mesajlar.component';
 import { GirisComponent } from './giris/giris.component';
+import { KurbanEkleComponent } from './kurban-ekle/kurban-ekle.component';
+import { HissedarlarComponent } from './hissedarlar/hissedarlar.component';
+import { HissedarEkleComponent } from './hissedar-ekle/hissedar-ekle.component';
 
 @NgModule({
   imports: [
@@ -32,12 +35,15 @@ import { GirisComponent } from './giris/giris.component';
   ],
   declarations: [
     AppComponent,
-    DashboardComponent,
+    AnasayfaComponent,
     KurbanlarComponent,
-    KurbanDetailComponent,
-    MessagesComponent,
-    KurbanSearchComponent,
-    GirisComponent
+    KurbanBilgiComponent,
+    MesajlarComponent,
+    KurbanAraComponent,
+    GirisComponent,
+    KurbanEkleComponent,
+    HissedarlarComponent,
+    HissedarEkleComponent
   ],
   bootstrap: [ AppComponent ]
 })

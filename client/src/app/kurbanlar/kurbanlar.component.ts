@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Kurban } from '../_models/kurban';
-import { KurbanService } from '../_services/kurban.service';
+import { Kurban } from '../_modeller/kurban';
+import { KurbanService } from '../_servisler/kurban.service';
 
 @Component({
   selector: 'app-kurbanlar',

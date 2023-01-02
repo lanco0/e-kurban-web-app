@@ -11,6 +11,6 @@ export class GirisComponent{
   constructor(private router: Router) { }
 
   onSubmit(): void {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/anasayfa']);
   }
 }
