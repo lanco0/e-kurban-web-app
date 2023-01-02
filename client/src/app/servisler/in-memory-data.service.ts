@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Kurban } from '../_modeller/kurban';
-import {Cins} from "../_enumlar/cins";
-import {KunyeBuyukbas, KunyeKucukbas} from "../_enumlar/kunye";
-import {Durum} from "../_enumlar/durum";
+import { Kurban } from '../modeller/kurban';
+import {Cins} from "../enumlar/cins";
+import {KunyeBuyukbas, KunyeKucukbas} from "../enumlar/kunye";
+import {Durum} from "../enumlar/durum";
 
 @Injectable({
   providedIn: 'root',

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Kurban } from '../_modeller/kurban';
+import { Kurban } from '../modeller/kurban';
 import { LogService } from './log.service';
 
 

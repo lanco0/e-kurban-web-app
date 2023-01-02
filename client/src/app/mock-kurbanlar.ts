@@ -1,9 +1,9 @@
-import {Kurban} from './_modeller/kurban';
-import {Hisse} from "./_modeller/hisse";
-import {Cins} from "./_enumlar/cins";
-import {KunyeKucukbas} from "./_enumlar/kunye";
-import {KunyeBuyukbas} from "./_enumlar/kunye";
-import {Durum} from "./_enumlar/durum";
+import {Kurban} from './modeller/kurban';
+import {Hisse} from "./modeller/hisse";
+import {Cins} from "./enumlar/cins";
+import {KunyeKucukbas} from "./enumlar/kunye";
+import {KunyeBuyukbas} from "./enumlar/kunye";
+import {Durum} from "./enumlar/durum";
 
 export const KURBANLAR: Kurban[] = [
   { id: 1, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB123", kilo: 50, yas: 2, fiyat: 1500, durum: Durum.SATISTA, kesimSirasi: 1, hisse: undefined, name: "kucukbas1" },

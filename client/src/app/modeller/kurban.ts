@@ -1,8 +1,8 @@
 import {Hisse} from "./hisse";
-import {Cins} from "../_enumlar/cins";
-import {KunyeKucukbas} from "../_enumlar/kunye";
-import {KunyeBuyukbas} from "../_enumlar/kunye";
-import {Durum} from "../_enumlar/durum";
+import {Cins} from "../enumlar/cins";
+import {KunyeKucukbas} from "../enumlar/kunye";
+import {KunyeBuyukbas} from "../enumlar/kunye";
+import {Durum} from "../enumlar/durum";
 
 export interface Kurban {
   id: number;

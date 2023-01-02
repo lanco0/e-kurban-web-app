@@ -4,20 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './_servisler/in-memory-data.service';
+import { InMemoryDataService } from './servisler/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { AnasayfaComponent } from './anasayfa/anasayfa.component';
-import { KurbanBilgiComponent } from './kurban-bilgi/kurban-bilgi.component';
-import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
-import { KurbanAraComponent } from './kurban-ara/kurban-ara.component';
-import { LoglarComponent } from './loglar/loglar.component';
-import { GirisComponent } from './giris/giris.component';
-import { KurbanEkleComponent } from './kurban-ekle/kurban-ekle.component';
-import { HissedarlarComponent } from './hissedarlar/hissedarlar.component';
-import { HissedarEkleComponent } from './hissedar-ekle/hissedar-ekle.component';
+import { AnasayfaComponent } from './komponentler/anasayfa/anasayfa.component';
+import { KurbanBilgiComponent } from './komponentler/kurban-bilgi/kurban-bilgi.component';
+import { KurbanlarComponent } from './komponentler/kurbanlar/kurbanlar.component';
+import { KurbanAraComponent } from './komponentler/kurban-ara/kurban-ara.component';
+import { LoglarComponent } from './komponentler/loglar/loglar.component';
+import { GirisComponent } from './komponentler/giris/giris.component';
+import { KurbanEkleComponent } from './komponentler/kurban-ekle/kurban-ekle.component';
+import { HissedarlarComponent } from './komponentler/hissedarlar/hissedarlar.component';
+import { HissedarEkleComponent } from './komponentler/hissedar-ekle/hissedar-ekle.component';
 
 @NgModule({
   imports: [

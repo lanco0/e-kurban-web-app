@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Kurban } from '../_modeller/kurban';
-import { KurbanService } from '../_servisler/kurban.service';
+import { Kurban } from '../../modeller/kurban';
+import { KurbanService } from '../../servisler/kurban.service';
 
 @Component({
   selector: 'app-anasayfa',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LogService } from '../_servisler/log.service';
+import { LogService } from '../../servisler/log.service';
 
 @Component({
   selector: 'app-loglar',
