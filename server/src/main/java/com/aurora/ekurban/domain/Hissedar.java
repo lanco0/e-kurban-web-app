@@ -1,7 +1,6 @@
 package com.aurora.ekurban.domain;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Hissedar domain class.
@@ -17,8 +16,15 @@ public class Hissedar {
 
     private String ad;
     private String soyAd;
-    private String tel;
+    private Long tel;
+
     public Hissedar() {
+    }
+
+    public Hissedar(String ad, String soyAd, Long tel) {
+        this.ad = ad;
+        this.soyAd = soyAd;
+        this.tel = tel;
     }
 
     public Long getId() {
@@ -45,17 +51,12 @@ public class Hissedar {
         this.soyAd = soyAd;
     }
 
-    public String getTel() {
+    public Long getTel() {
         return tel;
     }
 
-    public void setTel(String tel) {
+    public void setTel(Long tel) {
         this.tel = tel;
     }
 
-    public Hissedar( String ad, String soyAd, String tel) {
-        this.ad = ad;
-        this.soyAd = soyAd;
-        this.tel = tel;
-    }
 }

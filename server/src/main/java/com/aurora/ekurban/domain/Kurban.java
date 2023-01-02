@@ -3,6 +3,7 @@ package com.aurora.ekurban.domain;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.enumeration.KurbanKunye;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,8 +38,12 @@ public class Kurban {
     private Integer kesimSirasi;
     private Integer hisseAdedi;
     private String resimUrl;
-    @OneToMany
-    private List<Hissedar> hissedarList;
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            targetEntity = Hisse.class,
+            mappedBy = "kurban")
+    @JsonIgnoreProperties("kurban")
+    private List<Hisse> hisseList = new ArrayList<>();
 
     public Kurban() {
     }
@@ -123,12 +128,12 @@ public class Kurban {
         this.resimUrl = resimUrl;
     }
 
-    public List<Hissedar> getHissedarList() {
-        return hissedarList;
+    public List<Hisse> getHisseList() {
+        return hisseList;
     }
 
-    public void setHissedarList(List<Hissedar> hissedarList) {
-        this.hissedarList = hissedarList;
+    public void setHisseList(List<Hisse> hisseList) {
+        this.hisseList = hisseList;
     }
 
     public Integer getHisseAdedi() {
@@ -140,7 +145,8 @@ public class Kurban {
     }
 
     public Kurban(KurbanCins cins, KurbanKunye kunye, String kupeNo,
-                  Integer kilo, Integer yas, Integer fiyat, Integer kesimSirasi, String resimUrl) {
+                  Integer kilo, Integer yas, Integer fiyat,
+                  Integer kesimSirasi, String resimUrl) {
         this.cins = cins;
         this.kunye = kunye;
         this.durum = KurbanDurum.SATISTA;
@@ -150,6 +156,6 @@ public class Kurban {
         this.fiyat = fiyat;
         this.kesimSirasi = kesimSirasi;
         this.resimUrl = resimUrl;
-        this.hissedarList = new ArrayList<>();
+        this.hisseList = new ArrayList<>();
     }
 }

@@ -19,5 +19,4 @@ public class LoadDbData {
             userReposiory.save(user);
         };
     }
-
 }
