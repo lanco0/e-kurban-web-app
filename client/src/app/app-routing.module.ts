@@ -5,13 +5,19 @@ import { GirisComponent } from "./giris/giris.component";
 import { AnasayfaComponent } from './anasayfa/anasayfa.component';
 import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
 import { KurbanBilgiComponent } from './kurban-bilgi/kurban-bilgi.component';
+import {KurbanEkleComponent} from "./kurban-ekle/kurban-ekle.component";
+import {HissedarlarComponent} from "./hissedarlar/hissedarlar.component";
+import {HissedarEkleComponent} from "./hissedar-ekle/hissedar-ekle.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/anasayfa', pathMatch: 'full' },
   { path: 'giris', component: GirisComponent },
   { path: 'anasayfa', component: AnasayfaComponent },
-  { path: 'bilgi/:id', component: KurbanBilgiComponent },
-  { path: 'kurbanlar', component: KurbanlarComponent }
+  { path: 'kurbanlar', component: KurbanlarComponent },
+  { path: 'kurban-ekle', component: KurbanEkleComponent },
+  { path: 'kurban-bilgi:id', component: KurbanBilgiComponent },
+  { path: 'hissedarlar', component: HissedarlarComponent },
+  { path: 'hissedar-ekle', component: HissedarEkleComponent },
 ];
 
 @NgModule({
