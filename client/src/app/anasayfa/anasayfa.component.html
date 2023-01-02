@@ -1,7 +1,7 @@
 <h2>Top Kurbanlar</h2>
 <div class="kurbanlar-menu">
   <a *ngFor="let kurban of kurbanlar"
-      routerLink="/kurban-bilgi{{kurban.id}}">
+      routerLink="/kurban-bilgi/{{kurban.id}}">
       {{kurban.name}}
   </a>
 </div>

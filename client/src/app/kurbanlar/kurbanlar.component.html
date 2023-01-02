@@ -12,7 +12,7 @@
 
 <ul class="kurbanlar">
   <li *ngFor="let kurban of kurbanlar">
-    <a routerLink="/kurban-bilgi{{kurban.id}}">
+    <a routerLink="/kurban-bilgi/{{kurban.id}}">
       <span class="badge">{{kurban.id}}</span> {{kurban.name}}
     </a>
     <button type="button" class="delete" title="delete kurban"

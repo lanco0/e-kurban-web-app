@@ -1,10 +1,10 @@
 <div id="search-component">
-  <label for="search-box">Kurban Search</label>
+  <label for="search-box">Kurban Ara</label>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 
   <ul class="search-result">
     <li *ngFor="let kurban of kurbanlar$ | async" >
-      <a routerLink="/kurban-bilgi{{kurban.id}}">
+      <a routerLink="/kurban-bilgi/{{kurban.id}}">
         {{kurban.name}}
       </a>
     </li>

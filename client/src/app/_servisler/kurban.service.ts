@@ -54,7 +54,7 @@ export class KurbanService {
   }
 
   /* GET kurbanlar whose name contains search term */
-  searchKurbanlar(term: string): Observable<Kurban[]> {
+  kurbanAra(term: string): Observable<Kurban[]> {
     if (!term.trim()) {
       // if not search term, return empty kurban array.
       return of([]);
@@ -63,7 +63,7 @@ export class KurbanService {
       tap(x => x.length ?
          this.log(`found kurbanlar matching "${term}"`) :
          this.log(`no kurbanlar matching "${term}"`)),
-      catchError(this.handleError<Kurban[]>('searchKurbanlar', []))
+      catchError(this.handleError<Kurban[]>('kurbanAra', []))
     );
   }
 
