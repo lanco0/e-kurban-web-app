@@ -3,6 +3,9 @@
 <div *ngIf="kurban">
   <h3>{{kurban.kupeNo | uppercase}} Küpe Nolu Hayvanın Bilgileri</h3>
   <div>
+
+    <img src="/assets/images/kurban.jpg" alt="Kurban Foto"/>
+
     <label for="cins">Cinsi: </label>
     <input id="cins" [(ngModel)]="kurban.cins" placeholder="Cins"/>
 
@@ -22,8 +25,8 @@
     <input id="kilo" [(ngModel)]="kurban.kilo" placeholder="Kilo"/>
 
   </div>
-  <button type="button" (click)="goBack()">go back</button>
-  <button type="button" (click)="save()">save</button>
+  <button type="button" (click)="goBack()">Geri Dön</button>
+  <button type="button" (click)="save()">Kaydet</button>
 </div>
 
 

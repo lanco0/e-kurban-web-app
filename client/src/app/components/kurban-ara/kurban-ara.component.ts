@@ -6,8 +6,8 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Kurban } from '../../modeller/kurban';
-import { KurbanService } from '../../servisler/kurban.service';
+import { Kurban } from '../../models/kurban';
+import { KurbanService } from '../../services/kurban.service';
 
 @Component({
   selector: 'app-kurban-ara',

@@ -1,10 +1,10 @@
-import {Kurban} from './modeller/kurban';
-import {Hisse} from "./modeller/hisse";
-import {Cins} from "./enumlar/cins";
-import {KunyeKucukbas} from "./enumlar/kunye";
-import {KunyeBuyukbas} from "./enumlar/kunye";
-import {Durum} from "./enumlar/durum";
-import {Hissedar} from "./modeller/hissedar";
+import {Kurban} from './models/kurban';
+import {Hisse} from "./models/hisse";
+import {Cins} from "./enums/cins";
+import {KunyeKucukbas} from "./enums/kunye";
+import {KunyeBuyukbas} from "./enums/kunye";
+import {Durum} from "./enums/durum";
+import {Hissedar} from "./models/hissedar";
 
 export const KURBAN: Kurban =
   { id: 1, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB123", kilo: 50, yas: 2, fiyat: 1500, durum: Durum.SATISTA, kesimSirasi: 1, hisse: undefined }

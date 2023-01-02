@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {Kurban} from '../../modeller/kurban';
-import {KurbanService} from '../../servisler/kurban.service';
+import {Kurban} from '../../models/kurban';
+import {KurbanService} from '../../services/kurban.service';
 import {KURBANLAR} from "../../mock-data";
-import {Cins} from "../../enumlar/cins";
-import {KunyeBuyukbas, KunyeKucukbas} from "../../enumlar/kunye";
+import {Cins} from "../../enums/cins";
+import {KunyeBuyukbas, KunyeKucukbas} from "../../enums/kunye";
 import {MatLegacySelect} from "@angular/material/legacy-select";
 import {MatSelect} from "@angular/material/select";
 

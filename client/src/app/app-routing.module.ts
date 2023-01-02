@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {GirisComponent} from "./komponentler/giris/giris.component";
-import {AnasayfaComponent} from './komponentler/anasayfa/anasayfa.component';
-import {KurbanlarComponent} from './komponentler/kurbanlar/kurbanlar.component';
-import {KurbanEkleComponent} from "./komponentler/kurban-ekle/kurban-ekle.component";
-import {KurbanBilgiComponent} from './komponentler/kurban-bilgi/kurban-bilgi.component';
-import {HissedarlarComponent} from "./komponentler/hissedarlar/hissedarlar.component";
-import {HissedarEkleComponent} from "./komponentler/hissedar-ekle/hissedar-ekle.component";
+import {GirisComponent} from "./components/giris/giris.component";
+import {AnasayfaComponent} from './components/anasayfa/anasayfa.component';
+import {KurbanlarComponent} from './components/kurbanlar/kurbanlar.component';
+import {KurbanEkleComponent} from "./components/kurban-ekle/kurban-ekle.component";
+import {KurbanBilgiComponent} from './components/kurban-bilgi/kurban-bilgi.component';
+import {HissedarlarComponent} from "./components/hissedarlar/hissedarlar.component";
+import {HissedarEkleComponent} from "./components/hissedar-ekle/hissedar-ekle.component";
 
 const routes: Routes = [
     {path: '', redirectTo: '/giris', pathMatch: 'full'},

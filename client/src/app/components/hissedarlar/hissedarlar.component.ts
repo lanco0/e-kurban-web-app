@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {Kurban} from "../../modeller/kurban";
+import {Kurban} from "../../models/kurban";
 import {HISSEDARLAR} from "../../mock-data";
-import {Hissedar} from "../../modeller/hissedar";
+import {Hissedar} from "../../models/hissedar";
 
 @Component({
   selector: 'app-hissedarlar',

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Kurban } from '../../modeller/kurban';
-import { KurbanService } from '../../servisler/kurban.service';
+import { Kurban } from '../../models/kurban';
+import { KurbanService } from '../../services/kurban.service';
 import {KURBAN} from "../../mock-data";
 @Component({
   selector: 'app-kurban-bilgi',

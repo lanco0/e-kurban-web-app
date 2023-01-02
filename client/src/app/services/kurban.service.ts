@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Kurban } from '../modeller/kurban';
+import { Kurban } from '../models/kurban';
 import { LogService } from './log.service';
 
 @Injectable({ providedIn: 'root' })

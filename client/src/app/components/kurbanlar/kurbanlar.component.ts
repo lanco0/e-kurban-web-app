@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Kurban} from '../../modeller/kurban';
-import {KurbanService} from '../../servisler/kurban.service';
+import {Kurban} from '../../models/kurban';
+import {KurbanService} from '../../services/kurban.service';
 import {KURBANLAR} from "../../mock-data";
 
 @Component({
