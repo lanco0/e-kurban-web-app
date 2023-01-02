@@ -18,6 +18,7 @@ import { GirisComponent } from './komponentler/giris/giris.component';
 import { KurbanEkleComponent } from './komponentler/kurban-ekle/kurban-ekle.component';
 import { HissedarlarComponent } from './komponentler/hissedarlar/hissedarlar.component';
 import { HissedarEkleComponent } from './komponentler/hissedar-ekle/hissedar-ekle.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { HissedarEkleComponent } from './komponentler/hissedar-ekle/hissedar-ekl
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+      BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
