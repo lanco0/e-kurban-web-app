@@ -4,7 +4,6 @@
     </button>
     <span>{{title}}</span>
     <span class="example-spacer"></span>
-    <span class="example-spacer">
     <nav>
       <button *ngIf="!isAuthenticated" mat-raised-button routerLink="/giris">Giris</button>
       <button *ngIf="isAuthenticated" mat-raised-button routerLink="/anasayfa">Anasayfa</button>
@@ -12,7 +11,6 @@
       <button *ngIf="isAuthenticated" mat-raised-button routerLink="/hissedarlar">Hissedarlar</button>
       <button *ngIf="isAuthenticated" (click)="cikis()" mat-raised-button><mat-icon>exit_to_app</mat-icon>Çıkış</button>
   </nav>
-  </span>
     <!--  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
     <!--    <mat-icon>favorite</mat-icon>-->
     <!--  </button>-->

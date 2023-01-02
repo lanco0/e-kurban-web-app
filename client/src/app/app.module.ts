@@ -21,6 +21,8 @@ import {HissedarlarComponent} from './komponentler/hissedarlar/hissedarlar.compo
 import {HissedarEkleComponent} from './komponentler/hissedar-ekle/hissedar-ekle.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatTableModule} from "@angular/material/table";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
     imports: [
@@ -35,6 +37,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
         MatButtonModule,
         MatInputModule,
         MatSidenavModule,
+        MatTableModule,
+        MatRadioModule,
     ],
     declarations: [
         AppComponent,

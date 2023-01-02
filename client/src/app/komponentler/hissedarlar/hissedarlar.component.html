@@ -1,1 +1,22 @@
-<p>hissedarlar works!</p>
+<h2>Kayıtlı Hissedarlar</h2>
+
+<button routerLink="/hissedar-ekle" mat-raised-button color="primary">Hissedar Ekle</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="adSoyad">
+        <th mat-header-cell *matHeaderCellDef> Ad - Soyad </th>
+        <td mat-cell *matCellDef="let element"> {{element.adSoyad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tel">
+        <th mat-header-cell *matHeaderCellDef> Telefon No </th>
+        <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

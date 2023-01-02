@@ -1,12 +1,49 @@
-<h2>Kurban Listesi</h2>
-<div class="kurbanlar-menu">
-  <a *ngFor="let kurban of kurbanlar"
-      routerLink="/kurbanlar/{{kurban.id}}">
-      {{kurban.name}}
-  </a>
+<h2>Kurban Takip Programına Hoşgeldiniz.</h2>
+<button routerLink="/kurban-ekle" mat-raised-button color="primary">Kurban Ekle</button>
+<div class="kurban-sayfasi">
+    Müsait Kurbanlar:
+    <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1" [checked]="true">Tümü</mat-radio-button>
+        <mat-radio-button value="2">Küçükbaş</mat-radio-button>
+        <mat-radio-button value="3">Büyükbaş</mat-radio-button>
+    </mat-radio-group>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <ng-container matColumnDef="kesimSira">
+              <th mat-header-cell *matHeaderCellDef> K.Sıra </th>
+              <td mat-cell *matCellDef="let element"> 1 </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cins">
+              <th mat-header-cell *matHeaderCellDef> Cinsi </th>
+              <td mat-cell *matCellDef="let element"> {{element.cins}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="kunye">
+              <th mat-header-cell *matHeaderCellDef> Künyesi </th>
+              <td mat-cell *matCellDef="let element"> {{element.kunye}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fiyat">
+              <th mat-header-cell *matHeaderCellDef> Fiyatı </th>
+              <td mat-cell *matCellDef="let element"> {{element.fiyat}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="kalanHisse">
+              <th mat-header-cell *matHeaderCellDef> Kalan Hisse </th>
+              <td mat-cell *matCellDef="let element"> {{element.kalanHisse}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 </div>
 
-<app-kurban-ara></app-kurban-ara>
+
 
 
 <!-- 

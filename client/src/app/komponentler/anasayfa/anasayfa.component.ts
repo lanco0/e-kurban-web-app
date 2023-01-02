@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { Kurban } from '../../modeller/kurban';
-import { KurbanService } from '../../servisler/kurban.service';
+import {Component, OnInit} from '@angular/core';
+import {Kurban} from '../../modeller/kurban';
+import {KurbanService} from '../../servisler/kurban.service';
+import {KURBANLAR} from "../../mock-data";
 
 @Component({
-  selector: 'app-anasayfa',
-  templateUrl: './anasayfa.component.html',
-  styleUrls: [ './anasayfa.component.css' ]
+    selector: 'app-anasayfa',
+    templateUrl: './anasayfa.component.html',
+    styleUrls: ['./anasayfa.component.css']
 })
 export class AnasayfaComponent implements OnInit {
-  kurbanlar: Kurban[] = [];
+    kurbanlar: Kurban[] = KURBANLAR;
+    dataSource = this.kurbanlar;
+    displayedColumns: string[] = ['kesimSira', 'cins', 'kunye', 'fiyat', 'kalanHisse'];
 
-  constructor(private kurbanService: KurbanService) { }
+    constructor(private kurbanService: KurbanService) {
+    }
+    
+    ngOnInit(): void {
+        this.getKurbanlar();
+    }
 
-  ngOnInit(): void {
-    this.getKurbanlar();
-  }
-
-  getKurbanlar(): void {
-    this.kurbanService.getKurbanlar()
-      .subscribe(kurbanlar => this.kurbanlar = kurbanlar.slice(1, 5));
-  }
+    getKurbanlar(): void {
+        this.kurbanService.getKurbanlar()
+            .subscribe(kurbanlar => this.kurbanlar = kurbanlar.slice(1, 5));
+    }
 }
 
 
