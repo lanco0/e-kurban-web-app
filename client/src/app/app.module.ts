@@ -13,7 +13,7 @@ import { AnasayfaComponent } from './anasayfa/anasayfa.component';
 import { KurbanBilgiComponent } from './kurban-bilgi/kurban-bilgi.component';
 import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
 import { KurbanAraComponent } from './kurban-ara/kurban-ara.component';
-import { MesajlarComponent } from './mesajlar/mesajlar.component';
+import { LoglarComponent } from './loglar/loglar.component';
 import { GirisComponent } from './giris/giris.component';
 import { KurbanEkleComponent } from './kurban-ekle/kurban-ekle.component';
 import { HissedarlarComponent } from './hissedarlar/hissedarlar.component';
@@ -38,7 +38,7 @@ import { HissedarEkleComponent } from './hissedar-ekle/hissedar-ekle.component';
     AnasayfaComponent,
     KurbanlarComponent,
     KurbanBilgiComponent,
-    MesajlarComponent,
+    LoglarComponent,
     KurbanAraComponent,
     GirisComponent,
     KurbanEkleComponent,

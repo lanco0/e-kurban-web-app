@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Kurban } from '../_modeller/kurban';
-import { MesajService } from './mesaj.service';
+import { LogService } from './log.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +19,7 @@ export class KurbanService {
 
   constructor(
     private http: HttpClient,
-    private mesajService: MesajService) { }
+    private logService: LogService) { }
 
   /** GET kurbanlar from the server */
   getKurbanlar(): Observable<Kurban[]> {
@@ -109,16 +109,16 @@ export class KurbanService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.mesaj}`);
+      this.log(`${operation} failed: ${error.log}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  /** Log a KurbanService mesaj with the MesajService */
-  private log(mesaj: string) {
-    this.mesajService.add(`KurbanService: ${mesaj}`);
+  /** Log a KurbanService log with the LogService */
+  private log(log: string) {
+    this.logService.add(`KurbanService: ${log}`);
   }
 }
 

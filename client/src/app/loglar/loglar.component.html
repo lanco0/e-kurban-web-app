@@ -1,10 +1,10 @@
-<div *ngIf="mesajService.mesajlar.length">
+<div *ngIf="logService.loglar.length">
 
-  <h2>Mesajlar</h2>
+  <h2>Loglar</h2>
   <button type="button"
           class="clear"
-          (click)="mesajService.clear()">Clear mesajlar</button>
-  <div *ngFor='let mesaj of mesajService.mesajlar'> {{mesaj}} </div>
+          (click)="logService.clear()">Clear loglar</button>
+  <div *ngFor='let log of logService.loglar'> {{log}} </div>
 
 </div>
 
