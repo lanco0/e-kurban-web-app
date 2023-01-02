@@ -1,5 +1,15 @@
 <mat-form-field appearance="fill">
-    <mat-label>Enter your email</mat-label>
-    <input matInput placeholder="pat@example.com" [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-label>E-postanızı giriniz</mat-label>
+    <input matInput placeholder="pat@example.com" [formControl]="eposta" required>
+    <mat-error *ngIf="eposta.invalid">{{getErrorMessage()}}</mat-error>
 </mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Şifrenizi giriniz</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Şifreyi gizle'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+</mat-form-field>
+
+<button mat-raised-button color="primary">Giriş</button>

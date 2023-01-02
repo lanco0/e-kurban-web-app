@@ -1,57 +1,65 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { InMemoryDataService } from './servisler/in-memory-data.service';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
-import { AppComponent } from './app.component';
-import { AnasayfaComponent } from './komponentler/anasayfa/anasayfa.component';
-import { KurbanBilgiComponent } from './komponentler/kurban-bilgi/kurban-bilgi.component';
-import { KurbanlarComponent } from './komponentler/kurbanlar/kurbanlar.component';
-import { KurbanAraComponent } from './komponentler/kurban-ara/kurban-ara.component';
-import { LoglarComponent } from './komponentler/loglar/loglar.component';
-import { GirisComponent } from './komponentler/giris/giris.component';
-import { KurbanEkleComponent } from './komponentler/kurban-ekle/kurban-ekle.component';
-import { HissedarlarComponent } from './komponentler/hissedarlar/hissedarlar.component';
-import { HissedarEkleComponent } from './komponentler/hissedar-ekle/hissedar-ekle.component';
+import {InMemoryDataService} from './servisler/in-memory-data.service';
+
+import {AppComponent} from './app.component';
+import {AnasayfaComponent} from './komponentler/anasayfa/anasayfa.component';
+import {KurbanBilgiComponent} from './komponentler/kurban-bilgi/kurban-bilgi.component';
+import {KurbanlarComponent} from './komponentler/kurbanlar/kurbanlar.component';
+import {KurbanAraComponent} from './komponentler/kurban-ara/kurban-ara.component';
+import {LoglarComponent} from './komponentler/loglar/loglar.component';
+import {GirisComponent} from './komponentler/giris/giris.component';
+import {KurbanEkleComponent} from './komponentler/kurban-ekle/kurban-ekle.component';
+import {HissedarlarComponent} from './komponentler/hissedarlar/hissedarlar.component';
+import {HissedarEkleComponent} from './komponentler/hissedar-ekle/hissedar-ekle.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatFormFieldModule,
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
 
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-      BrowserAnimationsModule
-  ],
-  declarations: [
-    AppComponent,
-    GirisComponent,
-    AnasayfaComponent,
-    KurbanlarComponent,
-    KurbanEkleComponent,
-    KurbanBilgiComponent,
-    HissedarlarComponent,
-    HissedarEkleComponent,
-    KurbanAraComponent,
-    LoglarComponent,
-  ],
-  bootstrap: [ AppComponent ]
+        // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+        // and returns simulated server responses.
+        // Remove it when a real server is ready to receive requests.
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService, {dataEncapsulation: false}
+        ),
+        BrowserAnimationsModule,
+        FormsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+    ],
+    declarations: [
+        AppComponent,
+        GirisComponent,
+        AnasayfaComponent,
+        KurbanlarComponent,
+        KurbanEkleComponent,
+        KurbanBilgiComponent,
+        HissedarlarComponent,
+        HissedarEkleComponent,
+        KurbanAraComponent,
+        LoglarComponent,
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 
 /*

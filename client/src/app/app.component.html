@@ -1,11 +1,30 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/anasayfa">Anasayfa</a>
-  <a routerLink="/kurbanlar">Kurbanlar</a>
-</nav>
-<router-outlet></router-outlet>
-<app-loglar></app-loglar>
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{title}}</span>
+    <span class="example-spacer"></span>
+    <span class="example-spacer">
+    <nav>
+      <button mat-raised-button routerLink="/giris">Giris</button>
+      <button mat-raised-button routerLink="/anasayfa">Anasayfa</button>
+      <button mat-raised-button routerLink="/kurbanlar">Kurbanlar</button>
+      <button mat-raised-button routerLink="/hissedarlar">Hissedarlar</button>
+      <button mat-raised-button routerLink="/cikis">Çıkış</button>
+  </nav>
+  </span>
+    <!--  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
+    <!--    <mat-icon>favorite</mat-icon>-->
+    <!--  </button>-->
+    <!--  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">-->
+    <!--    <mat-icon>share</mat-icon>-->
+    <!--  </button>-->
 
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<app-loglar></app-loglar>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.

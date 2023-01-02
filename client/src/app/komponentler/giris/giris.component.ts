@@ -1,4 +1,4 @@
-import {Component, NgModule} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, Validators} from "@angular/forms";
 
@@ -13,17 +13,19 @@ export class GirisComponent {
     constructor(private router: Router) {
     }
 
-    email = new FormControl('', [Validators.required, Validators.email]);
+    eposta = new FormControl('', [Validators.required, Validators.email]);
+    hide = true;
 
     getErrorMessage() {
-        if (this.email.hasError('required')) {
-            return 'You must enter a value';
+        if (this.eposta.hasError('required')) {
+            return 'Bir değer girmek zorundasın.';
         }
 
-        return this.email.hasError('email') ? 'Not a valid email' : '';
+        return this.eposta.hasError('email') ? 'Geçerli bir eposta değil.' : '';
     }
 
-    onSubmit(): void {
-        this.router.navigate(['/anasayfa']);
-    }
+
+    // onSubmit(): void {
+    //     this.router.navigate(['/anasayfa']);
+    // }
 }
