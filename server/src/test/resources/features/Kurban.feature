@@ -1,6 +1,6 @@
 Feature: Kurban ile CRUD işlemleri
 
-  Background:
+  Background://TODO
     Given Kurban Listesinde sadece aşağıdaki kurban eklenmiş olsun
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl         |
       | 2022A137700 | BUYUKBAS | DANA  | 535  | 24  | 57000 | kurban.png       |
@@ -33,7 +33,7 @@ Feature: Kurban ile CRUD işlemleri
     When Kullanıcı kurbanı eklemek istediğinde
     Then Ekleme işlemi başarısız olur
 
-  Scenario: Kullanıcı bilgilerin tamamını eksiksiz doldurduğu zaman ekleme işlemi başarılı olur
+  Scenario: Kullanıcı bilgilerin tamamını eksiksiz doldurduğu zaman ekleme işlemi başarılı olur//TODO
     Given Kullanıcı kurban ekleme sayfasına bilgileri doldurmaya başlamıştır
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl   |
       | 2022A137700 | BUYUKBAS | DANA  | 535  | 24  | 57000 | kurban.png |
@@ -52,9 +52,9 @@ Feature: Kurban ile CRUD işlemleri
       | 2022A137700 | BUYUKBAS |       | 555  | 25  | 58000 | kurban.png |
     Then Güncelleme işlemi başarısız olur
 
-  Scenario: Kurban güncelleme işlemi yapıldığında kurban bilgilerinin eksiksiz girilmesi durumunda başarılı olması
+  Scenario: Kurban güncelleme işlemi yapıldığında kurban bilgilerinin eksiksiz girilmesi durumunda başarılı olması//TODO
     When Aşağıdaki bilgiler ile güncellenmek istendiğinde
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl   |
       | 2022A137706 | KUCUKBAS | KOC   | 555  | 10  | 30000 | kurban.png |
-    Then Kunye ismi "KOC" olmalıdır
-
+    Then //başarılı olmaldı
+    And //Kunye ismi "KOC" olmalıdır

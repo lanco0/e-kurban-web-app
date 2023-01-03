@@ -21,13 +21,13 @@ public class Hisse {
             fetch = FetchType.LAZY,
             targetEntity = Hissedar.class,
             optional = false)
-    @JoinColumn(name = "hissedar_id", referencedColumnName = "id")
+    @JoinColumn(name = "hissedar_id")
     private Hissedar hissedar;
 
     public Hisse() {
     }
 
-    public Hisse( Kurban kurban, Hissedar hissedar) {
+    public Hisse(Kurban kurban, Hissedar hissedar) {
         this.kurban = kurban;
         this.hissedar = hissedar;
     }

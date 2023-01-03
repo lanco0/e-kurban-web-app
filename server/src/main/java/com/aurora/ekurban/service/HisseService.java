@@ -6,12 +6,12 @@ import com.aurora.ekurban.domain.Kurban;
 import com.aurora.ekurban.dto.HisseCreateDTO;
 import com.aurora.ekurban.dto.HisseDTO;
 import com.aurora.ekurban.repository.HisseRepository;
-import com.aurora.ekurban.repository.HissedarRepository;
-import com.aurora.ekurban.repository.KurbanRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.util.MissingFormatArgumentException;
 
 @Service
 public class HisseService {
@@ -23,40 +23,43 @@ public class HisseService {
     HissedarService hissedarService;
     @Autowired
     HisseRepository hisseRepository;
-    @Autowired
-    private KurbanRepository kurbanRepository;
-    @Autowired
-    private HissedarRepository hissedarRepository;
 
     public HisseDTO convertHisseEntityToDTO(@NotNull Hisse hisse) {
         HisseDTO tempHisse = new HisseDTO();
         tempHisse.setId(hisse.getId());
-        tempHisse.setKurbanDTO(kurbanService.convertKurbanEntityToDTO(hisse.getKurban()));
-        tempHisse.setHissedarDTO(hissedarService.convertHissedarEntityToDTO(hisse.getHissedar()));
+        tempHisse.setKurbanId(hisse.getKurban().getId());
+        tempHisse.setHissedarId(hisse.getHissedar().getId());
         return tempHisse;
     }
 
-    public HisseCreateDTO addHisse(@NotNull HisseCreateDTO hisseCreateDTO) {
-        Kurban kurban = kurbanRepository.findById(hisseCreateDTO.getKurbanId()).orElseThrow();
-        Hissedar hissedar = hissedarRepository.findById(hisseCreateDTO.getHissedarId()).orElseThrow();
+    public void addHisse(@NotNull HisseCreateDTO hisseCreateDTO) throws MissingFormatArgumentException {
+        Kurban kurban = kurbanService.getKurban(hisseCreateDTO.getKurbanId());
+        if(kurbanService.isAllHissesSold(kurban)) {
+            throw new MissingFormatArgumentException("Hisse Listeniz Doludur...");
+        }
+        Hissedar hissedar;
+        if(hisseCreateDTO.getHissedarId()!=null){
+            hissedar = hissedarService.getHissedar(hisseCreateDTO.getHissedarId());
+        } else {
+            Long hissedarId = hissedarService.addHissedar(hisseCreateDTO.getHissedarCreateDTO());
+            hissedar = hissedarService.getHissedar(hissedarId);
+        }
         Hisse hisse = new Hisse(kurban, hissedar);
-        hisseRepository.save(hisse);
-        return hisseCreateDTO;
+        kurban.getHisseList().add(hisse);
+        kurbanService.save(kurban);
     }
 
-    public HisseCreateDTO updateHisse(Long id, @NotNull HisseCreateDTO hisseCreateDTO) {
+    public void updateHisse(Long id, @NotNull HisseCreateDTO hisseCreateDTO) {
         Hisse hisse = hisseRepository.findById(id).orElseThrow();
-        Hissedar hissedar = hissedarRepository.findById(hisseCreateDTO.getHissedarId()).orElseThrow();
+        Hissedar hissedar = hissedarService.getHissedar(hisseCreateDTO.getHissedarId());
         hisse.setHissedar(hissedar);
-        hisseRepository.save(hisse);
-        return hisseCreateDTO;
+        kurbanService.save(kurbanService.getKurban(hisseCreateDTO.getKurbanId()));
     }
 
     public void deleteHissedarOnHisse(Long id) {
         Hisse hisse = hisseRepository.findById(id).orElseThrow();
         hisse.setHissedar(null);
+        kurbanService.updateDurum(hisse.getKurban());
         hisseRepository.save(hisse);
-
     }
-
 }
