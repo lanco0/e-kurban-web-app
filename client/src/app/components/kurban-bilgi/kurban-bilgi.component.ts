@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Kurban } from '../../models/kurban';
 import { KurbanService } from '../../services/kurban.service';
-import {KURBAN} from "../../mock-data";
+import {KURBAN, KURBANLAR} from "../../mock-data";
+import {Cins} from "../../enums/cins";
+import {KunyeBuyukbas, KunyeKucukbas} from "../../enums/kunye";
 @Component({
   selector: 'app-kurban-bilgi',
   templateUrl: './kurban-bilgi.component.html',
@@ -23,10 +25,22 @@ export class KurbanBilgiComponent implements OnInit {
     this.getKurban();
   }
 
+  cinsler = Object.values(Cins);
+  kunyeler: string [] = [];
+
+  onCinsChange(secilenCins: { value: any; }) {
+    if (secilenCins.value === Cins.KUCUKBAS){
+      this.kunyeler = Object.values(KunyeKucukbas);
+    }else if (secilenCins.value === Cins.BUYUKBAS){
+      this.kunyeler = Object.values(KunyeBuyukbas);
+    }
+  }
+
   getKurban(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.kurbanService.getKurban(id)
-      .subscribe(kurban => this.kurban = kurban);
+    this.kurban = KURBAN;
+    // const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    // this.kurbanService.getKurban(id)
+    //   .subscribe(kurban => this.kurban = kurban);
   }
 
   goBack(): void {

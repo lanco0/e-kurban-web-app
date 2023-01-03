@@ -1,39 +1,95 @@
 <h2>Kurban Bilgi</h2>
-
+<h3>Kurban Küpe No: {{kurban.kupeNo | uppercase}}</h3>
 <div *ngIf="kurban">
-  <h3>{{kurban.kupeNo | uppercase}} Küpe Nolu Hayvanın Bilgileri</h3>
-  <div>
+    <table>
+        <tr>
+            <td>
+                <img src="{{kurban.resimUrl}}" width="810" height="458" alt="Kurban Foto"/>
+                <br>
+                <mat-form-field>
+                    <mat-label>Resim URL</mat-label>
+                    <input value="{{kurban.resimUrl}}" #resimUrl matInput placeholder="">
+                </mat-form-field>
+                <br>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Cinsi</mat-label>
+                    <mat-select value="{{kurban.cins}}" #cins (selectionChange)="onCinsChange($event)">
+                        <mat-option *ngFor="let cins of cinsler" [value]="cins">
+                            {{cins}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
 
-    <img src="/assets/images/kurban.jpg" alt="Kurban Foto"/>
+                <mat-form-field appearance="fill">
+                    <mat-label>Künyesi</mat-label>
+                    <mat-select value="{{kurban.kunye}}" #kunye>
+                        <mat-option *ngFor="let kunye of kunyeler" [value]="kunye">
+                            {{kunye}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
 
-    <label for="cins">Cinsi: </label>
-    <input id="cins" [(ngModel)]="kurban.cins" placeholder="Cins"/>
+                <mat-form-field>
+                    <mat-label>Kilosu (kg)</mat-label>
+                    <input value="{{kurban.kilo}}" #kilo matInput placeholder="">
+                </mat-form-field>
+                <br>
 
-    <label for="kunye">Künyesi: </label>
-    <input id="kunye" [(ngModel)]="kurban.kunye" placeholder="Künye"/>
+                <mat-form-field>
+                    <mat-label>Yaşı (ay)</mat-label>
+                    <input value="{{kurban.yas}}" #yas matInput placeholder="">
+                </mat-form-field>
+                <br>
 
-    <label for="kupeNo">Küpe Nosu: </label>
-    <input id="kupeNo" [(ngModel)]="kurban.kupeNo" placeholder="Küpe No"/>
+                <mat-form-field>
+                    <mat-label>Fiyatı (TL)</mat-label>
+                    <input value="{{kurban.fiyat}}" #fiyat matInput placeholder="">
+                </mat-form-field>
+                <br>
 
-    <label for="yas">Yaşı: </label>
-    <input id="yas" [(ngModel)]="kurban.yas" placeholder="Yaş"/>
+                <mat-form-field>
+                    <mat-label>Durumu</mat-label>
+                    <input value="{{kurban.durum}}" disabled #durum matInput>
+                </mat-form-field>
+                <br>
 
-    <label for="fiyat">Fiyatı: </label>
-    <input id="fiyat" [(ngModel)]="kurban.fiyat" placeholder="Fiyat"/>
+                <button mat-raised-button color="primary">
+                    Kaydet
+                </button>
+            </td>
+            <td>
+                <table border="1">
+                    <tr>
+                        <td>
+                            Kesim Sırası:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                    </tr>
 
-    <label for="kilo">Kilosu: </label>
-    <input id="kilo" [(ngModel)]="kurban.kilo" placeholder="Kilo"/>
-
-    <button mat-raised-button color="primary">Kesildi</button>
-    <button mat-raised-button color="primary">Telef</button>
-
-  </div>
-  <button type="button" (click)="goBack()">Geri Dön</button>
-  <button type="button" (click)="save()">Kaydet</button>
+                </table>
+                <button mat-raised-button color="primary">
+                    <mat-icon>device_hub</mat-icon>
+                    Kesildi
+                </button>
+                <button mat-raised-button color="primary">
+                    <mat-icon>close</mat-icon>
+                    Telef
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>
 
 
-<!-- 
+<!--
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at https://angular.io/license

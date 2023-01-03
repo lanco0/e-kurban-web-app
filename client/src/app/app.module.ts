@@ -25,6 +25,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
 import { HissedarDuzenleComponent } from './components/hissedar-duzenle/hissedar-duzenle.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import { HissedarDuzenleComponent } from './components/hissedar-duzenle/hissedar
         MatTableModule,
         MatRadioModule,
         MatSelectModule,
+        MatGridListModule,
     ],
     declarations: [
         AppComponent,

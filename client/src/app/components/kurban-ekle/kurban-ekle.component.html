@@ -1,6 +1,17 @@
 <h2>Kurban Ekle</h2>
 
 <div>
+
+    <mat-form-field>
+        <mat-label>Kurban Resmi URL</mat-label>
+        <input #resimUrl matInput placeholder="">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Küpe No</mat-label>
+        <input #kupeNo matInput placeholder="">
+    </mat-form-field><br>
+
     <mat-form-field appearance="fill">
         <mat-label>Cinsi</mat-label>
         <mat-select #cins (selectionChange)="onCinsChange($event)">
@@ -20,22 +31,17 @@
     </mat-form-field><br>
 
     <mat-form-field>
-        <mat-label>Küpe No</mat-label>
-        <input #kupeNo matInput placeholder="">
-    </mat-form-field><br>
-
-    <mat-form-field>
-        <mat-label>Kilo</mat-label>
+        <mat-label>Kilosu (kg)</mat-label>
         <input #kilo matInput placeholder="">
     </mat-form-field><br>
 
     <mat-form-field>
-        <mat-label>Yaş</mat-label>
+        <mat-label>Yaşı (ay)</mat-label>
         <input #yas matInput placeholder="">
     </mat-form-field><br>
 
     <mat-form-field>
-        <mat-label>Fiyat</mat-label>
+        <mat-label>Fiyatı (TL)</mat-label>
         <input #fiyat matInput placeholder="">
     </mat-form-field><br>
 
