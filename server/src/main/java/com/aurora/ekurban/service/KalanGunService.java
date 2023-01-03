@@ -8,10 +8,18 @@ import java.time.LocalDateTime;
 @Service
 public class KalanGunService {
 
-    private final LocalDateTime kurbanBayrami = LocalDateTime.of(2023, 6, 28, 6, 19);
+    /**
+     * Kurban bayramı günü bilgisine tutar
+     */
+    private LocalDateTime kurbanBayrami;
 
     public int getKurbanBayraminaKalanGun() {
         Duration diff = Duration.between(LocalDateTime.now(), kurbanBayrami);
         return (int) diff.toDays();
+    }
+
+    public LocalDateTime setKurbanBayrami(LocalDateTime kurbanBayramiGunu) {
+        this.kurbanBayrami = kurbanBayramiGunu;
+        return this.kurbanBayrami;
     }
 }

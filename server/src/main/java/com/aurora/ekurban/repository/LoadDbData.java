@@ -6,9 +6,12 @@ import com.aurora.ekurban.domain.Kurban;
 import com.aurora.ekurban.domain.User;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanKunye;
+import com.aurora.ekurban.service.KalanGunService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.time.LocalDateTime;
 
 @Configuration
 public class LoadDbData {
@@ -21,7 +24,7 @@ public class LoadDbData {
      */
     @Bean
     CommandLineRunner initData(UserRepository userReposiory, KurbanRepository kurbanRepository,
-                               HissedarRepository hissedarRepository, HisseRepository hisseRepository) {
+                               HissedarRepository hissedarRepository, KalanGunService kalanGunService) {
         return args -> {
             User user = new User("user@ekurban.com", "1234");
 
@@ -32,12 +35,11 @@ public class LoadDbData {
 
             kurban.getHisseList().add(hisse);
 
-            kurban = kurbanRepository.save(kurban);
+            kurbanRepository.save(kurban);
             hissedarRepository.save(hissedar);
-
-            //hisseRepository.save(hisse);
-
             userReposiory.save(user);
+
+            kalanGunService.setKurbanBayrami(LocalDateTime.of(2023, 06, 29, 06, 19));
 
         };
     }

@@ -49,7 +49,7 @@ public class MesajStepDefinitions {
     @Then("Hissedarlara kurban kesildi mesajı gönderilir")
     public void hissedarlaraKurbanKesildiMesajiGonderilir() {
         String result = (String) scenarioContext.getContext("kesildiMesajı");
-        String mesaj = "Sayın " + hissedar.getAd() + " " + hissedar.getSoyAd() + ". " + kurban.getKupeNo() +
+        String mesaj = "Sayın " + hissedar.getAd() + " " + hissedar.getSoyad() + ". " + kurban.getKupeNo() +
                 " küpe numarasına ait kurbanınız kesilmiştir. Cenab - ı Hak kabul eylesin.";
         Assert.assertEquals(mesaj, result);
     }

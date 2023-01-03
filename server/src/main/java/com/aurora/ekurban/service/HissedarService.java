@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class HissedarService {
@@ -26,7 +25,7 @@ public class HissedarService {
         HissedarDTO tempHissedar = new HissedarDTO();
         tempHissedar.setId(hissedar.getId());
         tempHissedar.setAd(hissedar.getAd());
-        tempHissedar.setSoyAd(hissedar.getSoyAd());
+        tempHissedar.setSoyad(hissedar.getSoyad());
         tempHissedar.setTel(hissedar.getTel());
         return tempHissedar;
     }
@@ -48,7 +47,7 @@ public class HissedarService {
 
     public Long addHissedar(@NotNull HissedarCreateDTO hissedarCreateDTO) {
         Hissedar hissedar = new Hissedar(hissedarCreateDTO.getAd(),
-                hissedarCreateDTO.getSoyAd(),
+                hissedarCreateDTO.getSoyad(),
                 hissedarCreateDTO.getTel());
         hissedarRepository.save(hissedar);
         return hissedar.getId();
@@ -57,7 +56,7 @@ public class HissedarService {
     public HissedarDTO updateHissedar(Long id, @NotNull HissedarCreateDTO hissedarCreateDTO) {
         Hissedar hissedar = hissedarRepository.findById(id).orElseThrow();
         hissedar.setAd(hissedarCreateDTO.getAd());
-        hissedar.setSoyAd(hissedarCreateDTO.getSoyAd());
+        hissedar.setSoyad(hissedarCreateDTO.getSoyad());
         hissedar.setTel(hissedarCreateDTO.getTel());
         hissedarRepository.save(hissedar);
         return convertHissedarEntityToDTO(hissedar);
