@@ -5,7 +5,7 @@ import com.aurora.ekurban.dto.KurbanDTO;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.service.KurbanService;
-import org.jetbrains.annotations.Nullable;
+import org.springframework.lang.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +15,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/kurbanlar")
+@RequestMapping("/api/v1/kurbanlar")
 public class KurbanController {
     @Autowired
     KurbanService kurbanService;
 
     @GetMapping
-    public ResponseEntity<List<KurbanDTO>> getKurbanList(@RequestParam() @Nullable KurbanCins kurbanCins) {
-        return new ResponseEntity<>(kurbanService.choseKurbanList(kurbanCins), HttpStatus.OK);
+    public ResponseEntity<List<KurbanDTO>> getKurbanList(@RequestParam(value = "cins") @Nullable KurbanCins cins) {
+        return new ResponseEntity<>(kurbanService.choseKurbanList(cins), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

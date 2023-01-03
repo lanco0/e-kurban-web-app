@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controllerın kullanıcı login ve logout işlemleri için iletişime geçtiği sınıf nesnesi
+ * @author mehmetercan
+ */
 @Service
 public class UserService {
     private final UserRepository userReposiory;

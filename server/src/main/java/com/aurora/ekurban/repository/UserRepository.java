@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  *kullanıcı işlemlerini gerçekleştirecek olan repository katmanı
+ * @author mehmetercan
  */
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findUserByEposta(String eposta);

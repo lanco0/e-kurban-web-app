@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './_services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,6 +14,7 @@ import { KurbanDetailComponent } from './kurban-detail/kurban-detail.component';
 import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
 import { KurbanSearchComponent } from './kurban-search/kurban-search.component';
 import { MessagesComponent } from './messages/messages.component';
+import { GirisComponent } from './giris/giris.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MessagesComponent } from './messages/messages.component';
     KurbanlarComponent,
     KurbanDetailComponent,
     MessagesComponent,
-    KurbanSearchComponent
+    KurbanSearchComponent,
+    GirisComponent
   ],
   bootstrap: [ AppComponent ]
 })

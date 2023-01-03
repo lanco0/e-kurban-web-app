@@ -1,11 +1,9 @@
 package com.aurora.ekurban.dto;
 
-import com.aurora.ekurban.domain.Hissedar;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.enumeration.KurbanKunye;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 
@@ -22,7 +20,7 @@ public class KurbanDTO {
     private String resimUrl;
     private Integer kesimSirasi;
     private Integer hisseAdedi;
-    private List<Hissedar> hissedarList;
+    private List<HisseDTO> hisseList;
 
 
     public KurbanDTO() {
@@ -100,12 +98,12 @@ public class KurbanDTO {
         this.durum = durum;
     }
 
-    public List<Hissedar> getHissedarList() {
-        return this.hissedarList;
+    public List<HisseDTO> getHissedarList() {
+        return this.hisseList;
     }
 
-    public void setHissedarList(List<Hissedar> hissedarList) {
-        this.hissedarList = hissedarList;
+    public void setHisseList(List<HisseDTO> hissedarList) {
+        this.hisseList = hissedarList;
     }
 
     public Integer getHisseAdedi() {

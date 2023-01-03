@@ -11,14 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+/**
+ * Kullanıcının login ve logout olma işlemlerini gerçekleştiren contoller sınıfı
+ * @author mehmetercan
+ */
 @RestController
 @RequestMapping("api/v1")
 public class LoginController {
-    private final UserService userService;
 
     /**
      * @param userService constructor ile servis inject ediliyor
      */
+    private final UserService userService;
+
     public LoginController(UserService userService) {
         this.userService = userService;
     }
