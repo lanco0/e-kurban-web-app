@@ -23,7 +23,7 @@
             <button mat-mini-fab color="accent" aria-label="Edit icon">
                 <a routerLink="/hissedarlar/{{element.id}}"><mat-icon>edit</mat-icon></a>
             </button>
-            <button mat-mini-fab color="warn" aria-label="Delete icon">
+            <button (click)="delete(element)" mat-mini-fab color="warn" aria-label="Delete icon">
                 <mat-icon>delete</mat-icon>
             </button>
         </td>
