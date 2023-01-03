@@ -29,6 +29,9 @@ public class HisseService {
         tempHisse.setId(hisse.getId());
         tempHisse.setKurbanId(hisse.getKurban().getId());
         tempHisse.setHissedarId(hisse.getHissedar().getId());
+        tempHisse.setAd(hisse.getHissedar().getAd());
+        tempHisse.setSoyAd(hisse.getHissedar().getSoyAd());
+        tempHisse.setTel(hisse.getHissedar().getTel());
         return tempHisse;
     }
 
