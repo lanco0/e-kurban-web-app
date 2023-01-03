@@ -1,47 +1,67 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './_services/in-memory-data.service';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
-import { AppRoutingModule } from './app-routing.module';
-
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { KurbanDetailComponent } from './kurban-detail/kurban-detail.component';
-import { KurbanlarComponent } from './kurbanlar/kurbanlar.component';
-import { KurbanSearchComponent } from './kurban-search/kurban-search.component';
-import { MessagesComponent } from './messages/messages.component';
-import { GirisComponent } from './giris/giris.component';
+import {AppComponent} from './app.component';
+import {AnasayfaComponent} from './components/anasayfa/anasayfa.component';
+import {KurbanBilgiComponent} from './components/kurban-bilgi/kurban-bilgi.component';
+import {KurbanlarComponent} from './components/kurbanlar/kurbanlar.component';
+import {KurbanAraComponent} from './components/kurban-ara/kurban-ara.component';
+import {GirisComponent} from './components/giris/giris.component';
+import {KurbanEkleComponent} from './components/kurban-ekle/kurban-ekle.component';
+import {HissedarlarComponent} from './components/hissedarlar/hissedarlar.component';
+import {HissedarAraComponent} from './components/hissedar-ara/hissedar-ara.component';
+import {HissedarEkleComponent} from './components/hissedar-ekle/hissedar-ekle.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatTableModule} from "@angular/material/table";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
+import { HissedarDuzenleComponent } from './components/hissedar-duzenle/hissedar-duzenle.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
-  ],
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    KurbanlarComponent,
-    KurbanDetailComponent,
-    MessagesComponent,
-    KurbanSearchComponent,
-    GirisComponent
-  ],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatTableModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatGridListModule,
+    ],
+    declarations: [
+        AppComponent,
+        GirisComponent,
+        AnasayfaComponent,
+        KurbanlarComponent,
+        KurbanAraComponent,
+        KurbanEkleComponent,
+        KurbanBilgiComponent,
+        HissedarlarComponent,
+        HissedarAraComponent,
+        HissedarEkleComponent,
+        HissedarDuzenleComponent,
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 
 /*
