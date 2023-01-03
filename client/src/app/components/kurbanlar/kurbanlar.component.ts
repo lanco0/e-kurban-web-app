@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Kurban} from '../../models/kurban';
 import {KurbanService} from '../../services/kurban.service';
 import {KURBANLAR} from "../../mock-data";
+import {Cins} from "../../enums/cins";
 
 @Component({
     selector: 'app-kurbanlar',
@@ -22,13 +23,35 @@ export class KurbanlarComponent implements OnInit {
     }
 
     getKurbanlar(): void {
-        this.kurbanService.getKurbanlar()
-            .subscribe(kurbanlar => this.kurbanlar = kurbanlar);
+        this.kurbanlar = KURBANLAR;
+        // this.kurbanService.getKurbanlar()
+        //     .subscribe(kurbanlar => this.kurbanlar = kurbanlar);
     }
 
     delete(kurban: Kurban): void {
         this.kurbanlar = this.kurbanlar.filter(h => h !== kurban);
         this.kurbanService.deleteKurban(kurban.id).subscribe();
+    }
+
+    selectTumu(): void {
+        this.getKurbanlar();
+        this.dataSource = this.kurbanlar;
+    }
+
+    selectKucukbas(): void {
+        this.getKurbanlar();
+        console.log(this.kurbanlar);
+        this.kurbanlar = this.kurbanlar.filter(h => h.cins == Cins.KUCUKBAS);
+        console.log(this.kurbanlar);
+        this.dataSource = this.kurbanlar;
+    }
+
+    selectBuyukbas(): void {
+        this.getKurbanlar();
+        console.log(this.kurbanlar);
+        this.kurbanlar = this.kurbanlar.filter(h => h.cins == Cins.BUYUKBAS);
+        console.log(this.kurbanlar);
+        this.dataSource = this.kurbanlar;
     }
 
 }

@@ -5,9 +5,9 @@
 <button routerLink="/kurban-ekle" mat-raised-button color="primary">Kurban Ekle</button>
 
 <mat-radio-group aria-label="Select an option">
-  <mat-radio-button value="1" [checked]="true">Tümü</mat-radio-button>
-  <mat-radio-button value="2">Küçükbaş</mat-radio-button>
-  <mat-radio-button value="3">Büyükbaş</mat-radio-button>
+  <mat-radio-button (click)="selectTumu()" value="1" [checked]="true">Tümü</mat-radio-button>
+  <mat-radio-button (click)="selectKucukbas()" value="2">Küçükbaş</mat-radio-button>
+  <mat-radio-button (click)="selectBuyukbas()" value="3">Büyükbaş</mat-radio-button>
 </mat-radio-group>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
