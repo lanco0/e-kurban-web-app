@@ -23,6 +23,12 @@ export class KurbanBilgiComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKurban();
+    if (this.kurban.cins === Cins.KUCUKBAS){
+      this.kunyeler = Object.values(KunyeKucukbas);
+    }else if (this.kurban.cins === Cins.BUYUKBAS){
+      this.kunyeler = Object.values(KunyeBuyukbas);
+    }
+
   }
 
   cinsler = Object.values(Cins);
