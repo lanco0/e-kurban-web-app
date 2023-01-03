@@ -1,5 +1,6 @@
 package com.aurora.ekurban.bdd.steps;
 
+import com.aurora.ekurban.domain.Hisse;
 import com.aurora.ekurban.domain.Hissedar;
 import com.aurora.ekurban.domain.Kurban;
 import com.aurora.ekurban.enumeration.KurbanCins;
@@ -19,6 +20,8 @@ public class MesajStepDefinitions {
 
     Hissedar hissedar;
     Kurban kurban;
+
+    Hisse hisse;
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -30,9 +33,10 @@ public class MesajStepDefinitions {
     @Given("Hissedarın, halihazırda kurban seçip hissedar listesinde ismi olmalıdır")
     public void hissedarinHalihazirdaKurbanSecipHissedarListesindeIsmiOlmalidir() {
         hissedar = new Hissedar("Mehmet", "Ercan", "12345678L");
+
         kurban = new Kurban(KurbanCins.KUCUKBAS, KurbanKunye.KOC, "21A1", 428
                 , 25, 53750, 1, "");
-        kurban.getHissedarList().add(hissedar);
+        hisse = new Hisse(kurban, hissedar);
     }
 
     @When("Hissedarların kurbanı kesildiğinde")
