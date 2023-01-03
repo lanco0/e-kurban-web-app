@@ -5,7 +5,7 @@
   <ul class="search-result">
     <li *ngFor="let hissedar of hissedarlar$ | async" >
       <a routerLink="/hissedarlar/{{hissedar.id}}">
-        {{hissedar.adSoyad}}
+        {{hissedar.ad}}
       </a>
     </li>
   </ul>

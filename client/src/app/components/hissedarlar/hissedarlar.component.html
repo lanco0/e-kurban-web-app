@@ -8,9 +8,14 @@
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <ng-container matColumnDef="adSoyad">
-        <th mat-header-cell *matHeaderCellDef> Ad - Soyad </th>
-        <td mat-cell *matCellDef="let element"> {{element.adSoyad}} </td>
+    <ng-container matColumnDef="ad">
+        <th mat-header-cell *matHeaderCellDef> Ad</th>
+        <td mat-cell *matCellDef="let element"> {{element.ad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="soyad">
+        <th mat-header-cell *matHeaderCellDef> Soyad </th>
+        <td mat-cell *matCellDef="let element"> {{element.soyad}} </td>
     </ng-container>
 
     <ng-container matColumnDef="tel">

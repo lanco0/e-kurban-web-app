@@ -1,5 +1,6 @@
 export interface Hissedar {
     id: number;
-    adSoyad: string;
+    ad: string;
+    soyad: string;
     tel: string;
 }

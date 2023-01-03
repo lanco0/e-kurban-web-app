@@ -17,13 +17,13 @@ export const KURBANLAR: Kurban[] = [
 ];
 
 export const HISSEDAR: Hissedar =
-  { id: 1, adSoyad: "Ahmet Çelik", tel: "5321234567" }
+  { id: 1, ad: "Ahmet", soyad: "Çelik", tel: "5321234567" }
 ;
 
 export const HISSEDARLAR: Hissedar[] = [
-  { id: 1, adSoyad: "Ahmet Çelik", tel: "5321234567" },
-  { id: 2, adSoyad: "Ayşe Doğan", tel: "5331245621" },
-  { id: 3, adSoyad: "Mehmet Kaya", tel: "5551234567" },
+  { id: 1, ad: "Ahmet", soyad: "Çelik", tel: "5321234567" },
+  { id: 2, ad: "Ayşe", soyad: "Doğan", tel: "5331245621" },
+  { id: 3, ad: "Mehmet", soyad: "Kaya", tel: "5551234567" },
 ];
 
 

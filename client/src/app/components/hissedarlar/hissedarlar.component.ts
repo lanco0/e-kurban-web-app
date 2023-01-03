@@ -11,7 +11,7 @@ import {HissedarService} from "../../services/hissedar.service";
 export class HissedarlarComponent {
   hissedarlar: Hissedar[] = HISSEDARLAR;
   dataSource = this.hissedarlar;
-  displayedColumns: string[] = ['adSoyad', 'tel', 'islemler'];
+  displayedColumns: string[] = ['ad', 'soyad', 'tel', 'islemler'];
 
   constructor(private hissedarService: HissedarService) {
   }
