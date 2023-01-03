@@ -39,7 +39,6 @@ export class GirisComponent {
 
     public giris(): void {
         this.authService.giris({"eposta": this.eposta.value, "sifre": this.sifre.value}).subscribe(currentUser => this.appComponent.currentUser = currentUser);
-        console.log(this.appComponent.currentUser);
         this.appComponent.isAuthenticated = true;
         this.router.navigate(['/anasayfa']);
     }
