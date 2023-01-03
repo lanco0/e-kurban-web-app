@@ -2,7 +2,7 @@ package com.aurora.ekurban.service;
 
 import com.aurora.ekurban.domain.User;
 import com.aurora.ekurban.exception.UserNotFoundException;
-import com.aurora.ekurban.repository.UserReposiory;
+import com.aurora.ekurban.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.Optional;
  */
 @Service
 public class UserService {
-    private final UserReposiory userReposiory;
+    private final UserRepository userReposiory;
 
     /**
      * @param userReposiory constructor ile repository inject ediliyor
      */
-    public UserService(UserReposiory userReposiory) {
+    public UserService(UserRepository userReposiory) {
         this.userReposiory = userReposiory;
     }
 
