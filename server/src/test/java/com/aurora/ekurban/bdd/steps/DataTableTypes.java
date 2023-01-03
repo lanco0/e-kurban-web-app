@@ -68,7 +68,7 @@ public class DataTableTypes {
                 hissedarCreateDTO.setSoyAd(columns.get("Soyad"));
             }
             if (columns.get("Telefon") != null) {
-                hissedarCreateDTO.setTel(Long.valueOf(columns.get("Telefon")));
+                hissedarCreateDTO.setTel(columns.get("Telefon"));
             }
         }
         return hissedarCreateDTO;

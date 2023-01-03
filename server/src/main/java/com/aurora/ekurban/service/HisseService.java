@@ -27,8 +27,11 @@ public class HisseService {
     public HisseDTO convertHisseEntityToDTO(@NotNull Hisse hisse) {
         HisseDTO tempHisse = new HisseDTO();
         tempHisse.setId(hisse.getId());
-        tempHisse.setKurbanDTO(kurbanService.convertKurbanEntityToDTO(hisse.getKurban()));
-        tempHisse.setHissedarDTO(hissedarService.convertHissedarEntityToDTO(hisse.getHissedar()));
+        tempHisse.setKurbanId(hisse.getKurban().getId());
+        tempHisse.setHissedarId(hisse.getHissedar().getId());
+        tempHisse.setAd(hisse.getHissedar().getAd());
+        tempHisse.setSoyAd(hisse.getHissedar().getSoyAd());
+        tempHisse.setTel(hisse.getHissedar().getTel());
         return tempHisse;
     }
 
@@ -46,21 +49,20 @@ public class HisseService {
         }
         Hisse hisse = new Hisse(kurban, hissedar);
         kurban.getHisseList().add(hisse);
-        kurbanService.saveAtRepository(kurban);
+        kurbanService.save(kurban);
     }
 
-    public HisseDTO updateHisse(Long id, @NotNull HisseCreateDTO hisseCreateDTO) {
+    public void updateHisse(Long id, @NotNull HisseCreateDTO hisseCreateDTO) {
         Hisse hisse = hisseRepository.findById(id).orElseThrow();
         Hissedar hissedar = hissedarService.getHissedar(hisseCreateDTO.getHissedarId());
         hisse.setHissedar(hissedar);
-        hisseRepository.save(hisse);
-        return convertHisseEntityToDTO(hisse);
+        kurbanService.save(kurbanService.getKurban(hisseCreateDTO.getKurbanId()));
     }
 
     public void deleteHissedarOnHisse(Long id) {
         Hisse hisse = hisseRepository.findById(id).orElseThrow();
         hisse.setHissedar(null);
-        kurbanService.updateState(hisse.getKurban());
+        kurbanService.updateDurum(hisse.getKurban());
         hisseRepository.save(hisse);
     }
 }
