@@ -12,7 +12,7 @@ import {KURBANLAR} from "../../mock-data";
 export class KurbanlarComponent implements OnInit {
     kurbanlar: Kurban[] = KURBANLAR;
     dataSource = this.kurbanlar;
-    displayedColumns: string[] = ['kesimSira', 'kupeNo', 'cins', 'kunye', 'kilo', 'yas', 'fiyat', 'durum', 'islem'];
+    displayedColumns: string[] = ['kesimSira', 'kupeNo', 'cins', 'kunye', 'kilo', 'yas', 'fiyat', 'durum'];
 
     constructor(private kurbanService: KurbanService) {
     }

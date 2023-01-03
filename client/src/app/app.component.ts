@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {Injectable} from '@angular/core';
 import {User} from "./models/user";
+import {AuthService} from "./services/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import {User} from "./models/user";
 })
 export class AppComponent {
 
-    constructor(private router: Router) {
+    constructor(private authService: AuthService, private router: Router) {
     }
 
     title = 'e-Kurban';
@@ -23,7 +24,8 @@ export class AppComponent {
     public currentUser: User | undefined;
 
     public cikis(): void {
-        // todo
+        this.authService.cikis(this.currentUser);
+        this.currentUser = undefined;
         this.isAuthenticated = false;
         this.router.navigate(['/giris']);
     }

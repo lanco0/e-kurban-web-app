@@ -31,6 +31,14 @@ export class AuthService {
         );
     }
 
+    cikis(user: User | undefined): void {
+        // console.log(user);
+        this.http.post<User>(this.apiUrl + "cikis", user, this.httpOptions).pipe(
+            tap((currentUser: User) => this.log(`logged out user w/ id=${currentUser.id}`)),
+            catchError(this.handleError<User>('logoutUser'))
+        );
+    }
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.

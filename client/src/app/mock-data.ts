@@ -16,10 +16,14 @@ export const KURBANLAR: Kurban[] = [
   { id: 3, cins: Cins.BUYUKBAS, kunye: KunyeBuyukbas.BOGA, kupeNo: "AB125", kilo: 400, yas: 2, fiyat: 6200, durum: Durum.SATISTA, kesimSirasi: 3, hisse: undefined },
 ];
 
+export const HISSEDAR: Hissedar =
+  { id: 1, adSoyad: "Ahmet Çelik", tel: "5321234567" }
+;
+
 export const HISSEDARLAR: Hissedar[] = [
-  { id: 1, adSoyad: "Ahmet Çelik", tel: 5321234567 },
-  { id: 2, adSoyad: "Ayşe Doğan", tel: 5331245621 },
-  { id: 3, adSoyad: "Mehmet Kaya", tel: 5551234567 },
+  { id: 1, adSoyad: "Ahmet Çelik", tel: "5321234567" },
+  { id: 2, adSoyad: "Ayşe Doğan", tel: "5331245621" },
+  { id: 3, adSoyad: "Mehmet Kaya", tel: "5551234567" },
 ];
 
 

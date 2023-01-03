@@ -10,7 +10,7 @@ import { LogService } from './log.service';
 @Injectable({ providedIn: 'root' })
 export class KurbanService {
 
-  private kurbanlarUrl = 'api/v1/kurbanlar';  // URL to web api
+  private apiUrl = 'api/v1/kurbanlar';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,7 +22,7 @@ export class KurbanService {
 
   /** GET kurbanlar from the server */
   getKurbanlar(): Observable<Kurban[]> {
-    return this.http.get<Kurban[]>(this.kurbanlarUrl)
+    return this.http.get<Kurban[]>(this.apiUrl)
       .pipe(
         tap(_ => this.log('fetched kurbanlar')),
         catchError(this.handleError<Kurban[]>('getKurbanlar', []))
@@ -31,7 +31,7 @@ export class KurbanService {
 
   /** GET kurban by id. Return `undefined` when id not found */
   getKurbanNo404<Data>(id: number): Observable<Kurban> {
-    const url = `${this.kurbanlarUrl}/?id=${id}`;
+    const url = `${this.apiUrl}/?id=${id}`;
     return this.http.get<Kurban[]>(url)
       .pipe(
         map(kurbanlar => kurbanlar[0]), // returns a {0|1} element array
@@ -45,7 +45,7 @@ export class KurbanService {
 
   /** GET kurban by id. Will 404 if id not found */
   getKurban(id: number): Observable<Kurban> {
-    const url = `${this.kurbanlarUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http.get<Kurban>(url).pipe(
       tap(_ => this.log(`fetched kurban id=${id}`)),
       catchError(this.handleError<Kurban>(`getKurban id=${id}`))
@@ -58,7 +58,7 @@ export class KurbanService {
       // if not search term, return empty kurban array.
       return of([]);
     }
-    return this.http.get<Kurban[]>(`${this.kurbanlarUrl}/?name=${term}`).pipe(
+    return this.http.get<Kurban[]>(`${this.apiUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
          this.log(`found kurbanlar matching "${term}"`) :
          this.log(`no kurbanlar matching "${term}"`)),
@@ -70,7 +70,7 @@ export class KurbanService {
 
   /** POST: add a new kurban to the server */
   addKurban(kurban: Kurban): Observable<Kurban> {
-    return this.http.post<Kurban>(this.kurbanlarUrl, kurban, this.httpOptions).pipe(
+    return this.http.post<Kurban>(this.apiUrl, kurban, this.httpOptions).pipe(
       tap((newKurban: Kurban) => this.log(`added kurban w/ id=${newKurban.id}`)),
       catchError(this.handleError<Kurban>('addKurban'))
     );
@@ -78,7 +78,7 @@ export class KurbanService {
 
   /** DELETE: delete the kurban from the server */
   deleteKurban(id: number): Observable<Kurban> {
-    const url = `${this.kurbanlarUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
 
     return this.http.delete<Kurban>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted kurban id=${id}`)),
@@ -88,7 +88,7 @@ export class KurbanService {
 
   /** PUT: update the kurban on the server */
   updateKurban(kurban: Kurban): Observable<any> {
-    return this.http.put(this.kurbanlarUrl, kurban, this.httpOptions).pipe(
+    return this.http.put(this.apiUrl, kurban, this.httpOptions).pipe(
       tap(_ => this.log(`updated kurban id=${kurban.id}`)),
       catchError(this.handleError<any>('updateKurban'))
     );
