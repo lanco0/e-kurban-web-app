@@ -1,5 +1,4 @@
 import {Kurban} from './models/kurban';
-import {Hisse} from "./models/hisse";
 import {Cins} from "./enums/cins";
 import {KunyeKucukbas} from "./enums/kunye";
 import {KunyeBuyukbas} from "./enums/kunye";
@@ -7,8 +6,7 @@ import {Durum} from "./enums/durum";
 import {Hissedar} from "./models/hissedar";
 
 export const KURBAN: Kurban =
-  { id: 1, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB123", kilo: 50, yas: 2, fiyat: 1500, durum: Durum.SATISTA, kesimSirasi: 1, hisse: undefined }
-  ;
+  { id: 1, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB123", kilo: 50, yas: 2, fiyat: 1500, durum: Durum.SATISTA, kesimSirasi: 1, hisse: undefined };
 
 export const KURBANLAR: Kurban[] = [
   { id: 1, cins: Cins.KUCUKBAS, kunye: KunyeKucukbas.KOYUN, kupeNo: "AB123", kilo: 50, yas: 2, fiyat: 1500, durum: Durum.SATISTA, kesimSirasi: 1, hisse: undefined },
@@ -17,8 +15,7 @@ export const KURBANLAR: Kurban[] = [
 ];
 
 export const HISSEDAR: Hissedar =
-  { id: 1, ad: "Ahmet", soyad: "Çelik", tel: "5321234567" }
-;
+  { id: 1, ad: "Ahmet", soyad: "Çelik", tel: "5321234567" };
 
 export const HISSEDARLAR: Hissedar[] = [
   { id: 1, ad: "Ahmet", soyad: "Çelik", tel: "5321234567" },

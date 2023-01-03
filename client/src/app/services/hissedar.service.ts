@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hissedar } from '../models/hissedar';
-import { LogService } from './log.service';
 
 @Injectable({ providedIn: 'root' })
 export class HissedarService {
@@ -17,14 +16,12 @@ export class HissedarService {
     };
 
     constructor(
-        private http: HttpClient,
-        private logService: LogService) { }
+        private http: HttpClient) { }
 
     /** GET hissedarlar from the server */
     getHissedarlar(): Observable<Hissedar[]> {
         return this.http.get<Hissedar[]>(this.apiUrl)
             .pipe(
-                tap(_ => this.log('fetched hissedarlar')),
                 catchError(this.handleError<Hissedar[]>('getHissedarlar', []))
             );
     }
@@ -35,10 +32,6 @@ export class HissedarService {
         return this.http.get<Hissedar[]>(url)
             .pipe(
                 map(hissedarlar => hissedarlar[0]), // returns a {0|1} element array
-                tap(h => {
-                    const outcome = h ? 'fetched' : 'did not find';
-                    this.log(`${outcome} hissedar id=${id}`);
-                }),
                 catchError(this.handleError<Hissedar>(`getHissedar id=${id}`))
             );
     }
@@ -47,7 +40,6 @@ export class HissedarService {
     getHissedar(id: number): Observable<Hissedar> {
         const url = `${this.apiUrl}/${id}`;
         return this.http.get<Hissedar>(url).pipe(
-            tap(_ => this.log(`fetched hissedar id=${id}`)),
             catchError(this.handleError<Hissedar>(`getHissedar id=${id}`))
         );
     }
@@ -59,9 +51,6 @@ export class HissedarService {
             return of([]);
         }
         return this.http.get<Hissedar[]>(`${this.apiUrl}/?name=${term}`).pipe(
-            tap(x => x.length ?
-                this.log(`found hissedarlar matching "${term}"`) :
-                this.log(`no hissedarlar matching "${term}"`)),
             catchError(this.handleError<Hissedar[]>('hissedarAra', []))
         );
     }
@@ -71,7 +60,6 @@ export class HissedarService {
     /** POST: add a new hissedar to the server */
     addHissedar(hissedar: Hissedar): Observable<Hissedar> {
         return this.http.post<Hissedar>(this.apiUrl, hissedar, this.httpOptions).pipe(
-            tap((newHissedar: Hissedar) => this.log(`added hissedar w/ id=${newHissedar.id}`)),
             catchError(this.handleError<Hissedar>('addHissedar'))
         );
     }
@@ -81,7 +69,6 @@ export class HissedarService {
         const url = `${this.apiUrl}/${id}`;
 
         return this.http.delete<Hissedar>(url, this.httpOptions).pipe(
-            tap(_ => this.log(`deleted hissedar id=${id}`)),
             catchError(this.handleError<Hissedar>('deleteHissedar'))
         );
     }
@@ -89,7 +76,6 @@ export class HissedarService {
     /** PUT: update the hissedar on the server */
     updateHissedar(hissedar: Hissedar): Observable<any> {
         return this.http.put(this.apiUrl, hissedar, this.httpOptions).pipe(
-            tap(_ => this.log(`updated hissedar id=${hissedar.id}`)),
             catchError(this.handleError<any>('updateHissedar'))
         );
     }
@@ -104,21 +90,13 @@ export class HissedarService {
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
-
-            // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.log}`);
 
             // Let the app keep running by returning an empty result.
             return of(result as T);
         };
     }
 
-    /** Log a HissedarService log with the LogService */
-    private log(log: string) {
-        this.logService.add(`HissedarService: ${log}`);
-    }
 }
 
 

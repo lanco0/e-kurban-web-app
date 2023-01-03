@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Kurban } from '../models/kurban';
-import { LogService } from './log.service';
 
 @Injectable({ providedIn: 'root' })
 export class KurbanService {
@@ -17,13 +16,11 @@ export class KurbanService {
   };
 
   constructor(
-    private http: HttpClient,
-    private logService: LogService) { }
+    private http: HttpClient) { }
 
   getKurbanBayraminaKalanGun(): Observable<number>{
     const url = `api/v1/kurban-bayramina-kalan-gun`;
     return this.http.get<number>(url).pipe(
-        tap(_ => this.log(`fetched kurban-bayramina-kalan-gun`)),
         catchError(this.handleError<number>(`getkurban-bayramina-kalan-gun`))
     );
   }
@@ -32,7 +29,6 @@ export class KurbanService {
   getKurbanlar(): Observable<Kurban[]> {
     return this.http.get<Kurban[]>(this.apiUrl)
       .pipe(
-        tap(_ => this.log('fetched kurbanlar')),
         catchError(this.handleError<Kurban[]>('getKurbanlar', []))
       );
   }
@@ -43,10 +39,6 @@ export class KurbanService {
     return this.http.get<Kurban[]>(url)
       .pipe(
         map(kurbanlar => kurbanlar[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} kurban id=${id}`);
-        }),
         catchError(this.handleError<Kurban>(`getKurban id=${id}`))
       );
   }
@@ -55,7 +47,6 @@ export class KurbanService {
   getKurban(id: number): Observable<Kurban> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Kurban>(url).pipe(
-      tap(_ => this.log(`fetched kurban id=${id}`)),
       catchError(this.handleError<Kurban>(`getKurban id=${id}`))
     );
   }
@@ -67,9 +58,6 @@ export class KurbanService {
       return of([]);
     }
     return this.http.get<Kurban[]>(`${this.apiUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-         this.log(`found kurbanlar matching "${term}"`) :
-         this.log(`no kurbanlar matching "${term}"`)),
       catchError(this.handleError<Kurban[]>('kurbanAra', []))
     );
   }
@@ -79,7 +67,6 @@ export class KurbanService {
   /** POST: add a new kurban to the server */
   addKurban(kurban: Kurban): Observable<Kurban> {
     return this.http.post<Kurban>(this.apiUrl, kurban, this.httpOptions).pipe(
-      tap((newKurban: Kurban) => this.log(`added kurban w/ id=${newKurban.id}`)),
       catchError(this.handleError<Kurban>('addKurban'))
     );
   }
@@ -89,7 +76,6 @@ export class KurbanService {
     const url = `${this.apiUrl}/${id}`;
 
     return this.http.delete<Kurban>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted kurban id=${id}`)),
       catchError(this.handleError<Kurban>('deleteKurban'))
     );
   }
@@ -97,7 +83,6 @@ export class KurbanService {
   /** PUT: update the kurban on the server */
   updateKurban(kurban: Kurban): Observable<any> {
     return this.http.put(this.apiUrl, kurban, this.httpOptions).pipe(
-      tap(_ => this.log(`updated kurban id=${kurban.id}`)),
       catchError(this.handleError<any>('updateKurban'))
     );
   }
@@ -112,21 +97,13 @@ export class KurbanService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.log}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  /** Log a KurbanService log with the LogService */
-  private log(log: string) {
-    this.logService.add(`KurbanService: ${log}`);
-  }
 }
 
 

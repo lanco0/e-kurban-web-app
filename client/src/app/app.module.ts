@@ -14,7 +14,6 @@ import {AnasayfaComponent} from './components/anasayfa/anasayfa.component';
 import {KurbanBilgiComponent} from './components/kurban-bilgi/kurban-bilgi.component';
 import {KurbanlarComponent} from './components/kurbanlar/kurbanlar.component';
 import {KurbanAraComponent} from './components/kurban-ara/kurban-ara.component';
-import {LoglarComponent} from './components/loglar/loglar.component';
 import {GirisComponent} from './components/giris/giris.component';
 import {KurbanEkleComponent} from './components/kurban-ekle/kurban-ekle.component';
 import {HissedarlarComponent} from './components/hissedarlar/hissedarlar.component';
@@ -55,7 +54,6 @@ import { HissedarDuzenleComponent } from './components/hissedar-duzenle/hissedar
         HissedarlarComponent,
         HissedarAraComponent,
         HissedarEkleComponent,
-        LoglarComponent,
         HissedarDuzenleComponent,
     ],
     bootstrap: [AppComponent]

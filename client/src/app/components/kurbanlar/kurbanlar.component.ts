@@ -40,17 +40,13 @@ export class KurbanlarComponent implements OnInit {
 
     selectKucukbas(): void {
         this.getKurbanlar();
-        console.log(this.kurbanlar);
         this.kurbanlar = this.kurbanlar.filter(h => h.cins == Cins.KUCUKBAS);
-        console.log(this.kurbanlar);
         this.dataSource = this.kurbanlar;
     }
 
     selectBuyukbas(): void {
         this.getKurbanlar();
-        console.log(this.kurbanlar);
         this.kurbanlar = this.kurbanlar.filter(h => h.cins == Cins.BUYUKBAS);
-        console.log(this.kurbanlar);
         this.dataSource = this.kurbanlar;
     }
 

@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hisse } from '../models/hisse';
-import { LogService } from './log.service';
 
 @Injectable({ providedIn: 'root' })
 export class HisseService {
@@ -17,14 +16,12 @@ export class HisseService {
     };
 
     constructor(
-        private http: HttpClient,
-        private logService: LogService) { }
+        private http: HttpClient) { }
 
     /** GET hisseler from the server */
     getHisseler(): Observable<Hisse[]> {
         return this.http.get<Hisse[]>(this.apiUrl)
             .pipe(
-                tap(_ => this.log('fetched hisseler')),
                 catchError(this.handleError<Hisse[]>('getHisseler', []))
             );
     }
@@ -35,10 +32,6 @@ export class HisseService {
         return this.http.get<Hisse[]>(url)
             .pipe(
                 map(hisseler => hisseler[0]), // returns a {0|1} element array
-                tap(h => {
-                    const outcome = h ? 'fetched' : 'did not find';
-                    this.log(`${outcome} hisse id=${id}`);
-                }),
                 catchError(this.handleError<Hisse>(`getHisse id=${id}`))
             );
     }
@@ -47,7 +40,6 @@ export class HisseService {
     getHisse(id: number): Observable<Hisse> {
         const url = `${this.apiUrl}/${id}`;
         return this.http.get<Hisse>(url).pipe(
-            tap(_ => this.log(`fetched hisse id=${id}`)),
             catchError(this.handleError<Hisse>(`getHisse id=${id}`))
         );
     }
@@ -59,9 +51,6 @@ export class HisseService {
             return of([]);
         }
         return this.http.get<Hisse[]>(`${this.apiUrl}/?name=${term}`).pipe(
-            tap(x => x.length ?
-                this.log(`found hisseler matching "${term}"`) :
-                this.log(`no hisseler matching "${term}"`)),
             catchError(this.handleError<Hisse[]>('hisseAra', []))
         );
     }
@@ -71,7 +60,6 @@ export class HisseService {
     /** POST: add a new hisse to the server */
     addHisse(hisse: Hisse): Observable<Hisse> {
         return this.http.post<Hisse>(this.apiUrl, hisse, this.httpOptions).pipe(
-            tap((newHisse: Hisse) => this.log(`added hisse w/ id=${newHisse.id}`)),
             catchError(this.handleError<Hisse>('addHisse'))
         );
     }
@@ -81,7 +69,6 @@ export class HisseService {
         const url = `${this.apiUrl}/${id}`;
 
         return this.http.delete<Hisse>(url, this.httpOptions).pipe(
-            tap(_ => this.log(`deleted hisse id=${id}`)),
             catchError(this.handleError<Hisse>('deleteHisse'))
         );
     }
@@ -89,7 +76,6 @@ export class HisseService {
     /** PUT: update the hisse on the server */
     updateHisse(hisse: Hisse): Observable<any> {
         return this.http.put(this.apiUrl, hisse, this.httpOptions).pipe(
-            tap(_ => this.log(`updated hisse id=${hisse.id}`)),
             catchError(this.handleError<any>('updateHisse'))
         );
     }
@@ -104,21 +90,13 @@ export class HisseService {
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
-
-            // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.log}`);
 
             // Let the app keep running by returning an empty result.
             return of(result as T);
         };
     }
 
-    /** Log a HisseService log with the LogService */
-    private log(log: string) {
-        this.logService.add(`HisseService: ${log}`);
-    }
 }
 
 

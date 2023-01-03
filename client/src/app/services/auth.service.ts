@@ -5,9 +5,6 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
 import {User} from '../models/user';
-import {LogService} from './log.service';
-import {UserLogin} from "../models/userLogin";
-import {FormControl} from "@angular/forms";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -19,14 +16,12 @@ export class AuthService {
     };
 
     constructor(
-        private http: HttpClient,
-        private logService: LogService) {
+        private http: HttpClient) {
     }
 
     giris(userLoginDto: { eposta: string | null; sifre: string | null }): Observable<User> {
         // console.log(userLoginDto);
         return this.http.post<User>(this.apiUrl + "giris", userLoginDto, this.httpOptions).pipe(
-            tap((currentUser: User) => this.log(`logged in user w/ id=${currentUser.id}`)),
             catchError(this.handleError<User>('loginUser'))
         );
     }
@@ -34,7 +29,6 @@ export class AuthService {
     cikis(user: User | undefined): void {
         // console.log(user);
         this.http.post<User>(this.apiUrl + "cikis", user, this.httpOptions).pipe(
-            tap((currentUser: User) => this.log(`logged out user w/ id=${currentUser.id}`)),
             catchError(this.handleError<User>('logoutUser'))
         );
     }
@@ -49,21 +43,13 @@ export class AuthService {
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
-
-            // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.log}`);
 
             // Let the app keep running by returning an empty result.
             return of(result as T);
         };
     }
 
-    /** Log a UserService log with the LogService */
-    private log(log: string) {
-        this.logService.add(`UserService: ${log}`);
-    }
 }
 
 
