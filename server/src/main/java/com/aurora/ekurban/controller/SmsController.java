@@ -15,11 +15,11 @@ public class SmsController {
 
     @GetMapping(value = "/sendSMS")
     public ResponseEntity<String> sendSMS() {
-        Twilio.init(System.getenv("AC05550591f3678dc5026502a3f57baac5"),
-                System.getenv("56ddfa49aaf5ee42a26566ea15fd05c5"));
+        Twilio.init("AC05550591f3678dc5026502a3f57baac5",
+                "56ddfa49aaf5ee42a26566ea15fd05c5");
 
-        Message.creator(new PhoneNumber("<TO number - ie your cellphone>"),
-                new PhoneNumber("<FROM number - ie your Twilio number"), "Hello from Twilio 📞").create();
+        Message.creator(new PhoneNumber("+905358594652"),
+                new PhoneNumber("+19787363461"), "Hello from Twilio 📞").create();
 
         return new ResponseEntity<String>("Message sent successfully", HttpStatus.OK);
     }
