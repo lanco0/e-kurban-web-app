@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {Injectable} from '@angular/core';
+import {User} from "./models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AppComponent {
     title = 'e-Kurban';
 
     public isAuthenticated = false;
+    public currentUser: User | undefined;
 
     public cikis(): void {
         // todo

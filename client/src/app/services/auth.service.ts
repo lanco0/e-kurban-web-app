@@ -6,7 +6,8 @@ import {catchError, map, tap} from 'rxjs/operators';
 
 import {User} from '../models/user';
 import {LogService} from './log.service';
-import {UserLoginDto} from "../dtos/userLoginDto";
+import {UserLogin} from "../models/userLogin";
+import {FormControl} from "@angular/forms";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -22,9 +23,10 @@ export class AuthService {
         private logService: LogService) {
     }
 
-    giris(userLoginDto: UserLoginDto): Observable<User> {
+    giris(userLoginDto: { eposta: string | null; sifre: string | null }): Observable<User> {
+        // console.log(userLoginDto);
         return this.http.post<User>(this.apiUrl + "giris", userLoginDto, this.httpOptions).pipe(
-            tap((newUser: User) => this.log(`logged in user w/ id=${newUser.id}`)),
+            tap((currentUser: User) => this.log(`logged in user w/ id=${currentUser.id}`)),
             catchError(this.handleError<User>('loginUser'))
         );
     }

@@ -1,4 +1,4 @@
-export interface UserLoginDto {
+export interface UserLogin {
     eposta: string;
     sifre: string;
 }

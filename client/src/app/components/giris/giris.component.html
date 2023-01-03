@@ -5,14 +5,14 @@
     <mat-form-field appearance="fill">
         <mat-label>E-postanızı giriniz</mat-label>
         <input matInput placeholder="pat@example.com" [formControl]="eposta" required>
-        <mat-error *ngIf="eposta.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="eposta.invalid">{{getEpostaErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Şifrenizi giriniz</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Şifreyi gizle'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <input matInput [type]="passwordHide ? 'password' : 'text'" [formControl]="sifre">
+        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Şifreyi gizle'" [attr.aria-pressed]="passwordHide">
+            <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
     </mat-form-field>
 
