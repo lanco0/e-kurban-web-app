@@ -10,34 +10,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Kurban domain class.
- * Yeni bir kurban oluşturmak için bu sınıfı kullanın.
- * Kurban sınıfı, kurbanın türü, cinsi, durumu, fiyatı, ağırlığı gibi bilgileri içerir.
- * Kurban sınıfı, kurbanın fotoğrafını da içerir.
- * Kurban sınıfı, kurbanın sahibi olan hissedarların sahip olduğu hisse sınıfını da içerir.
+ * Kurban bilgilerini tutan entity
  */
 @Entity
 public class Kurban {
 
+    /**
+     * Kurbanın ID'si veritabanında otomatik olarak artan bir şekilde oluşturulur
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    /**
+     * kurbanın cinsi
+     */
     @Enumerated(EnumType.STRING)
     private KurbanCins cins;
+    /**
+     * kurbanın künyesi
+     */
     @Enumerated(EnumType.STRING)
     private KurbanKunye kunye;
+    /**
+     * kurbanın durumu
+     */
     @Enumerated(EnumType.STRING)
     private KurbanDurum durum;
 
+    /**
+     * kurbanın küpe numarası
+     */
     private String kupeNo;
+    /**
+     * kurbanın kilosu
+     */
     private Integer kilo;
+    /**
+     * kurbanın yaşı
+     */
     private Integer yas;
+    /**
+     * kurbanın fiyatı
+     */
     private Integer fiyat;
+    /**
+     * kurbanın kesim sırası
+     */
     private Integer kesimSirasi;
+    /**
+     * kurbanın cinsine göre sahip olabileceği hisse adedi sayısı
+     */
     private Integer hisseAdedi;
+    /**
+     * kurbanın resim yolu
+     */
     private String resimUrl;
+
+    /**
+     * kurbanın sahip olduğu hisselerin tutulduğu liste
+     * @see Hisse (Hisse ile @OneToMany ilişkisi vardır)
+     */
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             targetEntity = Hisse.class,
