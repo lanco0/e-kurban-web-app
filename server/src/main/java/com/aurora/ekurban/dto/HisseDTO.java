@@ -3,9 +3,8 @@ package com.aurora.ekurban.dto;
 public class HisseDTO {
 
     private Long id;
-    private Integer buyHisse;
-    private KurbanDTO kurbanDTO;
-    private HissedarDTO hissedarDTO;
+    private Long kurbanId;
+    private Long hissedarId;
 
     public Long getId() {
         return id;
@@ -15,27 +14,19 @@ public class HisseDTO {
         this.id = id;
     }
 
-    public Integer getBuyHisse() {
-        return buyHisse;
+    public Long getKurbanId() {
+        return kurbanId;
     }
 
-    public void setBuyHisse(Integer buyHisse) {
-        this.buyHisse = buyHisse;
+    public void setKurbanId(Long kurbanId) {
+        this.kurbanId = kurbanId;
     }
 
-    public KurbanDTO getKurbanDTO() {
-        return kurbanDTO;
+    public Long getHissedarId() {
+        return hissedarId;
     }
 
-    public void setKurbanDTO(KurbanDTO kurbanDTO) {
-        this.kurbanDTO = kurbanDTO;
-    }
-
-    public HissedarDTO getHissedarDTO() {
-        return hissedarDTO;
-    }
-
-    public void setHissedarDTO(HissedarDTO hissedarDTO) {
-        this.hissedarDTO = hissedarDTO;
+    public void setHissedarId(Long hissedarId) {
+        this.hissedarId = hissedarId;
     }
 }

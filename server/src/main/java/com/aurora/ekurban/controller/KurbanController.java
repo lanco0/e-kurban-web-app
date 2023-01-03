@@ -22,7 +22,7 @@ public class KurbanController {
 
     @GetMapping
     public ResponseEntity<List<KurbanDTO>> getKurbanList(@RequestParam(value = "cins") @Nullable KurbanCins cins) {
-        return new ResponseEntity<>(kurbanService.choseKurbanList(cins), HttpStatus.OK);
+        return new ResponseEntity<>(kurbanService.chooseKurbanList(cins), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -54,7 +54,7 @@ public class KurbanService {
         return tempKurban;
     }
 
-    public List<KurbanDTO> choseKurbanList(@Nullable KurbanCins cins) {
+    public List<KurbanDTO> chooseKurbanList(@Nullable KurbanCins cins) {
         if (cins != null) return getChosenCinsList(cins);
         return getAllKurbanList();
     }
@@ -128,7 +128,7 @@ public class KurbanService {
         return convertKurbanEntityToDTO(kurban);
     }
 
-    public void saveAtRepository(Kurban kurban){
+    public void save(Kurban kurban){
         kurbanRepository.save(kurban);
     }
 
@@ -137,13 +137,12 @@ public class KurbanService {
                 (kurban.getCins() == KurbanCins.KUCUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi());
     }
 
-
-    public void updateState(Kurban kurban) {
+    public void updateDurum(Kurban kurban) {
         if (isAllHissesSold(kurban)) {
             kurban.setDurum(KurbanDurum.SATILDI);
         } else kurban.setDurum(KurbanDurum.SATISTA);
 
-        this.saveAtRepository(kurban);
+        this.save(kurban);
     }
 
 }

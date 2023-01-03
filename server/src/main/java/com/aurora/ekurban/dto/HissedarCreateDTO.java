@@ -9,7 +9,7 @@ public class HissedarCreateDTO {
     @NotNull
     private String soyAd;
     @NotNull
-    private Long tel;
+    private String tel;
 
     public String getAd() {
         return ad;
@@ -27,11 +27,11 @@ public class HissedarCreateDTO {
         this.soyAd = soyAd;
     }
 
-    public Long getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Long tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 }

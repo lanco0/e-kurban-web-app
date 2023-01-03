@@ -5,7 +5,7 @@ public class HissedarDTO {
     private Long id;
     private String ad;
     private String soyAd;
-    private Long tel;
+    private String tel;
     public Long getId() {
         return id;
     }
@@ -30,11 +30,11 @@ public class HissedarDTO {
         this.soyAd = soyAd;
     }
 
-    public Long getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Long tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 }

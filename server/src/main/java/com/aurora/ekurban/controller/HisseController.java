@@ -1,7 +1,6 @@
 package com.aurora.ekurban.controller;
 
 import com.aurora.ekurban.dto.HisseCreateDTO;
-import com.aurora.ekurban.dto.HisseDTO;
 import com.aurora.ekurban.dto.KurbanDTO;
 import com.aurora.ekurban.service.HisseService;
 import com.aurora.ekurban.service.KurbanService;
@@ -26,8 +25,9 @@ public class HisseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HisseDTO> updateHisse(@PathVariable Long hisseId, @RequestBody HisseCreateDTO hisseCreateDTO) {
-        return new ResponseEntity<>(hisseService.updateHisse(hisseId, hisseCreateDTO), HttpStatus.OK);
+    public ResponseEntity<KurbanDTO> updateHisse(@PathVariable Long hisseId, @RequestBody HisseCreateDTO hisseCreateDTO) {
+        hisseService.updateHisse(hisseId, hisseCreateDTO);
+        return new ResponseEntity<>(kurbanService.getKurbanDTO(hisseCreateDTO.getKurbanId()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

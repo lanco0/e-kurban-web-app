@@ -3,7 +3,6 @@ package com.aurora.ekurban.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 public class Hisse {
@@ -22,7 +21,7 @@ public class Hisse {
             fetch = FetchType.LAZY,
             targetEntity = Hissedar.class,
             optional = false)
-    @JoinColumn(name = "hissedar_id", referencedColumnName = "id")
+    @JoinColumn(name = "hissedar_id")
     private Hissedar hissedar;
 
     public Hisse() {
