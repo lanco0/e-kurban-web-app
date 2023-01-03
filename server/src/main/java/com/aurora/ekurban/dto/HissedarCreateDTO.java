@@ -7,7 +7,7 @@ public class HissedarCreateDTO {
     @NotNull
     private String ad;
     @NotNull
-    private String soyAd;
+    private String soyad;
     @NotNull
     private String tel;
 
@@ -19,12 +19,12 @@ public class HissedarCreateDTO {
         this.ad = ad;
     }
 
-    public String getSoyAd() {
-        return soyAd;
+    public String getSoyad() {
+        return soyad;
     }
 
-    public void setSoyAd(String soyAd) {
-        this.soyAd = soyAd;
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
     }
 
     public String getTel() {

@@ -13,7 +13,7 @@ public class MesajService {
     KurbanService kurbanService;
 
     public String sendMesaj(KurbanDurum kurbanDurum, Hissedar hissedar, Kurban kurban) {
-        String hissedarAdSoyad = hissedar.getAd() + " " + hissedar.getSoyAd() + ". ";
+        String hissedarAdSoyad = hissedar.getAd() + " " + hissedar.getSoyad() + ". ";
 
         //TODO Her bir hissedara sms olarak mesaj atılacak
 
