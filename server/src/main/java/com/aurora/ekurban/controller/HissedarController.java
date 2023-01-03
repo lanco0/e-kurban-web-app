@@ -12,20 +12,26 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/hissedarlar")
 public class HissedarController {
 
     @Autowired
     HissedarService hissedarService;
 
-    @GetMapping("/hissedarlar")
+    @GetMapping
     public ResponseEntity<List<HissedarDTO>> getHissedarList() {
         return new ResponseEntity<>(hissedarService.getAllHissedarList(), HttpStatus.OK);
     }
 
-    @GetMapping("/hissedarlar/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<HissedarDTO> getHissedar(@PathVariable Long id) {
         return new ResponseEntity<>(hissedarService.getHissedarDTO(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<HissedarDTO> addHissedar(@RequestBody HissedarCreateDTO hissedarCreateDTO) {
+        Long hissedarId = hissedarService.addHissedar(hissedarCreateDTO);
+        return new ResponseEntity<>(hissedarService.getHissedarDTO(hissedarId), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -33,24 +39,9 @@ public class HissedarController {
         return new ResponseEntity<>(hissedarService.updateHissedar(id, hissedarCreateDTO), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<HissedarCreateDTO> addHissedar(@RequestBody HissedarCreateDTO hissedarCreateDTO) {
-        return new ResponseEntity<>(hissedarService.addHissedar(hissedarCreateDTO), HttpStatus.CREATED);
-    }
-
     @DeleteMapping("/{id}")
-    public void deleteHissedar(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteHissedar(@PathVariable Long id) {
         hissedarService.deleteHissedar(id);
-    }
-
-    @PostMapping("/kurbanlar/{kurbanId}/hisse")
-    public ResponseEntity<HissedarCreateDTO> addHissedar(@PathVariable Long kurbanId, @RequestBody @Valid HissedarCreateDTO hissedarCreateDTO) {
-        return new ResponseEntity<>(hissedarService.addHissedar(hissedarCreateDTO), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/kurbanlar/{kurbanId}/hissedarlar/{id}")
-    public ResponseEntity<Void> deleteHissedar(@PathVariable Long kurbanId, @PathVariable Long hissedarId) {
-        hissedarService.deleteHissedar(kurbanId, hissedarId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

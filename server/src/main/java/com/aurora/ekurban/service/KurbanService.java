@@ -127,4 +127,23 @@ public class KurbanService {
         kurbanRepository.save(kurban);
         return convertKurbanEntityToDTO(kurban);
     }
+
+    public void saveAtRepository(Kurban kurban){
+        kurbanRepository.save(kurban);
+    }
+
+    public boolean isAllHissesSold(Kurban kurban){
+        return (kurban.getCins() == KurbanCins.BUYUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi()) ||
+                (kurban.getCins() == KurbanCins.KUCUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi());
+    }
+
+
+    public void updateState(Kurban kurban) {
+        if (isAllHissesSold(kurban)) {
+            kurban.setDurum(KurbanDurum.SATILDI);
+        } else kurban.setDurum(KurbanDurum.SATISTA);
+
+        this.saveAtRepository(kurban);
+    }
+
 }

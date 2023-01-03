@@ -6,8 +6,6 @@ public class HissedarDTO {
     private String ad;
     private String soyAd;
     private Long tel;
-    private Integer haveHisse;
-
     public Long getId() {
         return id;
     }
@@ -38,13 +36,5 @@ public class HissedarDTO {
 
     public void setTel(Long tel) {
         this.tel = tel;
-    }
-
-    public Integer getHaveHisse() {
-        return haveHisse;
-    }
-
-    public void setHaveHisse(Integer haveHisse) {
-        this.haveHisse = haveHisse;
     }
 }
