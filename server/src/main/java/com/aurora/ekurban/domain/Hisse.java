@@ -3,6 +3,7 @@ package com.aurora.ekurban.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 public class Hisse {
@@ -27,7 +28,7 @@ public class Hisse {
     public Hisse() {
     }
 
-    public Hisse( Kurban kurban, Hissedar hissedar) {
+    public Hisse(Kurban kurban, Hissedar hissedar) {
         this.kurban = kurban;
         this.hissedar = hissedar;
     }

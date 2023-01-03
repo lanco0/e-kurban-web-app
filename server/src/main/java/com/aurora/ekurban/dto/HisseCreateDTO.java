@@ -5,8 +5,6 @@ public class HisseCreateDTO {
     private Long kurbanId;
     private Long hissedarId;
     private HissedarCreateDTO hissedarCreateDTO;
-    private Integer buyHisse;
-
 
     public Long getKurbanId() {
         return kurbanId;
@@ -22,14 +20,6 @@ public class HisseCreateDTO {
 
     public void setHissedarId(Long hissedarId) {
         this.hissedarId = hissedarId;
-    }
-
-    public Integer getBuyHisse() {
-        return buyHisse;
-    }
-
-    public void setBuyHisse(Integer buyHisse) {
-        this.buyHisse = buyHisse;
     }
 
     public HissedarCreateDTO getHissedarCreateDTO() {

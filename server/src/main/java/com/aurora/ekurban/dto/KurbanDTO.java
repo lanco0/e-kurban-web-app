@@ -98,7 +98,7 @@ public class KurbanDTO {
         this.durum = durum;
     }
 
-    public List<HisseDTO> getHissedarList() {
+    public List<HisseDTO> getHisseList() {
         return this.hisseList;
     }
 
