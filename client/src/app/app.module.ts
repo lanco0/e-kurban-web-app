@@ -18,6 +18,7 @@ import {LoglarComponent} from './components/loglar/loglar.component';
 import {GirisComponent} from './components/giris/giris.component';
 import {KurbanEkleComponent} from './components/kurban-ekle/kurban-ekle.component';
 import {HissedarlarComponent} from './components/hissedarlar/hissedarlar.component';
+import {HissedarAraComponent} from './components/hissedar-ara/hissedar-ara.component';
 import {HissedarEkleComponent} from './components/hissedar-ekle/hissedar-ekle.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -48,11 +49,12 @@ import { HissedarDuzenleComponent } from './components/hissedar-duzenle/hissedar
         GirisComponent,
         AnasayfaComponent,
         KurbanlarComponent,
+        KurbanAraComponent,
         KurbanEkleComponent,
         KurbanBilgiComponent,
         HissedarlarComponent,
+        HissedarAraComponent,
         HissedarEkleComponent,
-        KurbanAraComponent,
         LoglarComponent,
         HissedarDuzenleComponent,
     ],
