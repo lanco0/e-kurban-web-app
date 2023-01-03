@@ -15,15 +15,15 @@ public class Hissedar {
     private Long id;
 
     private String ad;
-    private String soyAd;
+    private String soyad;
     private String tel;
 
     public Hissedar() {
     }
 
-    public Hissedar(String ad, String soyAd, String tel) {
+    public Hissedar(String ad, String soyad, String tel) {
         this.ad = ad;
-        this.soyAd = soyAd;
+        this.soyad = soyad;
         this.tel = tel;
     }
 
@@ -43,12 +43,12 @@ public class Hissedar {
         this.ad = ad;
     }
 
-    public String getSoyAd() {
-        return soyAd;
+    public String getSoyad() {
+        return soyad;
     }
 
-    public void setSoyAd(String soyAd) {
-        this.soyAd = soyAd;
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
     }
 
     public String getTel() {
