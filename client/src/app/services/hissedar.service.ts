@@ -50,7 +50,7 @@ export class HissedarService {
             // if not search term, return empty hissedar array.
             return of([]);
         }
-        return this.http.get<Hissedar[]>(`${this.apiUrl}/?name=${term}`).pipe(
+        return this.http.get<Hissedar[]>(`${this.apiUrl}/?ad=${term}`).pipe(
             catchError(this.handleError<Hissedar[]>('hissedarAra', []))
         );
     }

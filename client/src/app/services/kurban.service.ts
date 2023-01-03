@@ -57,7 +57,7 @@ export class KurbanService {
       // if not search term, return empty kurban array.
       return of([]);
     }
-    return this.http.get<Kurban[]>(`${this.apiUrl}/?name=${term}`).pipe(
+    return this.http.get<Kurban[]>(`${this.apiUrl}/?kupeNo=${term}`).pipe(
       catchError(this.handleError<Kurban[]>('kurbanAra', []))
     );
   }
