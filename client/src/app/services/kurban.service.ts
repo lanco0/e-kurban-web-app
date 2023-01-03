@@ -20,6 +20,14 @@ export class KurbanService {
     private http: HttpClient,
     private logService: LogService) { }
 
+  getKurbanBayraminaKalanGun(): Observable<number>{
+    const url = `api/v1/kurban-bayramina-kalan-gun`;
+    return this.http.get<number>(url).pipe(
+        tap(_ => this.log(`fetched kurban-bayramina-kalan-gun`)),
+        catchError(this.handleError<number>(`getkurban-bayramina-kalan-gun`))
+    );
+  }
+
   /** GET kurbanlar from the server */
   getKurbanlar(): Observable<Kurban[]> {
     return this.http.get<Kurban[]>(this.apiUrl)

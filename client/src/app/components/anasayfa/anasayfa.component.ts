@@ -9,6 +9,7 @@ import {KURBANLAR} from "../../mock-data";
     styleUrls: ['./anasayfa.component.css']
 })
 export class AnasayfaComponent implements OnInit {
+    kurbanBayraminaKalanGun: number = 0;
     kurbanlar: Kurban[] = KURBANLAR;
     dataSource = this.kurbanlar;
     displayedColumns: string[] = ['kesimSira', 'cins', 'kunye', 'fiyat', 'kalanHisse'];
@@ -23,6 +24,11 @@ export class AnasayfaComponent implements OnInit {
     getKurbanlar(): void {
         this.kurbanService.getKurbanlar()
             .subscribe(kurbanlar => this.kurbanlar = kurbanlar.slice(1, 5));
+    }
+
+    getKurbanBayraminaKalanGun(): void {
+        this.kurbanService.getKurbanBayraminaKalanGun()
+            .subscribe(kurbanBayraminaKalanGun => this.kurbanBayraminaKalanGun = kurbanBayraminaKalanGun);
     }
 }
 
