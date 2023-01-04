@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 /**
  * Hissedarlara kesecekleri kurbanlarının durumları hakkında sistemde kayıtlı olan mesajları şablon olarak tutan sınıf
- * @author mehmetercan
  */
 @Entity
 public class Mesaj {

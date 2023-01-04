@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1")
 public class SmsController {
 
+    /**
+     * Sms servisi için kullanılan twillio.com sitesinin verdiği yetkielendirme anahtarları
+     */
     public static final String ACCOUNT_SID = "AC05550591f3678dc5026502a3f57baac5";
     public static final String AUTH_TOKEN = "bbd8caa37d57656f69c7966a995afb0b";
 

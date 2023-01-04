@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 /**
  * Sisteme giriş yapacak olan kullanıcı bilgisini tutan User sınıfı
- * @author mehmetercan
  */
 @Table(name = "Users")
 @Entity
