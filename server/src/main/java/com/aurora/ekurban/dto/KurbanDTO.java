@@ -6,20 +6,58 @@ import com.aurora.ekurban.enumeration.KurbanKunye;
 
 import java.util.List;
 
-
+/**
+ * Kurban bilgilerini Client'a göndermek için kullanılan DTO
+ */
 public class KurbanDTO {
 
+    /**
+     * kurbanın ID'si
+     */
     private Long id;
+    /**
+     * kurbanın cinsi
+     */
     private KurbanCins cins;
+    /**
+     * kurbanın künyesi
+     */
     private KurbanKunye kunye;
+    /**
+     * kurbanın durumu
+     */
     private KurbanDurum durum;
+    /**
+     * kurbanın küpe numarası
+     */
     private String kupeNo;
+    /**
+     * kurbanın kilosu
+     */
     private Integer kilo;
+    /**
+     * kurbanın yaşı
+     */
     private Integer yas;
+    /**
+     * kurbanın fiyatı
+     */
     private Integer fiyat;
+    /**
+     * kurbanın resim yolu
+     */
     private String resimUrl;
+    /**
+     * kurbanın kesim sırası
+     */
     private Integer kesimSirasi;
+    /**
+     * kurbanın cinsine göre sahip olabileceği hisse adedi sayısı
+     */
     private Integer hisseAdedi;
+    /**
+     * kurbanın sahip olduğu hisselerin tutulduğu liste
+     */
     private List<HisseDTO> hisseList;
 
 

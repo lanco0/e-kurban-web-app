@@ -3,19 +3,30 @@ package com.aurora.ekurban.domain;
 import javax.persistence.*;
 
 /**
- * Hissedar domain class.
- * Yeni kurban hissedarı eklemek için kullanılır.
- * Hissedar sınıfı, hissedarın adı, soyadı, telefonu, adresi gibi bilgileri içerir.
+ * Hissedar bilgilerini tutan entity
  */
 @Entity
 public class Hissedar {
+
+    /**
+     * Hissedarın ID bilgisi veritabanında otomatik olarak artan bir şekilde oluşturulur
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    /**
+     * Hissedarın adı
+     */
     private String ad;
+    /**
+     * Hissedarın soyadı
+     */
     private String soyad;
+    /**
+     * Hissedarın telefon numarası
+     */
     private String tel;
 
     public Hissedar() {

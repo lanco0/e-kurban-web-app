@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * kurban CRUD işlemlerini gerçekleştirecek olan service katmanı
+ */
 @Service
 public class KurbanService {
     @Autowired
@@ -22,10 +25,17 @@ public class KurbanService {
     @Autowired
     KurbanRepository kurbanRepository;
 
+    /**
+     * küçükbaş hayvanların kesim sırasını belirler
+     */
     private int kesimBuyukBasSequence = 1;
+    /**
+     * büyükbaş hayvanların kesim sırasını belirler
+     */
     private int kesimKucukBasSequence = 1;
-    private static final Integer BUYUK_BAS_HISSE = 7;
-    private static final Integer KUCUK_BAS_HISSE = 1;
+
+    public static final Integer BUYUK_BAS_HISSE = 7;
+    public static final Integer KUCUK_BAS_HISSE = 1;
 
     public int getKesimBuyukBasSequence() {
         return kesimBuyukBasSequence++;
@@ -35,6 +45,11 @@ public class KurbanService {
         return kesimKucukBasSequence++;
     }
 
+    /**
+     * kurban entity'sini kurbanDTO'ya dönüştürür
+     * @param kurban
+     * @return kurbanDTO
+     */
     public KurbanDTO convertKurbanEntityToDTO(@NotNull Kurban kurban) {
         KurbanDTO tempKurban = new KurbanDTO();
         tempKurban.setId(kurban.getId());
@@ -54,6 +69,12 @@ public class KurbanService {
         return tempKurban;
     }
 
+    /**
+     * kurban ciins değeri boş ise tüm kurbanları döndürür,
+     * değilse cins değerine göre kurbanları döndürür
+     * @param cins
+     * @return
+     */
     public List<KurbanDTO> chooseKurbanList(@Nullable KurbanCins cins) {
         if (cins != null) return getChosenCinsList(cins);
         return getAllKurbanList();
@@ -81,6 +102,14 @@ public class KurbanService {
         return kurbanRepository.findById(id).orElseThrow();
     }
 
+    /**
+     * kurban ekleme işlemini gerçekleştirir,
+     * eğer kurban büyükbaş ise kesim sırasını büyükbaş sırasına göre belirler,
+     * eğer kurban küçükbaş ise kesim sırasını küçükbaş sırasına göre belirler,
+     * kurbanın hisse adedini belirler
+     * @param kurbanCreateDTO
+     * @return kurbanDTO
+     */
     public KurbanDTO addKurban(@NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
         Kurban kurban = new Kurban();
 
@@ -105,6 +134,12 @@ public class KurbanService {
         return convertKurbanEntityToDTO(kurban);
     }
 
+    /**
+     * kurban güncelleme işlemini gerçekleştirir,
+     * @param id
+     * @param kurbanCreateDTO
+     * @return kurbanDTO
+     */
     public KurbanDTO updateKurban(Long id, @NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
         Kurban kurban = kurbanRepository.findById(id).orElseThrow();
 
@@ -120,6 +155,12 @@ public class KurbanService {
         return convertKurbanEntityToDTO(kurban);
     }
 
+    /**
+     * kurban durumunu güncelleme işlemini gerçekleştirir,
+     * @param id
+     * @param kurbanDurum
+     * @return kurbanDTO
+     */
     public KurbanDTO updateKurbanDurum(Long id, KurbanDurum kurbanDurum) {
         Kurban kurban = kurbanRepository.findById(id).orElseThrow();
         kurban.setDurum(kurbanDurum);
@@ -128,15 +169,29 @@ public class KurbanService {
         return convertKurbanEntityToDTO(kurban);
     }
 
+    /**
+     * kurbanı repositorye kaydeder
+     * @param kurban
+     */
     public void save(Kurban kurban){
         kurbanRepository.save(kurban);
     }
 
+    /**
+     * kurban listesinin doluluğunu kontrol eder
+     * @param kurban
+     * @return true or false
+     */
     public boolean isAllHissesSold(Kurban kurban){
         return (kurban.getCins() == KurbanCins.BUYUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi()) ||
                 (kurban.getCins() == KurbanCins.KUCUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi());
     }
 
+    /**
+     * kurbanın hisseleri tamamı satıldıysa kurbanı satıldı olarak işaretler,
+     * kurbanın hisseleri tamamı satılmadıysa kurbanı satışta olarak işaretler
+     * @param kurban
+     */
     public void updateDurum(Kurban kurban) {
         if (isAllHissesSold(kurban)) {
             kurban.setDurum(KurbanDurum.SATILDI);

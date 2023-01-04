@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * hissedar CRUD işlemlerini gerçekleştirecek olan service katmanı
+ */
 @Service
 public class HissedarService {
 
@@ -21,6 +24,11 @@ public class HissedarService {
     @Autowired
     KurbanService kurbanService;
 
+    /**
+     * hissedar entity'sini hissedarDTO'ya dönüştürür
+     * @param hissedar
+     * @return hissedarDTO
+     */
     public HissedarDTO convertHissedarEntityToDTO(Hissedar hissedar) {
         HissedarDTO tempHissedar = new HissedarDTO();
         tempHissedar.setId(hissedar.getId());
@@ -30,6 +38,11 @@ public class HissedarService {
         return tempHissedar;
     }
 
+    /**
+     * hissedarlar listesini hissedarDTO listesine dönüştürür
+     * ekrana hissedarlar listesini göstermek için kullanılır
+     * @return hissedarDTO listesi
+     */
     public List<HissedarDTO> getAllHissedarList() {
         List<Hissedar> allHissedarList = hissedarRepository.findAll();
         List<HissedarDTO> hissedarDTOList = new ArrayList<>();
@@ -37,14 +50,28 @@ public class HissedarService {
         return hissedarDTOList;
     }
 
+    /**
+     * hissedar id'sine göre hissedarDTO bulur
+     * @param id
+     * @return hissedarDTO
+     */
     public HissedarDTO getHissedarDTO(Long id) {
         return convertHissedarEntityToDTO(getHissedar(id));
     }
 
+    /**
+     * hissedar id'sine göre hissedar entity'sini bulur
+     * @param id
+     * @return hissedar
+     */
     public Hissedar getHissedar(Long id) {
         return hissedarRepository.findById(id).orElseThrow();
     }
 
+    /**
+     * hissedar ekleme işlemini gerçekleştirir
+     * @param hissedarCreateDTO
+     */
     public Long addHissedar(@NotNull HissedarCreateDTO hissedarCreateDTO) {
         Hissedar hissedar = new Hissedar(hissedarCreateDTO.getAd(),
                 hissedarCreateDTO.getSoyad(),
@@ -53,6 +80,10 @@ public class HissedarService {
         return hissedar.getId();
     }
 
+    /**
+     * hissedar güncelleme işlemini gerçekleştirir
+     * @param hissedarCreateDTO
+     */
     public HissedarDTO updateHissedar(Long id, @NotNull HissedarCreateDTO hissedarCreateDTO) {
         Hissedar hissedar = hissedarRepository.findById(id).orElseThrow();
         hissedar.setAd(hissedarCreateDTO.getAd());
@@ -62,7 +93,11 @@ public class HissedarService {
         return convertHissedarEntityToDTO(hissedar);
     }
 
-    public void deleteHissedar(Long hissedarId) {
-        hissedarRepository.delete(getHissedar(hissedarId));
+    /**
+     * hissedar silme işlemini gerçekleştirir
+     * @param id
+     */
+    public void deleteHissedar(Long id) {
+        hissedarRepository.delete(getHissedar(id));
     }
 }

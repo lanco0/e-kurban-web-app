@@ -1,10 +1,25 @@
 package com.aurora.ekurban.dto;
 
+/**
+ * Hissedar bilgilerini Client tarafından göndermek için kullanılan DTO
+ */
 public class HissedarDTO {
 
+    /**
+     * hissedarın ID'si
+     */
     private Long id;
+    /**
+     * hissedarın adı
+     */
     private String ad;
+    /**
+     * hissedarın soyadı
+     */
     private String soyad;
+    /**
+     * hissedarın telefon numarası
+     */
     private String tel;
     public Long getId() {
         return id;
