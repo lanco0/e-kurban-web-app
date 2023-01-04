@@ -29,7 +29,7 @@ public class LoadDbData {
             User user = new User("user@ekurban.com", "1234");
 
             Hissedar hissedar = new Hissedar("Mehmet", "Ercan", "12345678L");
-            Kurban kurban = new Kurban(KurbanCins.BUYUKBAS, KurbanKunye.KOC, "21A1", 428
+            Kurban kurban = new Kurban(KurbanCins.BUYUKBAS, KurbanKunye.DANA, "21A1", 428
                     , 25, 53750, 1, "");
             Hisse hisse = new Hisse(kurban, hissedar);
 
