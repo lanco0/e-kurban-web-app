@@ -25,15 +25,15 @@ public class LoadDbData {
         return args -> {
             User user = new User("user@ekurban.com", "1234");
 
-            Hissedar hissedar = new Hissedar("Mehmet", "Ercan", "12345678L");
-            Kurban kurban = new Kurban(KurbanCins.BUYUKBAS, KurbanKunye.KOC, "21A1", 428
-                    , 25, 53750, 1, "");
-            Hisse hisse = new Hisse(kurban, hissedar);
-
-            kurban.getHisseList().add(hisse);
-
-            kurban = kurbanRepository.save(kurban);
-            hissedarRepository.save(hissedar);
+//            Hissedar hissedar = new Hissedar("Mehmet", "Ercan", "12345678L");
+//            Kurban kurban = new Kurban(KurbanCins.BUYUKBAS, KurbanKunye.KOC, "21A1", 428
+//                    , 25, 53750, 1, "");
+//            Hisse hisse = new Hisse(kurban, hissedar);
+//
+//            kurban.getHisseList().add(hisse);
+//
+//            kurban = kurbanRepository.save(kurban);
+//            hissedarRepository.save(hissedar);
 
             //hisseRepository.save(hisse);
 
