@@ -25,14 +25,14 @@ public class HisseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<KurbanDTO> updateHisse(@PathVariable Long hisseId, @RequestBody HisseCreateDTO hisseCreateDTO) {
-        hisseService.updateHisse(hisseId, hisseCreateDTO);
+    public ResponseEntity<KurbanDTO> updateHisse(@PathVariable Long id, @RequestBody HisseCreateDTO hisseCreateDTO) {
+        hisseService.updateHisse(id, hisseCreateDTO);
         return new ResponseEntity<>(kurbanService.getKurbanDTO(hisseCreateDTO.getKurbanId()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHisse(@PathVariable Long hisseId) {
-        hisseService.deleteHissedarOnHisse(hisseId);
+    public ResponseEntity<Void> deleteHisse(@PathVariable Long id) {
+        hisseService.deleteHissedarOnHisse(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
