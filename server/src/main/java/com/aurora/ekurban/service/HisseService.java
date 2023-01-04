@@ -43,6 +43,10 @@ public class HisseService {
         return tempHisse;
     }
 
+    public Hisse getHisseById(@NotNull Long id) {
+        return hisseRepository.findById(id).orElseThrow(() -> new MissingFormatArgumentException("Hisse bulunamadı"));
+    }
+
     /**
      * Kurbana ait hisse oluşturur,
      * eğer kurbana hissedar eklenirken hissedar mevcut ise hissedarı bulur ve kurbana ekler,
@@ -64,7 +68,7 @@ public class HisseService {
         }
         Hisse hisse = new Hisse(kurban, hissedar);
         kurban.getHisseList().add(hisse);
-        hisseRepository.save(hisse);
+        kurbanService.updateDurum(kurban);
         kurbanService.save(kurban);
     }
 
@@ -74,7 +78,7 @@ public class HisseService {
      * @param hisseCreateDTO
      */
     public void updateHisse(Long id, @NotNull HisseCreateDTO hisseCreateDTO) {
-        Hisse hisse = hisseRepository.findById(id).orElseThrow();
+        Hisse hisse = getHisseById(id);
         Hissedar hissedar = hissedarService.getHissedar(hisseCreateDTO.getHissedarId());
         hisse.setHissedar(hissedar);
         kurbanService.save(kurbanService.getKurban(hisseCreateDTO.getKurbanId()));
@@ -85,10 +89,10 @@ public class HisseService {
      * @param id
      */
     public void deleteHissedarOnHisse(Long id) {
-        Hisse hisse = hisseRepository.findById(id).orElseThrow();
+        Hisse hisse = getHisseById(id);
         Kurban kurban = kurbanService.getKurban(hisse.getKurban().getId());
         kurban.getHisseList().remove(hisse);
-        kurbanService.updateDurum(hisse.getKurban());
-        hisseRepository.delete(hisse);
+        kurbanService.updateDurum(kurban);
+        kurbanService.save(kurban);
     }
 }

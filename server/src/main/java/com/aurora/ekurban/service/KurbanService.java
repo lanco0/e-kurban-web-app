@@ -198,7 +198,6 @@ public class KurbanService {
         if (isAllHissesSold(kurban)) {
             kurban.setDurum(KurbanDurum.SATILDI);
         } else kurban.setDurum(KurbanDurum.SATISTA);
-
         this.save(kurban);
     }
 
