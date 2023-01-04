@@ -25,4 +25,51 @@ public class Mesaj {
      * Bu türler şunlardır: KESİLDİ, TELEF,
      */
     private KurbanDurum tur;
+
+    public Mesaj() {
+    }
+
+    public Mesaj(String mesaj, KurbanDurum tur) {
+        this.mesaj = mesaj;
+        this.tur = tur;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMesaj() {
+        return mesaj;
+    }
+
+    public void setMesaj(String mesaj) {
+        this.mesaj = mesaj;
+    }
+
+    public KurbanDurum getTur() {
+        return tur;
+    }
+
+    public void setTur(KurbanDurum tur) {
+        this.tur = tur;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

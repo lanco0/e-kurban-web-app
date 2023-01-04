@@ -13,13 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1")
 public class SmsController {
 
+    public static final String ACCOUNT_SID = "AC05550591f3678dc5026502a3f57baac5";
+    public static final String AUTH_TOKEN = "bbd8caa37d57656f69c7966a995afb0b";
+
     @GetMapping("/sendSMS")
     public ResponseEntity<String> sendSMS() {
-        Twilio.init("AC05550591f3678dc5026502a3f57baac5",
-                "56ddfa49aaf5ee42a26566ea15fd05c5");
-
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        //+905358594652
         Message.creator(new PhoneNumber("+905510106464"),
-                new PhoneNumber("+19787363461"), "Hello from Twilio 📞").create();
+                new PhoneNumber("+19787363461"), "Kurban kesildi 📞").create();
 
         return new ResponseEntity<>("Message sent successfully", HttpStatus.OK);
     }
