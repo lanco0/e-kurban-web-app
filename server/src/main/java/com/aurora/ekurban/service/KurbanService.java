@@ -34,8 +34,8 @@ public class KurbanService {
      */
     private int kesimKucukBasSequence = 1;
 
-    private static final Integer BUYUK_BAS_HISSE = 7;
-    private static final Integer KUCUK_BAS_HISSE = 1;
+    public static final Integer BUYUK_BAS_HISSE = 7;
+    public static final Integer KUCUK_BAS_HISSE = 1;
 
     public int getKesimBuyukBasSequence() {
         return kesimBuyukBasSequence++;
