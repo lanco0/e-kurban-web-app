@@ -5,20 +5,51 @@ import com.aurora.ekurban.enumeration.KurbanKunye;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Kurban oluşturmak için Client tarafından gönderilen kurban bilgileri
+ */
 public class KurbanCreateDTO {
 
+    /**
+     * kurbanın cinsi,
+     * Boş bırakılamaz
+     */
     @NotNull
     private KurbanCins cins;
+    /**
+     * kurbanın kunyesi,
+     * Boş bırakılamaz
+     */
     @NotNull
     private KurbanKunye kunye;
+    /**
+     * kurbanın küpe numarası,
+     * Boş bırakılamaz
+     */
     @NotNull
     private String kupeNo;
+    /**
+     * kurbanın kilosu,
+     * Boş bırakılamaz
+     */
     @NotNull
     private Integer kilo;
+    /**
+     * kurbanın yaşı,
+     * Boş bırakılamaz
+     */
     @NotNull
     private Integer yas;
+    /**
+     * kurbanın fiyatı,
+     * Boş bırakılamaz
+     */
     @NotNull
     private Integer fiyat;
+    /**
+     * kurbanın resim yolu,
+     * Boş bırakılamaz
+     */
     @NotNull
     private String resimUrl;
 

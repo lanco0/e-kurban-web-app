@@ -1,12 +1,30 @@
 package com.aurora.ekurban.dto;
 
+/**
+ * Hisse bilgilerini Client tarafından göndermek için kullanılan DTO
+ */
 public class HisseDTO {
 
+    /**
+     * hissenin ID'si
+     */
     private Long id;
+    /**
+     * hissenin hangi kurban'a ait olduğu ID bilgisi
+     */
     private Long kurbanId;
+    /**
+     * hissenin hangi hissedara ait olduğu ID bilgisi
+     */
     private Long hissedarId;
+    /**
+     * hissedarın adı
+     */
     private String ad;
-    private String soyAd;
+    /**
+     * hissedarın soyadı
+     */
+    private String soyad;
     private String tel;
 
     public Long getId() {
@@ -41,12 +59,12 @@ public class HisseDTO {
         this.ad = ad;
     }
 
-    public String getSoyAd() {
-        return soyAd;
+    public String getSoyad() {
+        return soyad;
     }
 
-    public void setSoyAd(String soyAd) {
-        this.soyAd = soyAd;
+    public void setSoyad(String soyad) {
+        this.soyad = soyad;
     }
 
     public String getTel() {

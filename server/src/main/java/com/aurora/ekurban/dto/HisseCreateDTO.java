@@ -1,9 +1,21 @@
 package com.aurora.ekurban.dto;
 
+/**
+ * Hisse oluşturmak için kullanılan DTO
+ */
 public class HisseCreateDTO {
 
+    /**
+     * hisseye eklenecek kurbanın id'si
+     */
     private Long kurbanId;
+    /**
+     * eklenecek hissedar mevcut hissedarlar arasında varsa id'si
+     */
     private Long hissedarId;
+    /**
+     * eklenecek hissedar mevcut hissedarlar arasında yoksa yeni hissedarın bilgileri
+     */
     private HissedarCreateDTO hissedarCreateDTO;
 
     public Long getKurbanId() {
