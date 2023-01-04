@@ -1,7 +1,7 @@
 Feature: Kurban ile CRUD işlemleri
 
   Background:
-    Given Kurban Listesine aşağıdaki kurban eklenmiş olsun
+    Given Kullanıcı kurban ekleme sayfasına bilgileri doldurmaya başlamıştır
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl         |
       | 2022A137700 | BUYUKBAS | DANA  | 535  | 24  | 57000 | kurban.png       |
       | 2022A137701 | KUCUKBAS | KOYUN | 25   | 12  | 3500  | kucuk-kurban.png |
@@ -56,5 +56,5 @@ Feature: Kurban ile CRUD işlemleri
     When Aşağıdaki bilgiler ile güncellenmek istendiğinde
       | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl   |
       | 2022A137706 | KUCUKBAS | KOC   | 555  | 10  | 30000 | kurban.png |
-    Then //başarılı olmaldı
-    And //Kunye ismi "KOC" olmalıdır
+    Then Güncelleme işlemi başarılı olur
+    And Kunye ismi "KOYUN" olmalıdır

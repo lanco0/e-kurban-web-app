@@ -35,7 +35,7 @@ public class MesajStepDefinitions {
     public void hissedarinHalihazirdaKurbanSecipHissedarListesindeIsmiOlmalidir() {
         hissedar = new Hissedar("Mehmet", "Ercan", "12345678L");
 
-        kurban = new Kurban(KurbanCins.KUCUKBAS, KurbanKunye.KUZU, "21A1", 428
+        kurban = new Kurban(KurbanCins.KUCUKBAS, KurbanKunye.KOYUN, "21A1", 428
                 , 25, 53750, 1, "");
         hisse = new Hisse(kurban, hissedar);
     }

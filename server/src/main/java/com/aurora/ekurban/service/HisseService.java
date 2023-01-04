@@ -64,6 +64,7 @@ public class HisseService {
         }
         Hisse hisse = new Hisse(kurban, hissedar);
         kurban.getHisseList().add(hisse);
+        hisseRepository.save(hisse);
         kurbanService.save(kurban);
     }
 
@@ -85,8 +86,9 @@ public class HisseService {
      */
     public void deleteHissedarOnHisse(Long id) {
         Hisse hisse = hisseRepository.findById(id).orElseThrow();
-        hisse.setHissedar(null);
+        Kurban kurban = kurbanService.getKurban(hisse.getKurban().getId());
+        kurban.getHisseList().remove(hisse);
         kurbanService.updateDurum(hisse.getKurban());
-        hisseRepository.save(hisse);
+        hisseRepository.delete(hisse);
     }
 }
