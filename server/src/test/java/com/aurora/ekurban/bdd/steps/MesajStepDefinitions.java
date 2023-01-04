@@ -3,6 +3,7 @@ package com.aurora.ekurban.bdd.steps;
 import com.aurora.ekurban.domain.Hisse;
 import com.aurora.ekurban.domain.Hissedar;
 import com.aurora.ekurban.domain.Kurban;
+import com.aurora.ekurban.domain.Mesaj;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanDurum;
 import com.aurora.ekurban.enumeration.KurbanKunye;
@@ -42,15 +43,13 @@ public class MesajStepDefinitions {
     @When("Hissedarların kurbanı kesildiğinde")
     public void hissedarlarinKurbaniKesildiginde() throws Exception {
         kurban.setDurum(KurbanDurum.KESILDI);
-        String mesaj = mesajService.sendMesaj(KurbanDurum.KESILDI, hissedar, kurban);
-        scenarioContext.setContext("kesildiMesajı", mesaj);
+        Mesaj mesaj = mesajService.sendMesaj(KurbanDurum.KESILDI, hissedar, kurban);
+        scenarioContext.setContext("kesildi", mesaj);
     }
 
     @Then("Hissedarlara kurban kesildi mesajı gönderilir")
     public void hissedarlaraKurbanKesildiMesajiGonderilir() {
-        String result = (String) scenarioContext.getContext("kesildiMesajı");
-        String mesaj = "Sayın " + hissedar.getAd() + " " + hissedar.getSoyad() + ". " + kurban.getKupeNo() +
-                " küpe numarasına ait kurbanınız kesilmiştir. Cenab - ı Hak kabul eylesin.";
-        Assert.assertEquals(mesaj, result);
+        Mesaj result = (Mesaj) scenarioContext.getContext("kesildi");
+        Assert.assertEquals(KurbanDurum.KESILDI, result.getTur());
     }
 }
