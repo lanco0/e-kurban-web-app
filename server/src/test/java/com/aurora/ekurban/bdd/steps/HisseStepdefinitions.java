@@ -1,11 +1,15 @@
 package com.aurora.ekurban.bdd.steps;
 
+import com.aurora.ekurban.dto.HisseCreateDTO;
 import com.aurora.ekurban.dto.HissedarCreateDTO;
 import com.aurora.ekurban.dto.KurbanCreateDTO;
+import com.aurora.ekurban.dto.KurbanDTO;
 import com.aurora.ekurban.enumeration.KurbanCins;
 import com.aurora.ekurban.enumeration.KurbanKunye;
-import com.aurora.ekurban.service.HisseService;
+import com.aurora.ekurban.service.HissedarService;
 import com.aurora.ekurban.service.KurbanService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +21,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +31,11 @@ public class HisseStepdefinitions {
 
     @Autowired
     MockMvc mockMvc;
-    HissedarCreateDTO hissedarCreateDTO;
     @Autowired
     KurbanService kurbanService;
 
     @Autowired
-    HisseService hisseService;
+    HissedarService hissedarService;
 
     @Autowired
     ScenarioContext scenerioContext;
@@ -41,7 +43,9 @@ public class HisseStepdefinitions {
     @Given("Aşağıdaki kurban eklenmiş olsun")
     public void asagidakiKurbanEklenmisOlsun(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
+
         KurbanCreateDTO kurbanCreateDTO = new KurbanCreateDTO();
+
         for (Map<String, String> columns : rows) {
             if (columns.get("cins") != null) {
                 kurbanCreateDTO.setCins(KurbanCins.valueOf(columns.get("cins")));
@@ -64,21 +68,18 @@ public class HisseStepdefinitions {
             if (columns.get("resimUrl") != null) {
                 kurbanCreateDTO.setResimUrl(columns.get("resimUrl"));
             }
+            KurbanDTO kurbanDTO = kurbanService.addKurban(kurbanCreateDTO);
+            scenerioContext.setContext(columns.get("id") ,kurbanDTO.getId());
         }
-        Long kurbanId = kurbanService.addKurban(kurbanCreateDTO);
-        scenerioContext.setContext("kurban",kurbanService.getKurban(kurbanId));
 
     }
 
     @Given("Aşağıdaki hissedar eklenmiş olsun")
-    public void asagidakiHissedarEklenmisOlsun() {
-    }
-
-
-    @Given("Kurbanid ve hissedarid belirlenmiştir")
-    public void kurbanidVeHissedaridBelirlenmistir(@NotNull DataTable table) {
+    public void asagidakiHissedarEklenmisOlsun(DataTable table) {
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
-        hissedarCreateDTO = new HissedarCreateDTO();
+
+        HissedarCreateDTO hissedarCreateDTO = new HissedarCreateDTO();
+
         for (Map<String, String> columns : rows) {
             if (columns.get("ad") != null) {
                 hissedarCreateDTO.setAd(columns.get("ad"));
@@ -89,27 +90,35 @@ public class HisseStepdefinitions {
             if (columns.get("tel") != null) {
                 hissedarCreateDTO.setAd(columns.get("tel"));
             }
+
+            Long hissedarId = hissedarService.addHissedar(hissedarCreateDTO);
+            scenerioContext.setContext(columns.get("id") , hissedarId);
         }
 
     }
 
-    @When("Hisse eklenmek istendiğinde")
-    public void hisseEklenmekIstendiginde() throws Exception {
+
+    @When("{string} nolu kurbana {string} nolu hissedar eklenmek istendiğinde")
+    public void noluKurbanaNoluHissedarEklenmekIstendiginde(String kurbanId, String hissedarId) throws Exception {
+        HisseCreateDTO hisseCreateDTO = new HisseCreateDTO();
+        hisseCreateDTO.setKurbanId((Long) scenerioContext.getContext(kurbanId));
+        hisseCreateDTO.setHissedarId((Long) scenerioContext.getContext(hissedarId));
+
+        ObjectWriter objectMapper = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String requestBody = objectMapper.writeValueAsString(hisseCreateDTO);
+
         ResultActions result = mockMvc.perform(post("/api/v1/hisseler")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
-                        .content(""))
+                        .content(requestBody))
                 .andDo(print());
 
         scenerioContext.setContext("result", result);
     }
 
-    @Then("İlgili kurbana hisse eklenmiş olur")
-    public void i̇lgiliKurbanaHisseEklenmisOlur() {
+    @Then("Hisse ekleme işlemi başarılı olur")
+    public void hisseEklemeIslemiBasariliOlur() {
         ResultActions result = (ResultActions) scenerioContext.getContext("result");
-        Assert.assertEquals(HttpStatus.CREATED, result.andReturn().getResponse().getStatus());
+        Assert.assertEquals(HttpStatus.CREATED.value(), result.andReturn().getResponse().getStatus());
     }
-
-
-
 }

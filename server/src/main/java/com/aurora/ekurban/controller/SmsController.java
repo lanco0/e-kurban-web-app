@@ -22,8 +22,8 @@ public class SmsController {
     @GetMapping("/sendSMS")
     public ResponseEntity<String> sendSMS() {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        //+905358594652
-        Message.creator(new PhoneNumber("+905510106464"),
+
+        Message.creator(new PhoneNumber("+905358594652"),
                 new PhoneNumber("+19787363461"), "Kurban kesildi 📞").create();
 
         return new ResponseEntity<>("Message sent successfully", HttpStatus.OK);
