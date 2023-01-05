@@ -8,6 +8,7 @@ import javax.persistence.*;
  * Hisse bilgileri, kurbanın hissedarlarına ait bilgileri tutar
  */
 @Entity
+@Table(name = "Hisse")
 public class Hisse {
 
     /**

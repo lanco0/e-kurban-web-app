@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.MissingFormatArgumentException;
 
 /**
  * hisse işlemlerini gerçekleştirecek olan service katmanı
  */
 @Service
+@Transactional
 public class HisseService {
     @Lazy
     @Autowired
@@ -89,9 +91,9 @@ public class HisseService {
      * @param id
      */
     public void deleteHissedarOnHisse(Long id) {
+        hisseRepository.deleteHisse(id);
         Hisse hisse = getHisseById(id);
         Kurban kurban = kurbanService.getKurban(hisse.getKurban().getId());
-        kurban.getHisseList().remove(hisse);
         kurbanService.updateDurum(kurban);
         kurbanService.save(kurban);
     }
