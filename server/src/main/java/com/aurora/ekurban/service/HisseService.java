@@ -68,10 +68,9 @@ public class HisseService {
             Long hissedarId = hissedarService.addHissedar(hisseCreateDTO.getHissedarCreateDTO());
             hissedar = hissedarService.getHissedar(hissedarId);
         }
-        Hisse hisse = new Hisse(kurban, hissedar);
-        kurban.getHisseList().add(hisse);
+        hisseRepository.save(new Hisse(kurban, hissedar));
+
         kurbanService.updateDurum(kurban);
-        kurbanService.save(kurban);
     }
 
     /**
@@ -91,10 +90,10 @@ public class HisseService {
      * @param id
      */
     public void deleteHissedarOnHisse(Long id) {
-        hisseRepository.deleteHisse(id);
         Hisse hisse = getHisseById(id);
         Kurban kurban = kurbanService.getKurban(hisse.getKurban().getId());
+        hisseRepository.deleteHisse(id);
         kurbanService.updateDurum(kurban);
-        kurbanService.save(kurban);
+
     }
 }

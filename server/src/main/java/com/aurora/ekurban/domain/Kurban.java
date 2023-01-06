@@ -72,7 +72,7 @@ public class Kurban {
      * kurbanın sahip olduğu hisselerin tutulduğu liste
      * @see Hisse (Hisse ile @OneToMany ilişkisi vardır)
      */
-    @OneToMany(cascade = CascadeType.REMOVE,
+    @OneToMany(
             fetch = FetchType.LAZY,
             targetEntity = Hisse.class,
             mappedBy = "kurban")

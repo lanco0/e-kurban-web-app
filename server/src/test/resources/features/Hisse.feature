@@ -6,8 +6,8 @@ Feature: Hisse işlemleri özelliği
       | k1 | 2022A137700 | BUYUKBAS | DANA  | 535  | 24  | 57000 | kurban.png |
 
     Given Aşağıdaki hissedar eklenmiş olsun
-      | id | ad     | soyad | tel  |
-      | h1 | mehmet | ercan | +545 |
+      | id | ad     | soyad | tel         |
+      | h1 | mehmet | ercan | 05358594652 |
 
   Scenario: Hisse ekleme senaryosu
     When "k1" nolu kurbana "h1" nolu hissedar eklenmek istendiğinde
