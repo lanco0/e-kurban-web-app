@@ -12,7 +12,7 @@ public class Hissedar {
      * Hissedarın ID bilgisi veritabanında otomatik olarak artan bir şekilde oluşturulur
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

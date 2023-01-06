@@ -29,14 +29,24 @@ public class HissedarController {
     }
 
     @PostMapping
-    public ResponseEntity<HissedarDTO> addHissedar(@RequestBody @Valid HissedarCreateDTO hissedarCreateDTO) {
-        Long hissedarId = hissedarService.addHissedar(hissedarCreateDTO);
-        return new ResponseEntity<>(hissedarService.getHissedarDTO(hissedarId), HttpStatus.CREATED);
+    public ResponseEntity<HissedarDTO> addHissedar(@RequestBody @Valid HissedarCreateDTO hissedarCreateDTO) throws IllegalArgumentException {
+        try {
+            Long hissedarId = hissedarService.addHissedar(hissedarCreateDTO);
+            return new ResponseEntity<>(hissedarService.getHissedarDTO(hissedarId), HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<HissedarDTO> updateHissedar(@PathVariable Long id, @RequestBody @Valid HissedarCreateDTO hissedarCreateDTO) {
-        return new ResponseEntity<>(hissedarService.updateHissedar(id, hissedarCreateDTO), HttpStatus.OK);
+        try {
+            Long hissedarId = hissedarService.updateHissedar(id, hissedarCreateDTO);
+            return new ResponseEntity<>(hissedarService.getHissedarDTO(hissedarId), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -18,14 +18,15 @@ public class Hisse {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.REMOVE,
             targetEntity = Kurban.class,
             optional = false)
     @JoinColumn(name = "kurban_id")
     @JsonIgnoreProperties("hisseList")
     private Kurban kurban;
-    @ManyToOne(cascade = CascadeType.ALL,
+    @ManyToOne(cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
             targetEntity = Hissedar.class,
             optional = false)

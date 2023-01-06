@@ -19,7 +19,7 @@ public class Kurban {
      * Kurbanın ID'si veritabanında otomatik olarak artan bir şekilde oluşturulur
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -72,7 +72,7 @@ public class Kurban {
      * kurbanın sahip olduğu hisselerin tutulduğu liste
      * @see Hisse (Hisse ile @OneToMany ilişkisi vardır)
      */
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
             targetEntity = Hisse.class,
             mappedBy = "kurban")

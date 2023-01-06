@@ -12,7 +12,6 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +48,7 @@ public class KurbanService {
 
     /**
      * kurban entity'sini kurbanDTO'ya dönüştürür
-     * @param kurban
+     * @param kurban kurban entity'si
      * @return kurbanDTO
      */
     public KurbanDTO convertKurbanEntityToDTO(@NotNull Kurban kurban) {
@@ -72,28 +71,49 @@ public class KurbanService {
     }
 
     /**
-     * kurban ciins değeri boş ise tüm kurbanları döndürür,
-     * değilse cins değerine göre kurbanları döndürür
-     * @param cins
-     * @return
+     * Kurban Cinsi ve Durumuna göre kurban listesini döndürür
+     * @param cins  kurban cins değeri
+     * @param durum kurban durum değeri
+     * @return kurbanDTO listesi
      */
-    public List<KurbanDTO> chooseKurbanList(@Nullable KurbanCins cins) {
-        if (cins != null) return getChosenCinsList(cins);
-        return getAllKurbanList();
+    public List<KurbanDTO> chooseKurbanList(@Nullable KurbanCins cins, @Nullable KurbanDurum durum) {
+        List<KurbanDTO> kurbanList;
+        if (durum != null) {
+            if (cins != null) kurbanList = getChosenCinsAndDurumList(cins, durum);
+            else kurbanList = getChosenDurumList(durum);
+        } else {
+            if (cins != null) kurbanList = getChosenCinsList(cins);
+            else kurbanList = getAllKurbanList();
+        }
+        return kurbanList;
+    }
+
+    public List<KurbanDTO> getChosenDurumList(@NotNull KurbanDurum durum) {
+        List<Kurban> chosenDurumList = kurbanRepository.findAllByDurum(durum);
+        return chosenDurumList.stream()
+                .map(this::convertKurbanEntityToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<KurbanDTO> getChosenCinsAndDurumList(KurbanCins kurbanCins, KurbanDurum kurbanDurum) {
+        List<Kurban> chosenCinsAndDurumList = kurbanRepository.findAllByCinsAndDurum(kurbanCins, kurbanDurum);
+        return chosenCinsAndDurumList.stream()
+                .map(this::convertKurbanEntityToDTO)
+                .collect(Collectors.toList());
     }
 
     public List<KurbanDTO> getChosenCinsList(KurbanCins cins) {
         List<Kurban> chosenCinsList = kurbanRepository.findAllByCins(cins);
-        List<KurbanDTO> kurbanDTOList = new ArrayList<>();
-        chosenCinsList.forEach(kurban -> kurbanDTOList.add(convertKurbanEntityToDTO(kurban)));
-        return kurbanDTOList;
+        return chosenCinsList.stream()
+                .map(this::convertKurbanEntityToDTO)
+                .collect(Collectors.toList());
     }
 
     public List<KurbanDTO> getAllKurbanList() {
         List<Kurban> allKurbanList = kurbanRepository.findAll();
-        List<KurbanDTO> kurbanDTOList = new ArrayList<>();
-        allKurbanList.forEach(kurban -> kurbanDTOList.add(convertKurbanEntityToDTO(kurban)));
-        return kurbanDTOList;
+        return allKurbanList.stream()
+                .map(this::convertKurbanEntityToDTO)
+                .collect(Collectors.toList());
     }
 
     public KurbanDTO getKurbanDTO(Long id) {
@@ -109,7 +129,8 @@ public class KurbanService {
      * eğer kurban büyükbaş ise kesim sırasını büyükbaş sırasına göre belirler,
      * eğer kurban küçükbaş ise kesim sırasını küçükbaş sırasına göre belirler,
      * kurbanın hisse adedini belirler
-     * @param kurbanCreateDTO
+     *
+     * @param kurbanCreateDTO kurban ekleme işleminde kullanılacak olan kurbanCreateDTO
      * @return kurbanDTO
      */
     public KurbanDTO addKurban(@NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
@@ -138,8 +159,9 @@ public class KurbanService {
 
     /**
      * kurban güncelleme işlemini gerçekleştirir,
-     * @param id
-     * @param kurbanCreateDTO
+     *
+     * @param id güncellenecek kurbanın id değeri
+     * @param kurbanCreateDTO kurban güncelleme işleminde kullanılacak olan kurbanCreateDTO
      * @return kurbanDTO
      */
     public KurbanDTO updateKurban(Long id, @NotNull KurbanCreateDTO kurbanCreateDTO) throws Error {
@@ -159,8 +181,9 @@ public class KurbanService {
 
     /**
      * kurban durumunu güncelleme işlemini gerçekleştirir,
-     * @param id
-     * @param kurbanDurum
+     *
+     * @param id güncellenecek kurbanın id değeri
+     * @param kurbanDurum güncellenecek kurbanın yeni durumu
      * @return kurbanDTO
      */
     public KurbanDTO updateKurbanDurum(Long id, KurbanDurum kurbanDurum) {
@@ -173,26 +196,27 @@ public class KurbanService {
 
     /**
      * kurbanı repositorye kaydeder
-     * @param kurban
+     *
+     * @param kurban kurban
      */
-    public void save(Kurban kurban){
+    public void save(Kurban kurban) {
         kurbanRepository.save(kurban);
     }
 
     /**
      * kurban listesinin doluluğunu kontrol eder
-     * @param kurban
+     *
+     * @param kurban kurban
      * @return true or false
      */
-    public boolean isAllHissesSold(Kurban kurban){
-        return (kurban.getCins() == KurbanCins.BUYUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi()) ||
-                (kurban.getCins() == KurbanCins.KUCUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi());
+    public boolean isAllHissesSold(Kurban kurban) {
+        return (kurban.getCins() == KurbanCins.BUYUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi()) || (kurban.getCins() == KurbanCins.KUCUKBAS && kurban.getHisseList().size() == kurban.getHisseAdedi());
     }
 
     /**
      * kurbanın hisseleri tamamı satıldıysa kurbanı satıldı olarak işaretler,
      * kurbanın hisseleri tamamı satılmadıysa kurbanı satışta olarak işaretler
-     * @param kurban
+     * @param kurban kurban
      */
     public void updateDurum(Kurban kurban) {
         if (isAllHissesSold(kurban)) {
