@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.Duration;
@@ -17,10 +18,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @WebMvcTest
 public class KalanGunStepDefinitions {
-    private LocalDateTime kurbanBayrami;
-
     @Autowired
     KalanGunService kalanGunService;
+
+    @Autowired
+    Environment env;
 
     LocalDateTime kurbanbayrami;
 
@@ -35,7 +37,7 @@ public class KalanGunStepDefinitions {
     @Given("Kurban bayramı günü sistemde tanımlı olmalıdır")
     public void kurbanBayramiGunuSistemdeTanimliOlmalidir() {
         bugun = LocalDateTime.now();
-        kurbanbayrami = kalanGunService.setKurbanBayrami(LocalDateTime.parse("2023-06-28T06:19:00.00"));
+        kurbanbayrami = LocalDateTime.parse(env.getProperty("kurbanBayrami"));
     }
 
     @When("Kullanıcı anasayfaya girdiğinde")

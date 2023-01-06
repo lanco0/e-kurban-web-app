@@ -15,25 +15,22 @@ import io.cucumber.java.en.When;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 import java.util.Map;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Scope(SCOPE_CUCUMBER_GLUE)
+@WebMvcTest
 public class KurbanStepDefinitions extends CucumberIntegrationTest {
     @Autowired
     MockMvc mockMvc;
@@ -76,7 +73,7 @@ public class KurbanStepDefinitions extends CucumberIntegrationTest {
         }
     }
 
-    @Given("Kurban Listesinde sadece aşağıdaki kurban eklenmiş olsun")
+    @Given("Kurban Listesine aşağıdaki kurban eklenmiş olsun")
     public void kurbanListesindeSadeceAsagidakiKurbanEklenmisOlsun(DataTable table) {
         kullaniciKurbanEklemeSayfasinaBilgileriDoldurmayaBaslamistir(table);
         KurbanDTO kurbanDTO = kurbanService.addKurban(kurbanCreateDTO);
