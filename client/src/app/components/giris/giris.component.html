@@ -19,6 +19,6 @@
         </button>
     </mat-form-field>
 
-    <button (click)="giris()"  mat-raised-button color="primary">Giriş</button>
+    <button *ngIf="eposta.valid" (click)="giris()"  mat-raised-button color="primary">Giriş</button>
 </div>
 </section>

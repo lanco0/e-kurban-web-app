@@ -38,8 +38,18 @@ export class GirisComponent {
     }
 
     public giris(): void {
-        this.authService.giris({"eposta": this.eposta.value, "sifre": this.sifre.value}).subscribe(currentUser => this.appComponent.currentUser = currentUser);
+        this.authService.giris({"eposta": this.eposta.value, "sifre": this.sifre.value})
+            .pipe().subscribe({
+            next: user => {
+                this.appComponent.currentUser = user;
+                this.router.navigate(['/anasayfa']);
+            },
+            error: error => {
+                alert("Kullanıcı adı veya şifre yanlış !")
+            }
+        });
+
         this.appComponent.isAuthenticated = true;
-        this.router.navigate(['/anasayfa']);
+
     }
 }
