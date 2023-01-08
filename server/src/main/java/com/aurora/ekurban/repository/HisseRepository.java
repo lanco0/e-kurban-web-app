@@ -7,9 +7,4 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface HisseRepository extends JpaRepository<Hisse, Long> {
-
-    @Modifying
-    @Query("delete from Hisse h where h.id = :id")
-    void deleteHisse(@Param("id") Long id);
-
 }

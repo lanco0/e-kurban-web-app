@@ -115,7 +115,6 @@ public class HissedarService {
 
     /**
      * hissedar güncelleme işlemini gerçekleştirir
-     *
      * @param hissedarCreateDTO hissedarı güncellemek için gerekli olan bilgiler
      */
     public Long updateHissedar(Long id, @NotNull HissedarCreateDTO hissedarCreateDTO) {
@@ -123,12 +122,12 @@ public class HissedarService {
         // eski soyad: ışık
         // eski tel: 0123
 
-        //senario1:
+        //senario1: sadece adı soyadı değişti
         // yeni ad: emre
         // yeni soyad: yavuz
         // yeni tel: 0123
 
-        //senaryo2:
+        //senaryo2: sadece tel değişti ama teli başka bir hissedarın teli olabilir
         // yeni ad: bektaş
         // yeni soyad: ışık
         // yeni tel: 0123

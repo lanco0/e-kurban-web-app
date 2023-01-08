@@ -29,7 +29,7 @@ public class HissedarController {
     }
 
     @PostMapping
-    public ResponseEntity<HissedarDTO> addHissedar(@RequestBody @Valid HissedarCreateDTO hissedarCreateDTO) throws IllegalArgumentException {
+    public ResponseEntity<HissedarDTO> addHissedar(@RequestBody @Valid HissedarCreateDTO hissedarCreateDTO){
         try {
             Long hissedarId = hissedarService.addHissedar(hissedarCreateDTO);
             return new ResponseEntity<>(hissedarService.getHissedarDTO(hissedarId), HttpStatus.CREATED);
