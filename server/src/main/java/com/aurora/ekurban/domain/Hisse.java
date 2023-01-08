@@ -20,13 +20,12 @@ public class Hisse {
     private Long id;
     @ManyToOne(
             fetch = FetchType.LAZY,
-            cascade = CascadeType.REMOVE,
             targetEntity = Kurban.class,
             optional = false)
     @JoinColumn(name = "kurban_id")
     @JsonIgnoreProperties("hisseList")
     private Kurban kurban;
-    @ManyToOne(cascade = CascadeType.REMOVE,
+    @ManyToOne(
             fetch = FetchType.LAZY,
             targetEntity = Hissedar.class,
             optional = false)
