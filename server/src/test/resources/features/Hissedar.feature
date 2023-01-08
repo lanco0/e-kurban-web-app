@@ -1,15 +1,43 @@
-Feature: Hissedar İşlemleri
+Feature: Hissedar CRUD işlemleri
 
-  Background
-    Given Aşağıdaki kurbanlar eklenmiş olsun
-      | kupeNo      | cins     | kunye | kilo | yas | fiyat | resimUrl         |
-      | 2022A137700 | BUYUKBAS | DANA  | 535  | 24  | 57000 | kurban.png       |
-      | 2022A137701 | KUCUKBAS | KOYUN | 25   | 13  | 5000  | kucuk-kurban.png |
-      | 2022A137702 | BUYUKBAS | INEK  | 500  | 20  | 53000 | kurban.png       |
-      | 2022A137703 | KUCUKBAS | KUZU  | 25   | 9   | 3500  | kucuk-kurban.png |
+  Scenario: Hissedar Görüntüleme işleminde liste boşken istek attığında ekranda listenin boş gözükmesi
+    When Kullanıcı hissedar listesini görüntülemek istediğinde
+    Then Görütüleme işleminin başarılı olması
+    And Listenin boş olması
 
-  Scenario Kurbana hissedar eklendiğinde başarılı olunması
-    When "2022A137700" nolu küpe numarasına aşağıdaki hissedar eklendiğinde
-      | Ad   | Soyad | Telefon    |
-      | Emre | Yavuz | 5551112233 |
+  Scenario: Kullanıcı listede hissedar mevcutken görüntülemek istediğinde işlemin başarılı olması
+    Given Listede aşağıdaki bilgileri verilen hissedar mevcut olsun
+      | Ad   | Soyad   | Telefon     |
+      | Emre | Yavuzzz | 05388694637 |
+    When Kullanıcı hissedar listesini görüntülemek istediğinde
+    Then Görütüleme işleminin başarılı olması
+    And Listenin boş olmaması
+
+  Scenario: Hissedar Ekleme işleminin başarılı olması
+    When Hissedar bilgileri aşağıdaki bilgiler ile kaydedilmek istendiğinde
+      | Ad     | Soyad | Telefon     |
+      | Bektas | Isik  | 05358594652 |
     Then Hissedar ekleme işlemi başarılı olur
+
+  Scenario: Hissedar Ekleme işleminde eksik veri durumunda işlemin başarısız olması
+    When Hissedar bilgileri aşağıdaki bilgiler ile kaydedilmek istendiğinde
+      | Ad     | Soyad | Telefon     |
+      | Bektas |       | 05358594652 |
+    Then Hissedar ekleme işlemi başarısız olur
+
+  Scenario: Hissedar güncelleme işleminin başarılı olması
+    When "05388694637" telefon numaralı hissedarın bilgileri aşağıdaki gibi güncellenmek istendiğinde
+      | Ad   | Soyad | Telefon     |
+      | Emre | Yavuz | 05388694637 |
+    Then Hissedar güncelleme işlemi başarılı olur
+    And Yeni soyadı "Yavuz" olmalıdır
+
+  Scenario: Hissedar güncelleme işlemide eksik veri olması durumunda işlemin başarısız olması
+    When "05388694637" telefon numaralı hissedarın bilgileri aşağıdaki gibi güncellenmek istendiğinde
+      | Ad   | Soyad | Telefon     |
+      | Emre |       | 05388694637 |
+    Then Hissedar güncelleme işlemi başarısız olur
+
+  Scenario: Hissedar silme işleminin başarılı olması
+    When "05388694637" telefon numaralı hissedar silinmek istendiğinde
+    Then Hissedar silme işlemi başarılı olmalıdır

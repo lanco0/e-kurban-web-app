@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/hisseler")
 public class HisseController {
@@ -19,20 +21,20 @@ public class HisseController {
     KurbanService kurbanService;
 
     @PostMapping
-    public ResponseEntity<KurbanDTO> addHisse(@RequestBody HisseCreateDTO hisseCreateDTO) {
+    public ResponseEntity<KurbanDTO> addHisse(@RequestBody @Valid HisseCreateDTO hisseCreateDTO) {
         hisseService.addHisse(hisseCreateDTO);
         return new ResponseEntity<>(kurbanService.getKurbanDTO(hisseCreateDTO.getKurbanId()), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<KurbanDTO> updateHisse(@PathVariable Long hisseId, @RequestBody HisseCreateDTO hisseCreateDTO) {
-        hisseService.updateHisse(hisseId, hisseCreateDTO);
+    public ResponseEntity<KurbanDTO> updateHisse(@PathVariable Long id, @RequestBody @Valid HisseCreateDTO hisseCreateDTO) {
+        hisseService.updateHisse(id, hisseCreateDTO);
         return new ResponseEntity<>(kurbanService.getKurbanDTO(hisseCreateDTO.getKurbanId()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHisse(@PathVariable Long hisseId) {
-        hisseService.deleteHissedarOnHisse(hisseId);
+    public ResponseEntity<Void> deleteHisse(@PathVariable Long id) {
+        hisseService.deleteHissedarOnHisse(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

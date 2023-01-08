@@ -25,6 +25,9 @@ public class HisseDTO {
      * hissedarın soyadı
      */
     private String soyad;
+    /**
+     * hissedarın telefon numarası
+     */
     private String tel;
 
     public Long getId() {
