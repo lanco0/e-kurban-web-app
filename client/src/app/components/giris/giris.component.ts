@@ -39,17 +39,15 @@ export class GirisComponent {
 
     public giris(): void {
         this.authService.giris({"eposta": this.eposta.value, "sifre": this.sifre.value})
-            .pipe().subscribe({
+            .subscribe({
             next: user => {
                 this.appComponent.currentUser = user;
                 this.router.navigate(['/anasayfa']);
+                this.appComponent.isAuthenticated = true;
             },
             error: error => {
                 alert("Kullanıcı adı veya şifre yanlış !")
             }
         });
-
-        this.appComponent.isAuthenticated = true;
-
     }
 }
