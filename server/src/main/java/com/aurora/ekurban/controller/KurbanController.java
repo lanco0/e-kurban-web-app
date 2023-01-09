@@ -21,8 +21,9 @@ public class KurbanController {
     KurbanService kurbanService;
 
     @GetMapping
-    public ResponseEntity<List<KurbanDTO>> getKurbanList(@RequestParam(value = "cins") @Nullable KurbanCins cins) {
-        return new ResponseEntity<>(kurbanService.chooseKurbanList(cins), HttpStatus.OK);
+    public ResponseEntity<List<KurbanDTO>> getKurbanList(@RequestParam(value = "cins") @Nullable KurbanCins cins,
+                                                        @RequestParam(value = "durum") @Nullable KurbanDurum durum) {
+        return new ResponseEntity<>(kurbanService.chooseKurbanList(cins, durum), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

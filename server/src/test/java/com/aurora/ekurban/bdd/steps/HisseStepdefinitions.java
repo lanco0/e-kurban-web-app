@@ -85,10 +85,10 @@ public class HisseStepdefinitions {
                 hissedarCreateDTO.setAd(columns.get("ad"));
             }
             if (columns.get("soyad") != null) {
-                hissedarCreateDTO.setAd(columns.get("soyad"));
+                hissedarCreateDTO.setSoyad(columns.get("soyad"));
             }
             if (columns.get("tel") != null) {
-                hissedarCreateDTO.setAd(columns.get("tel"));
+                hissedarCreateDTO.setTel(columns.get("tel"));
             }
 
             Long hissedarId = hissedarService.addHissedar(hissedarCreateDTO);

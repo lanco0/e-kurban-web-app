@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.MissingFormatArgumentException;
 
 /**
  * hisse işlemlerini gerçekleştirecek olan service katmanı
  */
 @Service
+@Transactional
 public class HisseService {
     @Lazy
     @Autowired
@@ -29,7 +31,7 @@ public class HisseService {
 
     /**
      * hisse entity'sini hisseDTO'ya dönüştürür
-     * @param  hisse
+     * @param  hisse hisse entity'si
      * @return hisseDTO
      */
     public HisseDTO convertHisseEntityToDTO(@NotNull Hisse hisse) {
@@ -44,11 +46,20 @@ public class HisseService {
     }
 
     /**
+     * Repository'den hisse entity'sini döndürür
+     * @param id hisse id'si
+     * @return hisse
+     */
+    public Hisse getHisseById(Long id) {
+        return hisseRepository.findById(id).orElseThrow();
+    }
+
+    /**
      * Kurbana ait hisse oluşturur,
      * eğer kurbana hissedar eklenirken hissedar mevcut ise hissedarı bulur ve kurbana ekler,
      * değilse yeni hissedar oluşturur ve kurbana ekler
      * kurban hisseleri doluysa hata fırlatır
-     * @param hisseCreateDTO
+     * @param hisseCreateDTO hisse id'si, kurban id'si, hissedar id'si
      */
     public void addHisse(@NotNull HisseCreateDTO hisseCreateDTO) throws MissingFormatArgumentException {
         Kurban kurban = kurbanService.getKurban(hisseCreateDTO.getKurbanId());
@@ -63,18 +74,18 @@ public class HisseService {
             hissedar = hissedarService.getHissedar(hissedarId);
         }
         Hisse hisse = new Hisse(kurban, hissedar);
-        kurban.getHisseList().add(hisse);
         hisseRepository.save(hisse);
-        kurbanService.save(kurban);
+        kurban.getHisseList().add(hisse);
+        kurbanService.updateDurum(kurban);
     }
 
     /**
      * hisseyi günceller
      * yeni hissedarı mevcut hissedar ile değiştirir
-     * @param hisseCreateDTO
+     * @param hisseCreateDTO hisse id'si, kurban id'si, yeni hissedar id'si
      */
     public void updateHisse(Long id, @NotNull HisseCreateDTO hisseCreateDTO) {
-        Hisse hisse = hisseRepository.findById(id).orElseThrow();
+        Hisse hisse = getHisseById(id);
         Hissedar hissedar = hissedarService.getHissedar(hisseCreateDTO.getHissedarId());
         hisse.setHissedar(hissedar);
         kurbanService.save(kurbanService.getKurban(hisseCreateDTO.getKurbanId()));
@@ -82,13 +93,12 @@ public class HisseService {
 
     /**
      * hissedeki hissedarı siler
-     * @param id
+     * @param id hisse id
      */
     public void deleteHissedarOnHisse(Long id) {
-        Hisse hisse = hisseRepository.findById(id).orElseThrow();
-        Kurban kurban = kurbanService.getKurban(hisse.getKurban().getId());
-        kurban.getHisseList().remove(hisse);
-        kurbanService.updateDurum(hisse.getKurban());
-        hisseRepository.delete(hisse);
+        Hisse hisse = getHisseById(id);
+        Kurban kurban = hisse.getKurban();
+        hisseRepository.deleteById(id);
+        kurbanService.updateDurum(kurban);
     }
 }
