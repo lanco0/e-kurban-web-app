@@ -20,10 +20,11 @@ export class AuthService {
     }
 
     giris(userLoginDto: { eposta: string | null; sifre: string | null }): Observable<User> {
-        // console.log(userLoginDto);
-        return this.http.post<User>(this.apiUrl + "giris", userLoginDto, this.httpOptions).pipe(
-            catchError(this.handleError<User>('loginUser'))
-        );
+        return this.http.post<User>(this.apiUrl + "giris", userLoginDto, this.httpOptions)
+            .pipe(map(user => {
+                    return user;
+                })
+            );
     }
 
     cikis(user: User | undefined): void {
